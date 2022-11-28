@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.MainController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -58,7 +49,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtSongSearch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </HBox.margin>
@@ -179,12 +170,12 @@
                               <Font name="Calibri" size="18.0" />
                            </font>
                         </Label>
-                        <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn prefWidth="160.0" resizable="false" text="Title" />
-                              <TableColumn prefWidth="160.0" text="Artist" />
-                              <TableColumn prefWidth="120.0" text="Category" />
-                              <TableColumn prefWidth="50.0" text="Time" />
+                              <TableColumn fx:id="titleColum" prefWidth="160.0" resizable="false" text="Title" />
+                              <TableColumn fx:id="artistColum" prefWidth="160.0" text="Artist" />
+                              <TableColumn fx:id="genreColum" prefWidth="120.0" text="Category" />
+                              <TableColumn fx:id="timeColum" prefWidth="50.0" text="Time" />
                            </columns>
                         </TableView>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
