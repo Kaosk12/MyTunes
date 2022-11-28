@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BE/MockUpEntitity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/MockUpInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAL/DB/DatabaseConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAL/Interfaces/MockUpInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Controllers/MockUpController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Models/MockUpModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Views/MockUpView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +39,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/kaosk/IdeaProjects/MyTunes",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RunManager" selected="Application.DatabaseConnector">
@@ -89,8 +82,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669632197074</updated>
+      <workItem from="1669635521570" duration="625000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
