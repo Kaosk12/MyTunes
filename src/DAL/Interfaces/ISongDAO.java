@@ -4,6 +4,6 @@ import BE.Song;
 
 import java.util.List;
 
-public interface ISongDataAccess {
+public interface ISongDAO {
     List<Song> getAllSongs();
 }
