@@ -1,13 +1,13 @@
 package BLL;
 
 import BE.Song;
-import DAL.Interfaces.ISongDataAccess;
+import DAL.Interfaces.ISongDAO;
 import DAL.Interfaces.SongDao_DB;
 
 import java.util.List;
 
 public class SongManager {
-    private ISongDataAccess databaseAcces;
+    private ISongDAO databaseAcces;
 
     public SongManager() {
         databaseAcces = new SongDao_DB();

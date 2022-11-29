@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongDao_DB implements ISongDataAccess{
+public class SongDao_DB implements ISongDAO{
 
     private DatabaseConnector databaseConnector;
 
