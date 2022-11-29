@@ -42,6 +42,16 @@ public class MainController implements Initializable {
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
 
+        txtSongSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try {
+                songModel.search(newValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // TO DO
+                // Create a displayError method to show errors to the user?
+            }
+        });
+
 
     }
 
@@ -74,7 +84,13 @@ public class MainController implements Initializable {
      * @param actionEvent, an action of pressing the button
      */
     public void handleSearch(ActionEvent actionEvent) {
-        //TO DO
+        // Obsolete?
+        // It already searches as soon as text is entered, using the listener in our initialize method.
+        try {
+            songModel.search(txtSongSearch.getText());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
