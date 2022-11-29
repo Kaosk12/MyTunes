@@ -1,0 +1,33 @@
+Index: src/BE/Song.java
+===================================================================
+diff --git a/src/BE/Song.java b/src/BE/Song.java
+--- a/src/BE/Song.java	
++++ b/src/BE/Song.java	
+@@ -5,10 +5,7 @@
+ 
+ public class Song {
+ 
+-    private SimpleStringProperty title;
+-    private SimpleStringProperty authour;
+-
+-    private SimpleStringProperty genre;
++    private SimpleStringProperty title, authour, genre;
+ 
+     private SimpleIntegerProperty time;
+ 
+Index: src/GUI/Controllers/MainController.java
+===================================================================
+diff --git a/src/GUI/Controllers/MainController.java b/src/GUI/Controllers/MainController.java
+--- a/src/GUI/Controllers/MainController.java	
++++ b/src/GUI/Controllers/MainController.java	
+@@ -16,9 +16,7 @@
+ 
+     public TextField txtSongSearch;
+     public TableView<Song> lstSongs;
+-    public TableColumn<Song, String> titleColum;
+-    public TableColumn<Song, String> artistColum;
+-    public TableColumn<Song, String> genreColum;
++    public TableColumn<Song, String> titleColum, artistColum, genreColum;
+     public TableColumn<Song, Integer> timeColum;
+ 
+ 

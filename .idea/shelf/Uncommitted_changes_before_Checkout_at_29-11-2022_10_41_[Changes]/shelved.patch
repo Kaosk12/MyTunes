@@ -1,0 +1,122 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_28-11-2022_13_26_[Changes]/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_28-11-2022_13_26_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_28-11-2022_13_26_[Changes]/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1669714200401)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_28-11-2022_13_26_[Changes]/shelved.patch	(date 1669714200401)
+@@ -0,0 +1,50 @@
++Index: .idea/workspace.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6239f498-0ccd-4d8f-8807-2db9408a4796\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IAlJI22atwlXHffO8qIPHbLnjC\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Downloaded.Files.Path.Enabled\": \"false\",\r\n    \"Repository.Attach.Annotations\": \"false\",\r\n    \"Repository.Attach.JavaDocs\": \"false\",\r\n    \"Repository.Attach.Sources\": \"false\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"last_opened_file_path\": \"C:/Users/kaosk/IdeaProjects/MyTunes\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.2\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Application.DatabaseConnector\">\r\n    <configuration name=\"DatabaseConnector\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DAL.DB.DatabaseConnector\" />\r\n      <module name=\"MyTunes\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DAL.DB.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"GUI.Main\" />\r\n      <module name=\"MyTunes\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.DatabaseConnector\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6239f498-0ccd-4d8f-8807-2db9408a4796\" name=\"Changes\" comment=\"\" />\r\n      <created>1669632197074</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669632197074</updated>\r\n      <workItem from=\"1669635521570\" duration=\"625000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++diff --git a/.idea/workspace.xml b/.idea/workspace.xml
++--- a/.idea/workspace.xml	(revision c01cc71572cfedae6b70472003fdd64a483bbe65)
+++++ b/.idea/workspace.xml	(date 1669638144959)
++@@ -1,10 +1,7 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <project version="4">
++   <component name="ChangeListManager">
++-    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="">
++-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++-    </list>
+++    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="Added draft FXML view" />
++     <option name="SHOW_DIALOG" value="false" />
++     <option name="HIGHLIGHT_CONFLICTS" value="true" />
++     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++@@ -82,8 +79,16 @@
++       <option name="number" value="Default" />
++       <option name="presentableId" value="Default" />
++       <updated>1669632197074</updated>
++-      <workItem from="1669635521570" duration="625000" />
+++      <workItem from="1669635521570" duration="1074000" />
++     </task>
+++    <task id="LOCAL-00001" summary="Added draft FXML view">
+++      <created>1669637829781</created>
+++      <option name="number" value="00001" />
+++      <option name="presentableId" value="LOCAL-00001" />
+++      <option name="project" value="LOCAL" />
+++      <updated>1669637829781</updated>
+++    </task>
+++    <option name="localTasksCounter" value="2" />
++     <servers />
++   </component>
++   <component name="TypeScriptGeneratedFilesManager">
++@@ -100,4 +105,8 @@
++       </map>
++     </option>
++   </component>
+++  <component name="VcsManagerConfiguration">
+++    <MESSAGE value="Added draft FXML view" />
+++    <option name="LAST_COMMIT_MESSAGE" value="Added draft FXML view" />
+++  </component>
++ </project>
++\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6239f498-0ccd-4d8f-8807-2db9408a4796\" name=\"Changes\" comment=\"Created classes according to uml and deleted mockup classes\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc1.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/BLL/Interfaces/IMyTunesManager.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/BLL/MyTunesManager.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/BLL/Util/SongSearcher.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/DAL/DB/MyTunesDAO.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/DAL/Interfaces/IMyTunesDataAccess.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/GUI/Controllers/MyTunesController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/GUI/Models/MyTunesModel.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MyTunes.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MyTunes.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/DAL/Interfaces/MockUpInterface.java\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IAlJI22atwlXHffO8qIPHbLnjC\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/kaosk/IdeaProjects/MyTunes&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Application.DatabaseConnector\">\r\n    <configuration name=\"DatabaseConnector\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"DAL.DB.DatabaseConnector\" />\r\n      <module name=\"MyTunes\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"DAL.DB.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"GUI.Main\" />\r\n      <module name=\"MyTunes\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.DatabaseConnector\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6239f498-0ccd-4d8f-8807-2db9408a4796\" name=\"Changes\" comment=\"\" />\r\n      <created>1669632197074</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669632197074</updated>\r\n      <workItem from=\"1669635521570\" duration=\"625000\" />\r\n      <workItem from=\"1669709721561\" duration=\"440000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Created classes according to uml and deleted mockup classes\">\r\n      <created>1669638338177</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669638338177</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Created classes according to uml and deleted mockup classes\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Created classes according to uml and deleted mockup classes\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7c547e7764008a452b03f8bca5497582c9171d18)
++++ b/.idea/workspace.xml	(date 1669714855486)
+@@ -1,18 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="Created classes according to uml and deleted mockup classes">
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc1.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IMyTunesManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/BLL/MyTunesManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/BLL/Util/SongSearcher.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/DAL/DB/MyTunesDAO.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IMyTunesDataAccess.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/GUI/Controllers/MyTunesController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/GUI/Models/MyTunesModel.java" afterDir="false" />
++    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="Added draft FXML view">
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28-11-2022_13_26_[Changes]/shelved.patch" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/MyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyTunes.iml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/MockUpInterface.java" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -28,6 +19,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+@@ -55,7 +51,7 @@
+     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+   }
+ }</component>
+-  <component name="RunManager" selected="Application.DatabaseConnector">
++  <component name="RunManager" selected="Application.Main">
+     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="DAL.DB.DatabaseConnector" />
+       <module name="MyTunes" />
+@@ -78,8 +74,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.Main" />
+         <item itemvalue="Application.DatabaseConnector" />
+-        <item itemvalue="Application.Main" />
+       </list>
+     </recent_temporary>
+   </component>
