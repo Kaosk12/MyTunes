@@ -4,10 +4,13 @@ import BE.Song;
 import GUI.Models.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +22,7 @@ public class MainController implements Initializable {
     public TableView<Song> lstSongs;
     public TableColumn<Song, String> titleColum, artistColum, genreColum;
     public TableColumn<Song, Integer> timeColum;
+    public Button btnSearch, btnSearchClear;
 
 
     private MainModel songModel;
@@ -42,6 +46,12 @@ public class MainController implements Initializable {
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
 
+        /**
+         * Search "real-time" as soon as text is entered.
+         * Moved it to the handleSearch method instead, as it seems laggy using the listener.
+         * In handleSearch it only searches when the button is pressed.
+
+
         txtSongSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 songModel.search(newValue);
@@ -51,41 +61,53 @@ public class MainController implements Initializable {
                 // Create a displayError method to show errors to the user?
             }
         });
+         */
+
+        //Disable the clear button
+        btnSearchClear.setDisable(true);
+        //Adding a listener, and enabling/disabling the clear button once text is entered or removed
+        txtSongSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try {
+                if(!txtSongSearch.getText().isEmpty()) {
+                    btnSearchClear.setDisable(false);
+                } else {
+                    btnSearchClear.setDisable(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                // To do: Create a displayError method to show errors to the user?
+            }
+        });
 
 
     }
 
     /**
      * Change to previous song
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlayerPrevious(ActionEvent actionEvent) {
+    public void handlePlayerPrevious() {
         //TO DO
     }
 
     /**
      * Change to next song
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlayerNext(ActionEvent actionEvent) {
+    public void handlePlayerNext() {
         //TO DO
     }
 
     /**
      * Play or pause the current song
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlayerPlayPause(ActionEvent actionEvent) {
+    public void handlePlayerPlayPause() {
         //TO DO
     }
 
     /**
      * Search for a song in the library
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSearch(ActionEvent actionEvent) {
-        // Obsolete?
-        // It already searches as soon as text is entered, using the listener in our initialize method.
+    public void handleSearch() {
+        // Can be switched to search as soon as text is entered, using the out-commented listener in our initialize method.
         try {
             songModel.search(txtSongSearch.getText());
         } catch (Exception e) {
@@ -95,88 +117,95 @@ public class MainController implements Initializable {
 
     /**
      * Create a new playlist
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlaylistNew(ActionEvent actionEvent) {
+    public void handlePlaylistNew() {
     }
 
     /**
      * Edit a playlist
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlaylistEdit(ActionEvent actionEvent) {
+    public void handlePlaylistEdit() {
         //TO DO
     }
 
     /**
      * Delete a playlist
-     * @param actionEvent, an action of pressing the button
      */
-    public void handlePlaylistDelete(ActionEvent actionEvent) {
+    public void handlePlaylistDelete() {
         //TO DO
     }
 
     /**
      * Add a new song from the library to the Songs on Playlist editor
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSOPAdd(ActionEvent actionEvent) {
+    public void handleSOPAdd() {
         //TO DO
     }
 
     /**
      * Move the song up in the order of Songs on Playlist
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSOPMoveUp(ActionEvent actionEvent) {
+    public void handleSOPMoveUp() {
         //TO DO
     }
 
     /**
      * Move the song down in the order of Songs on Playlist
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSOPMoveDown(ActionEvent actionEvent) {
+    public void handleSOPMoveDown() {
         //TO DO
     }
 
     /**
      * Remove a song from the Songs on Playlist editor
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSOPDelete(ActionEvent actionEvent) {
+    public void handleSOPDelete() {
         //TO DO
     }
 
     /**
      * Add a new song to the library
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSongNew(ActionEvent actionEvent) {
+    public void handleSongNew() {
         //TO DO
     }
 
     /**
      * Edit a song in the library
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSongEdit(ActionEvent actionEvent) {
+    public void handleSongEdit() {
         //TO DO
     }
 
     /**
      * Delete a song from the library
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleSongDelete(ActionEvent actionEvent) {
+    public void handleSongDelete() {
         //TO DO
     }
 
     /**
      * Close the application
-     * @param actionEvent, an action of pressing the button
      */
-    public void handleClose(ActionEvent actionEvent) {
+    public void handleClose() {
         //TO DO
+    }
+
+    /**
+     * Allows searching by pressing Enter (instead of using the 🔍-button).
+     * @param keyEvent, a key-press
+     */
+    public void handleEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            handleSearch();
+        }
+    }
+
+    /**
+     * Clear the search input from the txtSongSearch textfield and searches (for an empty string) to show all songs again.
+     */
+    public void handleClear() {
+        txtSongSearch.clear();
+        handleSearch();
     }
 }
