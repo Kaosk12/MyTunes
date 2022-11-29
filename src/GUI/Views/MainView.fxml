@@ -74,26 +74,26 @@
                               <Font name="Calibri" size="18.0" />
                            </font>
                         </Label>
-                        <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="tbvPlayLists" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn text="Name" />
-                            <TableColumn text="Songs" />
-                              <TableColumn text="Time" />
+                            <TableColumn fx:id="clmPlayListName" text="Name" />
+                            <TableColumn fx:id="clmPlayListSongs" text="Songs" />
+                              <TableColumn fx:id="clmPlayListTime" text="Time" />
                           </columns>
                         </TableView>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="New..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnNewPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="New..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Edit..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnEditPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Edit..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnDeletePlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>

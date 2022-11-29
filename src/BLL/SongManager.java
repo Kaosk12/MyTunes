@@ -2,7 +2,7 @@ package BLL;
 
 import BE.Song;
 import DAL.Interfaces.ISongDAO;
-import DAL.Interfaces.SongDao_DB;
+import DAL.DB.SongDao_DB;
 
 import java.util.List;
 

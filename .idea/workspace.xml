@@ -2,9 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="Created classes according to uml and deleted mockup classes">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IMyTunesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/MyTunesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/Util/SongSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/testManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IMyTunesDataAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Controllers/MyTunesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Models/MyTunesModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BE/MockUpEntitity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BE/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyTunes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/SongManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/SongManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/MyTunesDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/MockUpInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/SongDao_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,12 +32,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -42,8 +65,8 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/kaosk/IdeaProjects/MyTunes&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
@@ -72,6 +95,9 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.DatabaseConnector" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DatabaseConnector" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -84,9 +110,16 @@
       <option name="presentableId" value="Default" />
       <updated>1669632197074</updated>
       <workItem from="1669635521570" duration="625000" />
-      <workItem from="1669656533944" duration="99000" />
-      <workItem from="1669656682280" duration="7775000" />
+      <workItem from="1669709721561" duration="440000" />
     </task>
+    <task id="LOCAL-00001" summary="Created classes according to uml and deleted mockup classes">
+      <created>1669638338177</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669638338177</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,10 +130,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="PlayList_Crud" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created classes according to uml and deleted mockup classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created classes according to uml and deleted mockup classes" />
   </component>
 </project>
