@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.Song;
 import GUI.Models.MainModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,9 +17,7 @@ public class MainController implements Initializable {
 
     public TextField txtSongSearch;
     public TableView<Song> lstSongs;
-    public TableColumn<Song, String> titleColum;
-    public TableColumn<Song, String> artistColum;
-    public TableColumn<Song, String> genreColum;
+    public TableColumn<Song, String> titleColum, artistColum, genreColum;
     public TableColumn<Song, Integer> timeColum;
 
 
@@ -44,5 +43,124 @@ public class MainController implements Initializable {
 
 
 
+    }
+
+    /**
+     * Change to previous song
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlayerPrevious(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Change to next song
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlayerNext(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Play or pause the current song
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlayerPlayPause(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Search for a song in the library
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSearch(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Create a new playlist
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlaylistNew(ActionEvent actionEvent) {
+    }
+
+    /**
+     * Edit a playlist
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlaylistEdit(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Delete a playlist
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handlePlaylistDelete(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Add a new song from the library to the Songs on Playlist editor
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSOPAdd(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Move the song up in the order of Songs on Playlist
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSOPMoveUp(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Move the song down in the order of Songs on Playlist
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSOPMoveDown(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Remove a song from the Songs on Playlist editor
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSOPDelete(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Add a new song to the library
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSongNew(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Edit a song in the library
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSongEdit(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Delete a song from the library
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleSongDelete(ActionEvent actionEvent) {
+        //TO DO
+    }
+
+    /**
+     * Close the application
+     * @param actionEvent, an action of pressing the button
+     */
+    public void handleClose(ActionEvent actionEvent) {
+        //TO DO
     }
 }
