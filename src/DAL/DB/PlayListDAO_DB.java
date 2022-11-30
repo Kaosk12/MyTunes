@@ -25,7 +25,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
      * them to an ArrayList that it returns.
      * @return a list containing all playlists
      */
-    public List<PlayList> getAllPlayLists() {
+    public List<PlayList> getAllPlayLists() throws Exception {
 
         try(Connection connection = databaseConnector.getConnection())
         {

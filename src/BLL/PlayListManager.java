@@ -9,7 +9,9 @@ import java.util.List;
 public class PlayListManager {
     private IPlaylistDAO databaseAcces;
 
-
+    /**
+     * initializes PlayListDAO_DB
+     */
     public PlayListManager() {
         databaseAcces = new PlayListDAO_DB();
     }
