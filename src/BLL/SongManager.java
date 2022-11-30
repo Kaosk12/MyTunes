@@ -39,6 +39,11 @@ public class SongManager implements ISongManager {
         return searchResult;
     }
 
+    /**
+     * Update/Edit a song
+     * @param song, the selected song to update
+     * @throws Exception up the layers
+     */
     @Override
     public void updateSong(Song song) throws Exception {
         databaseAccess.updateSong(song);

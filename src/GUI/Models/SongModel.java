@@ -48,6 +48,11 @@ public class SongModel {
         this.selectedSong = selectedSong;
     }
 
+    /**
+     * Update/Edit a song
+     * @param song, the selected song to update
+     * @throws Exception up the layers
+     */
     public void updateSong(Song song) throws Exception {
         songManager.updateSong(song);
     }

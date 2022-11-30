@@ -46,10 +46,10 @@ public class SongUpdateController implements Initializable {
         song.setArtist(textArtist.getText());
         song.setGenre(textGenre.getText());
 
-        //Send the song down the layers and update it in DB
+
         try {
-            songModel.updateSong(song);
-            songModel.search("");
+            songModel.updateSong(song); //Send the song down the layers to update it in the Database.
+            songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
         } catch (Exception e) {
             throw new RuntimeException(e); //Change to a nice error display?
         }
