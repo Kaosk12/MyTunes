@@ -10,11 +10,13 @@ public class Song {
 
     private String path;
 
-    public Song(String title, String artist, String genre, int time){
+    public Song(String title, String artist, String genre, int time, String path, int id){
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.duration = time;
+        this.path = path;
+        this.id = id;
 
     }
 
