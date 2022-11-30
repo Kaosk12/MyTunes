@@ -75,8 +75,6 @@ public class SongDao_DB implements ISongDAO {
 
             //Run the specified SQL statement
             statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
