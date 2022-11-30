@@ -21,4 +21,10 @@ public interface ISongManager {
      */
     List<Song> search(String query) throws Exception;
 
+    /**
+     * Update/Edit a song
+     * @param song, the selected song to update
+     * @throws Exception up the layers
+     */
+    void updateSong(Song song) throws Exception;
 }

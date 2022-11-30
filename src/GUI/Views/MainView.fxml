@@ -186,7 +186,7 @@
                         </Label>
                         <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="titleColum" prefWidth="160.0" resizable="false" text="Title" />
+                              <TableColumn fx:id="titleColum" prefWidth="160.0" text="Title" />
                               <TableColumn fx:id="artistColum" prefWidth="160.0" text="Artist" />
                               <TableColumn fx:id="genreColum" prefWidth="120.0" text="Category" />
                               <TableColumn fx:id="timeColum" prefWidth="50.0" text="Time" />

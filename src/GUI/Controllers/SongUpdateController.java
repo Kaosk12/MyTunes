@@ -2,7 +2,6 @@ package GUI.Controllers;
 
 import BE.Song;
 import GUI.Models.SongModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +14,7 @@ import java.util.ResourceBundle;
 public class SongUpdateController implements Initializable {
 
     private SongModel songModel;
+    private Song song;
     @FXML
     private TextField textTitle, textArtist, textGenre;
     
@@ -23,7 +23,7 @@ public class SongUpdateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Song song = SongModel.selectedSong;
+        song = SongModel.selectedSong;
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());
@@ -37,8 +37,26 @@ public class SongUpdateController implements Initializable {
         this.songModel = songModel;
     }
 
+    /**
+     * Changes the title, artist, and genre of the song to the new input once the user presses OK.
+     */
     public void handleOK() {
+        //Set the title, artist, and genre to new input
+        song.setTitle(textTitle.getText());
+        song.setArtist(textArtist.getText());
+        song.setGenre(textGenre.getText());
 
+        //Send the song down the layers and update it in DB
+        try {
+            songModel.updateSong(song);
+            songModel.search("");
+        } catch (Exception e) {
+            throw new RuntimeException(e); //Change to a nice error display?
+        }
+
+        //Get handle of the stage, and close it.
+        Stage stage = (Stage) btnOK.getScene().getWindow();
+        stage.close();
     }
 
     public void handleCancel() {

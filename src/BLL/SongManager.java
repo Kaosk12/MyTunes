@@ -39,4 +39,9 @@ public class SongManager implements ISongManager {
         return searchResult;
     }
 
+    @Override
+    public void updateSong(Song song) throws Exception {
+        databaseAccess.updateSong(song);
+    }
+
 }

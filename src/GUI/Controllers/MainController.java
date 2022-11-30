@@ -2,6 +2,9 @@ package GUI.Controllers;
 
 import BE.Song;
 import GUI.Models.SongModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -23,11 +26,16 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
 
-    public TextField txtSongSearch;
-    public TableView<Song> lstSongs;
-    public TableColumn<Song, String> titleColum, artistColum, genreColum;
-    public TableColumn<Song, Integer> timeColum;
-    public Button btnSearch, btnSearchClear;
+    @FXML
+    private TextField txtSongSearch;
+    @FXML
+    private TableView<Song> lstSongs;
+    @FXML
+    private TableColumn<Song, String> titleColum, artistColum, genreColum;
+    @FXML
+    private TableColumn<Song, Integer> timeColum;
+    @FXML
+    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd;
 
 
     private SongModel songModel;
@@ -84,6 +92,29 @@ public class MainController implements Initializable {
             }
         });
 
+        //Disable the Edit & Delete Song buttons and the Add to SoP button.
+        btnSongEdit.setDisable(true);
+        btnSongDelete.setDisable(true);
+        btnSOPAdd.setDisable(true);
+
+        //Adding a listener, and enabling/disabling the aforementioned buttons once a song is selected/deselected.
+        lstSongs.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            @Override
+            public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
+                if (newValue != null) {
+                    //
+                    btnSongEdit.setDisable(false);
+                    btnSongDelete.setDisable(false);
+                    btnSOPAdd.setDisable(false);
+
+                }
+                if (newValue == null) {
+                    btnSongEdit.setDisable(true);
+                    btnSongDelete.setDisable(true);
+                    btnSOPAdd.setDisable(true);
+                }
+            }
+        });
 
     }
 

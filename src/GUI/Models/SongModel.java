@@ -39,8 +39,16 @@ public class SongModel {
         songsInList.addAll(searchResults);
     }
 
-
+    /**
+     * Used to save the selected song from the MainView list of songs.
+     * This is needed in the SongUpdateView & SongUpdateController to fill the text fields.
+     * @param selectedSong, the song object selected from the MainView.
+     */
     public void setSelectedSong(Song selectedSong) {
         this.selectedSong = selectedSong;
+    }
+
+    public void updateSong(Song song) throws Exception {
+        songManager.updateSong(song);
     }
 }

@@ -55,6 +55,11 @@ public class SongDao_DB implements ISongDAO {
         return allSongs;
     }
 
+    /**
+     * Update/Edit the title, artist, and genre of a song in the database.
+     * @param song, the selected song to update.
+     * @throws Exception up the layers
+     */
     @Override
     public void updateSong(Song song) throws Exception {
         String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=? WHERE Id=?;"; //Match to database column name
