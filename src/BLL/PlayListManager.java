@@ -9,6 +9,7 @@ import java.util.List;
 public class PlayListManager {
     private IPlaylistDAO databaseAcces;
 
+
     public PlayListManager() {
         databaseAcces = new PlayListDAO_DB();
     }
@@ -16,7 +17,7 @@ public class PlayListManager {
 
     /**
      * retreives all playlists from DAL
-     * @return
+     * @return list containing all playlists
      * @throws Exception
      */
     public List<PlayList> getAllPlayLists() throws Exception{

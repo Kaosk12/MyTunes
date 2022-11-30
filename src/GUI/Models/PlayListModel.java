@@ -13,7 +13,7 @@ public class PlayListModel {
 
     /**
      * returns the ObservableList playListsInList
-     * @return
+     * @return an observable list woth all playlists
      */
     public ObservableList<PlayList> getObservablePlayLists() {
         return playListsInList;
