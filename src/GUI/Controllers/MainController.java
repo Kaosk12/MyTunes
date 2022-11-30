@@ -2,7 +2,10 @@ package GUI.Controllers;
 
 import BE.Song;
 import GUI.Models.SongModel;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,7 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -170,10 +176,26 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Edit a song in the library
+     * Open up a new window to edit the title, artist or genre of a song.
      */
-    public void handleSongEdit() {
-        //TO DO
+    public void handleSongEdit() throws IOException {
+        //Save information about the selected song in the songModel.
+        Song song = lstSongs.getSelectionModel().getSelectedItem();
+        songModel.setSelectedSong(song);
+
+        //Load the new stage & view
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Edit");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+
+        //Set the SongUpdateController's model to be the same songModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        SongUpdateController controller = loader.getController();
+        controller.setSongModel(songModel);
     }
 
     /**

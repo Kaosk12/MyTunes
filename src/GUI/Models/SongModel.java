@@ -12,6 +12,7 @@ public class SongModel {
 
     private ObservableList<Song> songsInList;
     private ISongManager songManager;
+    public static Song selectedSong;
 
     public ObservableList<Song> getObservableSongs() {
         return songsInList;
@@ -36,5 +37,10 @@ public class SongModel {
         List<Song> searchResults = songManager.search(query);
         songsInList.clear();
         songsInList.addAll(searchResults);
+    }
+
+
+    public void setSelectedSong(Song selectedSong) {
+        this.selectedSong = selectedSong;
     }
 }
