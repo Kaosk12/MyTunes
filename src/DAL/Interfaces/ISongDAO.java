@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ISongDAO {
     List<Song> getAllSongs();
+    void updateSong(Song song) throws Exception;
 }

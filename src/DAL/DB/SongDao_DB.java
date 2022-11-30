@@ -4,10 +4,7 @@ import BE.Song;
 import DAL.DB.DatabaseConnector;
 import DAL.Interfaces.ISongDAO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +53,25 @@ public class SongDao_DB implements ISongDAO {
         }
 
         return allSongs;
+    }
+
+    @Override
+    public void updateSong(Song song) throws Exception {
+        String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=? WHERE Id=?;"; //Match to database column name
+
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            //Bind parameters
+            statement.setString(1, song.getTitle());
+            statement.setString(2, song.getArtist());
+            statement.setString(3, song.getGenre());
+            statement.setInt(4, song.getId());
+
+            //Run the specified SQL statement
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

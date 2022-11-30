@@ -37,4 +37,7 @@ public class Song {
         return genre;
     }
 
+    public int getId() {
+        return id;
+    }
 }
