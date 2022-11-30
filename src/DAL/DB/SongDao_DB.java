@@ -27,7 +27,7 @@ public class SongDao_DB implements ISongDAO {
      * @return a list of song
      */
 
-    public List<Song> getAllSongs() {
+    public List<Song> getAllSongs() throws Exception {
         ArrayList<Song> allSongs = new ArrayList<>();
         try(Connection connection = databaseConnector.getConnection();
             Statement statement = connection.createStatement();)
@@ -52,7 +52,8 @@ public class SongDao_DB implements ISongDAO {
                 allSongs.add(song);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new Exception("Failed to retrieve songs", e);
         }
 
         return allSongs;
