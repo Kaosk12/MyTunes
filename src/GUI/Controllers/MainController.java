@@ -1,7 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
-import GUI.ErrorDisplayer;
+import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

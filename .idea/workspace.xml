@@ -47,7 +47,7 @@
       <module name="MyTunes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="GUI.*" />
+          <option name="PATTERN" value="GUI.Views.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
