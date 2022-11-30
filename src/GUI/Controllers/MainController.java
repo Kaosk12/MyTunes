@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
+import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -44,7 +45,7 @@ public class MainController implements Initializable {
         try {
             songModel = new SongModel();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            ErrorDisplayer.displayError(e);
         }
     }
 
@@ -87,8 +88,7 @@ public class MainController implements Initializable {
                     btnSearchClear.setDisable(true);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                // To do: Create a displayError method to show errors to the user?
+                ErrorDisplayer.displayError(e);
             }
         });
 
@@ -147,7 +147,7 @@ public class MainController implements Initializable {
         try {
             songModel.search(txtSongSearch.getText());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            ErrorDisplayer.displayError(e);
         }
     }
 
