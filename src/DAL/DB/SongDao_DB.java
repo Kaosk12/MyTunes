@@ -1,7 +1,8 @@
-package DAL.Interfaces;
+package DAL.DB;
 
 import BE.Song;
 import DAL.DB.DatabaseConnector;
+import DAL.Interfaces.ISongDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongDao_DB implements ISongDAO{
+public class SongDao_DB implements ISongDAO {
 
     private DatabaseConnector databaseConnector;
 

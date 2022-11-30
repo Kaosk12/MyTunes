@@ -4,23 +4,23 @@ import BE.Song;
 import BLL.Interfaces.ISongManager;
 import BLL.Util.SongSearcher;
 import DAL.Interfaces.ISongDAO;
-import DAL.Interfaces.SongDao_DB;
+import DAL.DB.SongDao_DB;
 
 import java.util.List;
 
 public class SongManager implements ISongManager {
-    private ISongDAO databaseAcces;
+    private ISongDAO databaseAccess;
     private SongSearcher songSearcher = new SongSearcher();
 
     public SongManager() {
-        databaseAcces = new SongDao_DB();
+        databaseAccess = new SongDao_DB();
     }
 
 
     private SongDao_DB songDAO;
 
     public List<Song> getAllSongs() throws Exception {
-        return databaseAcces.getAllSongs();
+        return databaseAccess.getAllSongs();
     }
 
     /**
