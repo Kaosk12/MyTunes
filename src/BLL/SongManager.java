@@ -15,10 +15,14 @@ public class SongManager implements ISongManager {
     public SongManager() {
         databaseAccess = new SongDao_DB();
     }
-
-
+    
     private SongDao_DB songDAO;
 
+    /**
+     * gets all songs from dal and sends them on to the model
+     * @return returns a list of all songs from database
+     * @throws Exception up the layer
+     */
     public List<Song> getAllSongs() throws Exception {
         return databaseAccess.getAllSongs();
     }

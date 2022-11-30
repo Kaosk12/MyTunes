@@ -17,6 +17,11 @@ public class SongModel {
         return songsInList;
     }
 
+    /**
+     * sets the song mannager
+     * gets a list of all songs and stores them in an observable list
+     * @throws Exception
+     */
     public SongModel() throws Exception {
         songManager = new SongManager();
         songsInList = FXCollections.observableArrayList();
