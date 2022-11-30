@@ -1,13 +1,14 @@
 package BLL;
 
 import BE.Song;
+import BLL.Interfaces.ISongManager;
 import BLL.Util.SongSearcher;
 import DAL.Interfaces.ISongDAO;
 import DAL.Interfaces.SongDao_DB;
 
 import java.util.List;
 
-public class SongManager {
+public class SongManager implements ISongManager {
     private ISongDAO databaseAcces;
     private SongSearcher songSearcher = new SongSearcher();
 
@@ -32,4 +33,5 @@ public class SongManager {
         List<Song> searchResult = songSearcher.search(allSongs, query);
         return searchResult;
     }
+
 }
