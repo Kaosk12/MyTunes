@@ -42,7 +42,7 @@ public class SongDao_DB implements ISongDAO{
                 String artist = rs.getString("Artist").trim();
                 String genre = rs.getString("Genre").trim();
                 int time = rs.getInt("Duration");
-                String path = rs.getString("Path");
+                String path = rs.getString("SongPath");
                 int id = rs.getInt("Id");
 
 
