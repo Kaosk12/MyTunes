@@ -14,9 +14,17 @@ public class SongDao_DB implements ISongDAO{
 
     private DatabaseConnector databaseConnector;
 
+
     public SongDao_DB() {
         databaseConnector = new DatabaseConnector();
     }
+
+    /**
+     * gets all the information from song table
+     * takes all data and creates a song object for each
+     * lists all the songs in a list called allSongs
+     * @return a list of song
+     */
 
     public List<Song> getAllSongs() {
         ArrayList<Song> allSongs = new ArrayList<>();
@@ -34,9 +42,12 @@ public class SongDao_DB implements ISongDAO{
                 String artist = rs.getString("Artist").trim();
                 String genre = rs.getString("Genre").trim();
                 int time = rs.getInt("Duration");
+                String path = rs.getString("Path");
+                int id = rs.getInt("Id");
 
 
-                Song song = new Song(title, artist, genre, time);
+
+                Song song = new Song(title, artist, genre, time, path, id);
                 allSongs.add(song);
             }
         } catch (SQLException e) {
