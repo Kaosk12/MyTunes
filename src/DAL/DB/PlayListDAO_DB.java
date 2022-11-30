@@ -22,8 +22,8 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
     /**
      * reads all playlists/data in the Playlist table in the database, then makes them into PlayList objects and adds
-     * them to an ArraList that it returns.
-     * @return
+     * them to an ArrayList that it returns.
+     * @return a list containing all playlists
      */
     public List<PlayList> getAllPlayLists() {
 

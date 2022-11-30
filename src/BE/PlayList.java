@@ -41,13 +41,6 @@ public class PlayList {
     }
 
 
-   /* public void addSong(Song song){
-        songList.add(song);
-    }
-
-    public void deleteSong(Song song){
-        songList.remove(song);
-    }*/
 
     /**
      * gets the time of each song and adds them all together, then
