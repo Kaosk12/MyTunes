@@ -10,6 +10,18 @@ public class Song {
 
     private String path;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
     public Song(String title, String artist, String genre, int time, String path, int id){
         this.title = title;
         this.artist = artist;
@@ -36,6 +48,9 @@ public class Song {
     public String getGenre() {
         return genre;
     }
-    
 
+
+    public int getId() {
+        return id;
+    }
 }
