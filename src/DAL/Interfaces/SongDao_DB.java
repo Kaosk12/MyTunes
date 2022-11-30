@@ -30,9 +30,9 @@ public class SongDao_DB implements ISongDAO{
             // Loop through rows from database result set
             while(rs.next()){
                 //map dp row to object
-                String title = rs.getString("Title");
-                String artist = rs.getString("Artist");
-                String genre = rs.getString("Genre");
+                String title = rs.getString("Title").trim();
+                String artist = rs.getString("Artist").trim();
+                String genre = rs.getString("Genre").trim();
                 int time = rs.getInt("Duration");
 
 
