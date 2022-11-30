@@ -41,7 +41,7 @@ public class MainController implements Initializable {
         lstSongs.setItems(songModel.getObservableSongs());
 
         titleColum.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        artistColum.setCellValueFactory(new PropertyValueFactory<>("Authour"));
+        artistColum.setCellValueFactory(new PropertyValueFactory<>("Artist"));
         genreColum.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
 

@@ -2,16 +2,19 @@ package BE;
 
 public class Song {
 
+    private int id;
     private String title;
     private String artist;
     private String genre;
-    private int time;
+    private int duration;
+
+    private String path;
 
     public Song(String title, String artist, String genre, int time){
         this.title = title;
         this.artist = artist;
         this.genre = genre;
-        this.time = time;
+        this.duration = time;
 
     }
 
@@ -21,12 +24,11 @@ public class Song {
     }
 
     public int getTime(){
-        return time;
+        return duration;
     }
 
 
-
-    public String getAuthour() {
+    public String getArtist() {
         return artist;
     }
     public String getGenre() {

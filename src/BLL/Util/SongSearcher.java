@@ -40,7 +40,7 @@ public class SongSearcher {
      * @return true if there is a match, false if not.
      */
     private boolean compareToArtist(String query, Song song) {
-        return song.getAuthour().toLowerCase().contains(query.toLowerCase());
+        return song.getArtist().toLowerCase().contains(query.toLowerCase());
     }
 
     /**
