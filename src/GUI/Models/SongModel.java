@@ -1,22 +1,23 @@
 package GUI.Models;
 
 import BE.Song;
+import BLL.Interfaces.ISongManager;
 import BLL.SongManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class MainModel {
+public class SongModel {
 
     private ObservableList<Song> songsInList;
-    private SongManager songManager;
+    private ISongManager songManager;
 
     public ObservableList<Song> getObservableSongs() {
         return songsInList;
     }
 
-    public MainModel() throws Exception {
+    public SongModel() throws Exception {
         songManager = new SongManager();
         songsInList = FXCollections.observableArrayList();
         songsInList.addAll(songManager.getAllSongs());

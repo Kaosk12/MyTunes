@@ -1,8 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
-import GUI.Models.MainModel;
-import javafx.event.ActionEvent;
+import GUI.Models.SongModel;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -25,11 +24,11 @@ public class MainController implements Initializable {
     public Button btnSearch, btnSearchClear;
 
 
-    private MainModel songModel;
+    private SongModel songModel;
 
     public MainController(){
         try {
-            songModel = new MainModel();
+            songModel = new SongModel();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
