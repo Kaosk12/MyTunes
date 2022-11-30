@@ -13,6 +13,12 @@ public class PlayListManager {
         databaseAcces = new PlayListDAO_DB();
     }
     private PlayListDAO_DB playListDAO;
+
+    /**
+     * retreives all playlists from DAL
+     * @return
+     * @throws Exception
+     */
     public List<PlayList> getAllPlayLists() throws Exception{
         return databaseAcces.getAllPlayLists();
     }

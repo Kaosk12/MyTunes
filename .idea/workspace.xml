@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="Created classes according to uml and deleted mockup classes">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IMyTunesManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/MyTunesManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/Util/SongSearcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/testManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IMyTunesDataAccess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Controllers/MyTunesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Models/MyTunesModel.java" afterDir="false" />
+    <list default="true" id="6239f498-0ccd-4d8f-8807-2db9408a4796" name="Changes" comment="I Create classes for PlayLists and i made PlayList name show up on the GUI">
+      <change afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyTunes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/SongManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/SongManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/DB/MyTunesDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/MockUpInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/SongDao_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BE/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/MainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +97,7 @@
       <updated>1669632197074</updated>
       <workItem from="1669635521570" duration="625000" />
       <workItem from="1669709721561" duration="440000" />
+      <workItem from="1669798738728" duration="5997000" />
     </task>
     <task id="LOCAL-00001" summary="Created classes according to uml and deleted mockup classes">
       <created>1669638338177</created>
@@ -119,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669638338177</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="I Create classes for PlayLists and i made PlayList name show up on the GUI">
+      <created>1669724779435</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669724779435</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +144,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created classes according to uml and deleted mockup classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created classes according to uml and deleted mockup classes" />
+    <MESSAGE value="I Create classes for PlayLists and i made PlayList name show up on the GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="I Create classes for PlayLists and i made PlayList name show up on the GUI" />
   </component>
 </project>

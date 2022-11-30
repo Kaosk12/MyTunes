@@ -1,7 +1,9 @@
 package GUI.Controllers;
 
+import BE.PlayList;
 import BE.Song;
 import GUI.Models.MainModel;
+import GUI.Models.PlayListModel;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -11,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
 
@@ -23,20 +26,22 @@ public class MainController implements Initializable {
     public TableColumn<Song, Integer> timeColum;
 
     //PlayList variables
-    public TableColumn clmPlayListName;
-    public TableColumn clmPlayListSongs;
-    public TableColumn clmPlayListTime;
-    public TableView tbvPlayLists;
+    public TableColumn<PlayList, String> clmPlayListName;
+    public TableColumn<PlayList, Integer> clmPlayListSongs;
+    public TableColumn<PlayList, String> clmPlayListTime;
+    public TableView<PlayList> tbvPlayLists;
     public Button btnNewPlayList;
     public Button btnEditPlayList;
     public Button btnDeletePlayList;
 
 
     private MainModel songModel;
+    private PlayListModel playlistModel;
 
     public MainController(){
         try {
             songModel = new MainModel();
+            playlistModel = new PlayListModel();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -53,14 +58,30 @@ public class MainController implements Initializable {
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
 
-        //PlayLists
-        tbvPlayLists.setItems(songModel.getObservablePlayLists());
+        /**
+         * sets the Cell value for the 3 cells in tableView for PlayList.
+         * Its uses the name of the variable in the PlayList object from BE.
+         */
+        tbvPlayLists.setItems(playlistModel.getObservablePlayLists());
         clmPlayListName.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        //clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
-        //clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("SongAmount"));
+        clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
 
+    }
 
+    /**
+     * converts time to hours, minutes and seconds
+     * @param timeInSeconds
+     */
+    private void convertTime(int timeInSeconds){
+        int totalTime = timeInSeconds;
+        long hour = TimeUnit.MINUTES.toHours(totalTime);
 
+        long minute  = TimeUnit.SECONDS.toMinutes(totalTime) - (TimeUnit.MINUTES.toHours(totalTime) * 60);
+
+        long second = totalTime -(TimeUnit.SECONDS.toMinutes(totalTime)*60);
+
+        String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
     }
 }

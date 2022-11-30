@@ -20,6 +20,11 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     }
 
 
+    /**
+     * reads all playlists/data in the Playlist table in the database, then makes them into PlayList objects and adds
+     * them to an ArraList that it returns.
+     * @return
+     */
     public List<PlayList> getAllPlayLists() {
 
         try(Connection connection = databaseConnector.getConnection())

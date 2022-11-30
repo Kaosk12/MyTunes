@@ -1,11 +1,14 @@
 package BE;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class PlayList {
     private String title;
     private int playListId;
     private int creatorId;
+    private int time = 0;
+    private int songAmount;
     private ArrayList<Song> songList = new ArrayList<>();
 
     public PlayList(int playListId, String title){
@@ -13,31 +16,58 @@ public class PlayList {
         this.title = title;
     }
 
+    /**
+     * returns the tile of the playlist.
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    /**
+     * returns the id of the playlist.
+     * @return
+     */
     public int getPlayListId() {
         return playListId;
     }
 
-
+    /**
+     * retuns the id of the user of made the playList--CURRENTLY NOT WORKING--
+     * @return
+     */
     public int getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
-    }
 
-    public void addSong(Song song){
+   /* public void addSong(Song song){
         songList.add(song);
     }
+
     public void deleteSong(Song song){
         songList.remove(song);
+    }*/
+
+    /**
+     * gets the time of each song and adds them all together, then
+     * returns the total time for all the songs in the playlist.
+     * @return
+     */
+    public int getTime(){
+        int totalTime = 0;
+        for (Song song:songList){
+            totalTime = totalTime + song.getTime();
+        }
+        return time = time + totalTime;
     }
+
+    /**
+     * Returns the amount of songs in the playlist.
+     * @return
+     */
+    public int getSongAmount(){
+        return songAmount = songList.size();
+    }
+
 }
