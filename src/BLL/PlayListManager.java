@@ -1,6 +1,7 @@
 package BLL;
 
 import BE.PlayList;
+import BE.Song;
 import BLL.Interfaces.IPlayListManager;
 import DAL.DB.PlayListDAO_DB;
 import DAL.Interfaces.IPlaylistDAO;
@@ -26,5 +27,4 @@ public class PlayListManager implements IPlayListManager {
     public List<PlayList> getAllPlayLists() throws Exception{
         return databaseAcces.getAllPlayLists();
     }
-
 }

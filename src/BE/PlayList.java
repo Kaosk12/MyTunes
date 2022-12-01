@@ -1,6 +1,7 @@
 package BE;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayList {
     private String title;
@@ -60,6 +61,10 @@ public class PlayList {
      */
     public int getSongAmount(){
         return songAmount = songList.size();
+    }
+
+    public List<Song> getAllSongsInPlaylist(){
+        return songList;
     }
 
 }

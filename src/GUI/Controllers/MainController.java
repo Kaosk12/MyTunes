@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class MainController implements Initializable {
 
 
+
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -42,12 +40,21 @@ public class MainController implements Initializable {
     private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd;
 
     //PlayList variables
+    @FXML
     public TableColumn<PlayList, String> clmPlayListName;
+    @FXML
     public TableColumn<PlayList, Integer> clmPlayListSongs;
+    @FXML
     public TableColumn<PlayList, String> clmPlayListTime;
+    @FXML
     public TableView<PlayList> tbvPlayLists;
+    @FXML
+    public ListView tbvSongsInPlayList;
+    @FXML
     public Button btnNewPlayList;
+    @FXML
     public Button btnEditPlayList;
+    @FXML
     public Button btnDeletePlayList;
 
 
@@ -135,6 +142,20 @@ public class MainController implements Initializable {
                     btnSongEdit.setDisable(true);
                     btnSongDelete.setDisable(true);
                     btnSOPAdd.setDisable(true);
+                }
+            }
+        });
+        tbvPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PlayList>() {
+            @Override
+            public void changed(ObservableValue<? extends PlayList> observable, PlayList oldValue, PlayList newValue) {
+                if (newValue != null) {
+                    btnDeletePlayList.setDisable(false);
+                    btnEditPlayList.setDisable(false);
+                    tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
+                }
+                else {
+                    btnDeletePlayList.setDisable(true);
+                    btnEditPlayList.setDisable(true);
                 }
             }
         });
