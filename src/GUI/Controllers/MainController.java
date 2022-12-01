@@ -3,6 +3,7 @@ package GUI.Controllers;
 import BE.PlayList;
 import BE.Song;
 import GUI.Models.PlayListModel;
+import GUI.Models.PlayerModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import javafx.beans.value.ChangeListener;
@@ -65,6 +66,14 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        PlayerModel p = new PlayerModel();
+        try {
+            p.playMedia();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         lstSongs.setItems(songModel.getObservableSongs());
 
