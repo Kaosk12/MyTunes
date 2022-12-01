@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="I Create classes for PlayLists and i made PlayList name show up on the GUI">
-      <change afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_10__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_27__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_09_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_29__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_29__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_29__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-11-2022_10_41__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29-11-2022_11_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29-11-2022_11_02__Changes_.xml" afterDir="false" />
+    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="I merged PlayList into a main branch">
+      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -98,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669802607131</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="I merged PlayList into a main branch">
+      <created>1669883757018</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669883757018</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SongPath correction" />
-    <option name="LAST_COMMIT_MESSAGE" value="SongPath correction" />
+    <MESSAGE value="I merged PlayList into a main branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="I merged PlayList into a main branch" />
   </component>
 </project>

@@ -1,12 +1,13 @@
 package BLL;
 
 import BE.PlayList;
+import BLL.Interfaces.IPlayListManager;
 import DAL.DB.PlayListDAO_DB;
 import DAL.Interfaces.IPlaylistDAO;
 
 import java.util.List;
 
-public class PlayListManager {
+public class PlayListManager implements IPlayListManager {
     private IPlaylistDAO databaseAcces;
 
     /**
