@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.event.ChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,6 +22,7 @@ public class SongUpdateController implements Initializable {
     
     @FXML
     private Button btnOK, btnCancel;
+    private boolean isTitleEmpty, isArtistEmpty;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,6 +30,32 @@ public class SongUpdateController implements Initializable {
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());
+
+        //Adding a listener, and enabling/disabling the OK button if title is empty
+        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try {
+                if(!textTitle.getText().trim().isEmpty()) {
+                    btnOK.setDisable(false);
+                } else {
+                    btnOK.setDisable(true);
+                }
+            } catch (Exception e) {
+                ErrorDisplayer.displayError(e);
+            }
+        });
+
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textArtist.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try {
+                if(!textArtist.getText().trim().isEmpty()) {
+                    btnOK.setDisable(false);
+                } else {
+                    btnOK.setDisable(true);
+                }
+            } catch (Exception e) {
+                ErrorDisplayer.displayError(e);
+            }
+        });
     }
 
     /**
@@ -42,6 +70,15 @@ public class SongUpdateController implements Initializable {
      * Changes the title, artist, and genre of the song to the new input once the user presses OK.
      */
     public void handleOK() {
+        if (textTitle.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Title can not be empty"));
+            return;
+        }
+        if (textArtist.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
+            return;
+        }
+
         //Set the title, artist, and genre to new input
         song.setTitle(textTitle.getText());
         song.setArtist(textArtist.getText());

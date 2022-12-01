@@ -257,7 +257,7 @@ public class MainController implements Initializable {
         try {
             root = loader.load();
         } catch (IOException e) {
-            ErrorDisplayer.displayError(new Exception("Failed to edit the song", e));
+            ErrorDisplayer.displayError(new Exception("Failed to open song editor", e));
         }
         Stage stage = new Stage();
         stage.setTitle("Edit");
