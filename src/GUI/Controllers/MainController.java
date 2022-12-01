@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
+import GUI.Util.ConfirmDelete;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import javafx.beans.value.ChangeListener;
@@ -233,7 +234,20 @@ public class MainController implements Initializable {
      * Delete a song from the library
      */
     public void handleSongDelete() {
-        //TO DO
+        try {
+            Song song = lstSongs.getSelectionModel().getSelectedItem();
+            String header = "Are you sure you want to delete this song?";
+            String content = song.getTitle();
+            boolean deleteSong = ConfirmDelete.confirm(header, content);
+
+            if (deleteSong) {
+                songModel.deleteSong(song);
+                songModel.search("");
+            }
+        }
+        catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**

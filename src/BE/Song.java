@@ -41,16 +41,17 @@ public class Song {
         return duration;
     }
 
-
     public String getArtist() {
         return artist;
     }
+
     public String getGenre() {
         return genre;
     }
 
-
     public int getId() {
         return id;
     }
+
+    public String getPath() { return path; }
 }

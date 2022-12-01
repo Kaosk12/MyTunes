@@ -56,4 +56,8 @@ public class SongModel {
     public void updateSong(Song song) throws Exception {
         songManager.updateSong(song);
     }
+
+    public void deleteSong(Song song) throws Exception {
+        songManager.deleteSong(song);
+    }
 }

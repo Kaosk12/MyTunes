@@ -3,6 +3,7 @@ package DAL.DB;
 import BE.Song;
 import DAL.DB.DatabaseConnector;
 import DAL.Interfaces.ISongDAO;
+import DAL.Util.LocalFileDeleter;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,6 +55,27 @@ public class SongDao_DB implements ISongDAO {
         }
 
         return allSongs;
+    }
+
+    @Override
+    public void deleteSong(Song song) throws Exception {
+        String sql = "DELETE FROM Songs WHERE Id = ?;";
+
+        try (Connection connection = databaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            //Bind parameters
+            statement.setInt(1, song.getId());
+
+            //Run the specified SQL Statement
+            statement.executeUpdate();
+
+            LocalFileDeleter.deleteLocalFile(song.getPath());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to delete song", e);
+        }
     }
 
     /**
