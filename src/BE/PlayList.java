@@ -6,7 +6,7 @@ public class PlayList {
     private String title;
     private int playListId;
     private int creatorId;
-    private int time = 0;
+    private int time;
     private int songAmount;
     private ArrayList<Song> songList = new ArrayList<>();
 
