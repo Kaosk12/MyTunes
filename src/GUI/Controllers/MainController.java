@@ -173,6 +173,7 @@ public class MainController implements Initializable {
      * Play or pause the current song
      */
     public void handlePlayerPlayPause() {
+
         //TO DO
     }
 
