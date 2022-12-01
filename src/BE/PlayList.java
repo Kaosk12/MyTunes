@@ -67,4 +67,8 @@ public class PlayList {
         return songList;
     }
 
+    public void addSongToPlaylist(Song song){
+        songList.add(song);
+    }
+
 }

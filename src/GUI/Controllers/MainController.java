@@ -145,6 +145,11 @@ public class MainController implements Initializable {
                 }
             }
         });
+        //Disable the Edit & Delete button for Playlists.
+        btnDeletePlayList.setDisable(true);
+        btnEditPlayList.setDisable(true);
+        //Adding a listener, and enabling/disabling the buttons when selected.
+        //It also retreives the object clicked on and uses it to show songs in the Playlist clicked on.
         tbvPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PlayList>() {
             @Override
             public void changed(ObservableValue<? extends PlayList> observable, PlayList oldValue, PlayList newValue) {

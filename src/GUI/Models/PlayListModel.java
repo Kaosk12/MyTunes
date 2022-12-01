@@ -19,6 +19,12 @@ public class PlayListModel {
     public ObservableList<PlayList> getObservablePlayLists() {
         return playListsInList;
     }
+
+    /**
+     * the method retreive and returns the songs of the Playlist object given i parameter.
+     * @param playList
+     * @return
+     */
     public ObservableList<Song> getObservableSongsInPlayList(PlayList playList){
         songsInPlayList = FXCollections.observableArrayList();
         songsInPlayList.addAll(playList.getAllSongsInPlaylist());

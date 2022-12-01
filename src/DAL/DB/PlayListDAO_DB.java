@@ -62,10 +62,9 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             String sql = "SELECT * FROM SongsInPlaylists WHERE PlaylistId = " + playList.getPlayListId() + ";";
 
             Statement statement = connection.createStatement();
-
-
             ResultSet rs = statement.executeQuery(sql);
 
+            //we use theese list to sort the correct order of the song.
             ArrayList<Integer> tempSongsId = new ArrayList<>();
             ArrayList<Integer> tempOrders = new ArrayList<>();
             ArrayList<Integer> properOrder = new ArrayList<>();
@@ -74,7 +73,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             while(rs.next()){
                 //map dp row to object
                 int songIdFromDB = rs.getInt("SongId");
-                int playListIdFromDB = rs.getInt("PlaylistId");
+                //int playListIdFromDB = rs.getInt("PlaylistId");
                 int songPlacement = rs.getInt("NumberInPlaylist");
 
                 tempSongsId.add(songIdFromDB);
@@ -82,9 +81,10 @@ public class PlayListDAO_DB implements IPlaylistDAO {
                 properOrder.add(songPlacement);
 
             }
+            //sort the list to the corect order.
             Collections.sort(properOrder);
             for (int i:properOrder){
-                playList.getAllSongsInPlaylist().add(getSongFromId(tempSongsId.get(tempOrders.indexOf(i))));
+                playList.addSongToPlaylist(getSongFromId(tempSongsId.get(tempOrders.indexOf(i))));
             }
 
         } catch (SQLException e) {
