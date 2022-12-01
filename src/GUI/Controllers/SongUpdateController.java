@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.Song;
 import GUI.Models.SongModel;
+import GUI.Util.ErrorDisplayer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -51,7 +52,7 @@ public class SongUpdateController implements Initializable {
             songModel.updateSong(song); //Send the song down the layers to update it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
         } catch (Exception e) {
-            throw new RuntimeException(e); //Change to a nice error display?
+            ErrorDisplayer.displayError(e);
         }
 
         //Get handle of the stage, and close it.

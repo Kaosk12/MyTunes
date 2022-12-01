@@ -246,14 +246,19 @@ public class MainController implements Initializable {
     /**
      * Open up a new window to edit the title, artist or genre of a song.
      */
-    public void handleSongEdit() throws IOException {
+    public void handleSongEdit() {
         //Save information about the selected song in the songModel.
         Song song = lstSongs.getSelectionModel().getSelectedItem();
         songModel.setSelectedSong(song);
 
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to edit the song", e));
+        }
         Stage stage = new Stage();
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));

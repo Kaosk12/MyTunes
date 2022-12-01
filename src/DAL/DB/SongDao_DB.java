@@ -65,8 +65,8 @@ public class SongDao_DB implements ISongDAO {
     public void updateSong(Song song) throws Exception {
         String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=? WHERE Id=?;"; //Match to database column name
 
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(sql);
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             //Bind parameters
             statement.setString(1, song.getTitle());
@@ -76,6 +76,9 @@ public class SongDao_DB implements ISongDAO {
 
             //Run the specified SQL statement
             statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to edit the song", e);
         }
     }
 }
