@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class MainController implements Initializable {
 
 
+    public Button btnPlayerPlayPause;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -54,11 +55,16 @@ public class MainController implements Initializable {
 
     private SongModel songModel;
     private PlayListModel playlistModel;
+    private PlayerModel playerModel;
 
     public MainController(){
+
+
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
+            playerModel = new PlayerModel();
+
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -67,13 +73,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        PlayerModel p = new PlayerModel();
-        try {
-            p.playMedia();
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
         lstSongs.setItems(songModel.getObservableSongs());
 
@@ -182,7 +182,7 @@ public class MainController implements Initializable {
      * Play or pause the current song
      */
     public void handlePlayerPlayPause() {
-
+        playerModel.playMedia();
         //TO DO
     }
 

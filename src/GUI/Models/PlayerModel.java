@@ -12,19 +12,25 @@ public class PlayerModel {
 
 
 
-        String dataPath = "src/recourses\\";
+        String dataPath = "data\\";
         Media media;
         MediaPlayer mediaPlayer;
 
-        public void playMedia() {
+        public PlayerModel (){
             File file = new File(dataPath += "Gravity.mp3");
             media = new Media(file.toURI().toString());
-            //media.getMetadata();
             mediaPlayer = new MediaPlayer(media);
-            System.out.println(media.getSource());
             mediaPlayer.play();
         }
 
+        public void playMedia() {
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setVolume(1.0);
+
+            //mediaPlayer.play();
+            System.out.println(mediaPlayer.getMedia().getDuration());
+            System.out.println(media.getSource());
+        }
     }
 
 
