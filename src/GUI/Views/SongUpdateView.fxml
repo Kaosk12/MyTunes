@@ -68,7 +68,7 @@
                   <Insets bottom="25.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="60.0" text="Cancel" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" text="Cancel" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" left="10.0" top="25.0" />
                </HBox.margin>

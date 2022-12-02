@@ -1,7 +1,9 @@
 package GUI.Controllers;
 
+import BE.PlayList;
 import BE.Song;
 import GUI.Util.ConfirmDelete;
+import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import javafx.beans.value.ChangeListener;
@@ -24,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
 
@@ -39,12 +42,23 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd;
 
+    //PlayList variables
+    public TableColumn<PlayList, String> clmPlayListName;
+    public TableColumn<PlayList, Integer> clmPlayListSongs;
+    public TableColumn<PlayList, String> clmPlayListTime;
+    public TableView<PlayList> tbvPlayLists;
+    public Button btnNewPlayList;
+    public Button btnEditPlayList;
+    public Button btnDeletePlayList;
+
 
     private SongModel songModel;
+    private PlayListModel playlistModel;
 
     public MainController(){
         try {
             songModel = new SongModel();
+            playlistModel = new PlayListModel();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -59,6 +73,15 @@ public class MainController implements Initializable {
         artistColum.setCellValueFactory(new PropertyValueFactory<>("Artist"));
         genreColum.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
+
+        /**
+         * sets the Cell value for the 3 cells in tableView for PlayList.
+         * Its uses the name of the variable in the PlayList object from BE.
+         */
+        tbvPlayLists.setItems(playlistModel.getObservablePlayLists());
+        clmPlayListName.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("SongAmount"));
+        clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
 
         /**
@@ -117,6 +140,20 @@ public class MainController implements Initializable {
             }
         });
 
+    }
+    /**
+     * converts time to hours, minutes and seconds
+     * @param timeInSeconds
+     */
+    private void convertTime(int timeInSeconds){
+        int totalTime = timeInSeconds;
+        long hour = TimeUnit.MINUTES.toHours(totalTime);
+
+        long minute  = TimeUnit.SECONDS.toMinutes(totalTime) - (TimeUnit.MINUTES.toHours(totalTime) * 60);
+
+        long second = totalTime -(TimeUnit.SECONDS.toMinutes(totalTime)*60);
+
+        String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
     }
 
     /**
@@ -210,14 +247,19 @@ public class MainController implements Initializable {
     /**
      * Open up a new window to edit the title, artist or genre of a song.
      */
-    public void handleSongEdit() throws IOException {
+    public void handleSongEdit() {
         //Save information about the selected song in the songModel.
         Song song = lstSongs.getSelectionModel().getSelectedItem();
         songModel.setSelectedSong(song);
 
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to open song editor", e));
+        }
         Stage stage = new Stage();
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));
