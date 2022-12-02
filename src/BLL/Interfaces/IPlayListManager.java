@@ -9,7 +9,7 @@ public interface IPlayListManager {
     /**
      * gets all playlists from PlayListDAO in DB.
      * @return a list of all playlists.
-     * @throws Exception
+     * @throws Exception throws exception if
      */
     List<PlayList> getAllPlayLists() throws Exception;
 }
