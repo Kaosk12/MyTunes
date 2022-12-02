@@ -242,12 +242,12 @@ public class MainController implements Initializable {
 
             if (deleteSong) {
                 songModel.deleteSong(song);
-                songModel.search("");
             }
         }
         catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
+        handleSearch();
     }
 
     /**
