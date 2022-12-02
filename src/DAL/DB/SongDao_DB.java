@@ -78,4 +78,36 @@ public class SongDao_DB implements ISongDAO {
             statement.executeUpdate();
         }
     }
+    /**
+     *
+     * @param songId
+     * @return it returns a songs object from the given parameter
+     * @throws Exception
+     */
+    public Song getSongFromId(int songId) throws Exception {
+        try(Connection connection = databaseConnector.getConnection();)
+        {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * FROM Songs WHERE Id = " + songId + ";";
+
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                String title = rs.getString("Title").trim();
+                String artist = rs.getString("Artist").trim();
+                String genre = rs.getString("Genre").trim();
+                int time = rs.getInt("Duration");
+                String path = rs.getString("SongPath");
+                int id = rs.getInt("Id");
+                Song song = new Song(title, artist, genre, time, path, id);
+                return song;
+            }
+            return null;
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to retrieve songs", e);
+        }
+    }
 }

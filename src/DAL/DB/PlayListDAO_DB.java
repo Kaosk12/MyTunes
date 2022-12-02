@@ -13,9 +13,11 @@ import java.util.*;
 
 public class PlayListDAO_DB implements IPlaylistDAO {
     private DatabaseConnector databaseConnector;
+    private ISongDAO songDAO;
 
     public PlayListDAO_DB(){
         databaseConnector = new DatabaseConnector();
+        songDAO = new SongDao_DB();
     }
 
 
@@ -25,7 +27,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
 
     /**
-     * reads all playlists/data in the Playlist table in the database, then makes them into PlayList objects and adds
+     * reads all data in the Playlist table in the database. It makes the data into PlayList objects and adds
      * them to an ArrayList that it returns.
      * @return a list containing all playlists
      */
@@ -56,7 +58,14 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
-    public void readAllSongsInPlayList(PlayList playList) throws Exception{
+    /**
+     * It reads the data from SongsInPlaylists table from the database,
+     * on the given playlist in parameter.
+     * It calls the method getSongFromId with a song id it got from the database.
+     * @param playList
+     * @throws Exception
+     */
+    private void readAllSongsInPlayList(PlayList playList) throws Exception{
         try(Connection connection = databaseConnector.getConnection())
         {
             String sql = "SELECT * FROM SongsInPlaylists WHERE PlaylistId = " + playList.getPlayListId() + ";";
@@ -76,15 +85,22 @@ public class PlayListDAO_DB implements IPlaylistDAO {
                 //int playListIdFromDB = rs.getInt("PlaylistId");
                 int songPlacement = rs.getInt("NumberInPlaylist");
 
+                //we use the 3 list to keep track of the data from the table SongInPlaylist.
+                //The list are used to sort the songs placement in the playlist.
                 tempSongsId.add(songIdFromDB);
                 tempOrders.add(songPlacement);
                 properOrder.add(songPlacement);
 
             }
-            //sort the list to the corect order.
+            //sort the list to the correct order.
             Collections.sort(properOrder);
             for (int i:properOrder){
-                playList.addSongToPlaylist(getSongFromId(tempSongsId.get(tempOrders.indexOf(i))));
+                //finds the song id of the next song in the list.
+                int songId = tempSongsId.get(tempOrders.indexOf(i));
+                //returns a song object from given song id.
+                Song song =  songDAO.getSongFromId(songId);
+                //adds the song object to the playlist object.
+                playList.addSongToPlaylist(song);
             }
 
         } catch (SQLException e) {
@@ -92,32 +108,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
-    public Song getSongFromId(int songId) throws Exception {
-        try(Connection connection = databaseConnector.getConnection();)
-        {
-            Statement statement = connection.createStatement();
-            String sql = "SELECT * FROM Songs WHERE Id = " + songId + ";";
 
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                String title = rs.getString("Title").trim();
-                String artist = rs.getString("Artist").trim();
-                String genre = rs.getString("Genre").trim();
-                int time = rs.getInt("Duration");
-                String path = rs.getString("SongPath");
-                int id = rs.getInt("Id");
-                Song song = new Song(title, artist, genre, time, path, id);
-                return song;
-            }
-            return null;
-
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Failed to retrieve songs", e);
-        }
-    }
 
     public void updatePlayList() {
 

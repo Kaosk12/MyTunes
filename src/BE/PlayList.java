@@ -52,7 +52,7 @@ public class PlayList {
         for (Song song:songList){
             totalTime = totalTime + song.getTime();
         }
-        return time = time + totalTime;
+        return time = totalTime;
     }
 
     /**

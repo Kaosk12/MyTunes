@@ -10,4 +10,6 @@ public interface ISongDAO {
 
     List<Song> getAllSongs() throws Exception;
 
+    Song getSongFromId(int songId) throws Exception;
+
 }
