@@ -28,6 +28,10 @@ public class PlayList {
         return creatorId;
     }
 
+    /**
+     gets the time of each song and adds them all together, then
+     * @return returns the total time for all the songs in the playlist.
+     */
     public int getTime(){
         int totalTime = 0;
         for (Song song:songList){

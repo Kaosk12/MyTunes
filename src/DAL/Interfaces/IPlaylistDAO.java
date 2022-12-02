@@ -11,7 +11,7 @@ public interface IPlaylistDAO {
     /**
      * it gets a list of PlayList objects and returns it.
      * @return returns a list of all Playlist in DB
-     * @throws Exception throws excpetion if it fails to return a list of Playlist objects.
+     * @throws Exception throws exception if it fails to return a list of Playlist objects.
      */
     List<PlayList> getAllPlayLists() throws Exception;
     //void updatePlayList() throws Exception;
