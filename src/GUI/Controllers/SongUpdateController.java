@@ -68,6 +68,7 @@ public class SongUpdateController implements Initializable {
 
     /**
      * Changes the title, artist, and genre of the song to the new input once the user presses OK.
+     * closes the window 
      */
     public void handleOK() {
         if (textTitle.getText().trim().isEmpty()) {
@@ -92,12 +93,14 @@ public class SongUpdateController implements Initializable {
             ErrorDisplayer.displayError(e);
         }
 
-        //Get handle of the stage, and close it.
-        Stage stage = (Stage) btnOK.getScene().getWindow();
-        stage.close();
+        handleClose();;
+
     }
 
-    public void handleCancel() {
+    /***
+     * closes the window
+     */
+    public void handleClose() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
