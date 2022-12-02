@@ -54,6 +54,8 @@ public class Song {
         return id;
     }
 
+    public String getPath() { return path; }
+
     @Override
     public String toString() {
         return title;

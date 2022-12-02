@@ -27,4 +27,11 @@ public interface ISongManager {
      * @throws Exception up the layers
      */
     void updateSong(Song song) throws Exception;
+
+    /**
+     * Delete a song.
+     * @param song The song to delete.
+     * @throws Exception If it fails to delete the song.
+     */
+    void deleteSong(Song song) throws Exception;
 }

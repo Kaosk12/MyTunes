@@ -49,4 +49,9 @@ public class SongManager implements ISongManager {
         databaseAccess.updateSong(song);
     }
 
+    @Override
+    public void deleteSong(Song song) throws Exception {
+        databaseAccess.deleteSong(song);
+    }
+
 }

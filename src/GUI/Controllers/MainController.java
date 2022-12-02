@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.PlayList;
 import BE.Song;
+import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
@@ -272,14 +273,19 @@ public class MainController implements Initializable {
     /**
      * Open up a new window to edit the title, artist or genre of a song.
      */
-    public void handleSongEdit() throws IOException {
+    public void handleSongEdit() {
         //Save information about the selected song in the songModel.
         Song song = lstSongs.getSelectionModel().getSelectedItem();
         songModel.setSelectedSong(song);
 
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to open song editor", e));
+        }
         Stage stage = new Stage();
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));
@@ -296,7 +302,20 @@ public class MainController implements Initializable {
      * Delete a song from the library
      */
     public void handleSongDelete() {
-        //TO DO
+        try {
+            Song song = lstSongs.getSelectionModel().getSelectedItem();
+            String header = "Are you sure you want to delete this song?";
+            String content = song.getTitle();
+            boolean deleteSong = ConfirmDelete.confirm(header, content);
+
+            if (deleteSong) {
+                songModel.deleteSong(song);
+            }
+        }
+        catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
+        handleSearch();
     }
 
     /**

@@ -10,6 +10,12 @@ public interface ISongDAO {
 
     List<Song> getAllSongs() throws Exception;
 
+    /**
+     * Deletes a song from the database connection.
+     * @param song The song to delete.
+     * @throws Exception If it fails to delete the song.
+     */
+    void deleteSong(Song song) throws Exception;
     Song getSongFromId(int songId) throws Exception;
 
 }
