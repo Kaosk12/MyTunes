@@ -11,6 +11,7 @@ public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
     private ObservableList<Song> songsInPlayList;
     private IPlayListManager playListManager;
+    public static PlayList selectedPlaylist;
 
     /**
      * returns the ObservableList playListsInList
@@ -44,4 +45,7 @@ public class PlayListModel {
 
     }
 
+    public void setSelectedPlaylist(PlayList selectedPlaylist) {
+        PlayListModel.selectedPlaylist = selectedPlaylist;
+    }
 }
