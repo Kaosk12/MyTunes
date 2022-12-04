@@ -3,6 +3,7 @@ package GUI.Models;
 import BE.Song;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -56,7 +57,10 @@ public class MediaModel {
         }
     }
 
-
+    public Duration getCurrentTime(){
+        Duration time = mediaPlayer.getCurrentTime();
+        return time;
+    }
 
     /**
      * finds the path of chosen song and creates a media form the file
@@ -71,5 +75,13 @@ public class MediaModel {
     }
 
 
-
+    public void previousSong(Song song) {
+        System.out.println(getCurrentTime());
+        if(isPlaying){
+            mediaPlayer.pause();
+            mediaPlayer = new MediaPlayer(createMedia(song));
+            mediaPlayer.play();
+            System.out.println(chosenSong);
+        }
+    }
 }

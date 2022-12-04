@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class MainController implements Initializable {
 
 
-
+    public Label btnPlayerPlaying;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -194,7 +194,8 @@ public class MainController implements Initializable {
     public void handlePlayerPrevious() {
         lstSongs.getSelectionModel().selectPrevious();
         chosenSong = lstSongs.getSelectionModel().getSelectedItem();
-        mediaModel.skipSong(chosenSong);
+        mediaModel.previousSong(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
@@ -204,6 +205,7 @@ public class MainController implements Initializable {
         lstSongs.getSelectionModel().selectNext();
         chosenSong = lstSongs.getSelectionModel().getSelectedItem();
         mediaModel.skipSong(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
@@ -212,6 +214,7 @@ public class MainController implements Initializable {
     public void handlePlayerPlayPause() {
         chosenSong = lstSongs.getSelectionModel().getSelectedItem();
         mediaModel.playMedia(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
