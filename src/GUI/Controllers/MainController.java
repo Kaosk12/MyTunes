@@ -240,6 +240,8 @@ public class MainController implements Initializable {
         try {
             Song song = lstSongs.getSelectionModel().getSelectedItem();
             playlistModel.addSongToPlayList(song);
+            //updates the song amount
+            tbvPlayLists.refresh();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
