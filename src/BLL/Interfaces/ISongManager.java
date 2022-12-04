@@ -1,5 +1,6 @@
 package BLL.Interfaces;
 
+import BE.PlayList;
 import BE.Song;
 
 import java.util.List;

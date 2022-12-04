@@ -27,4 +27,7 @@ public class PlayListManager implements IPlayListManager {
     public List<PlayList> getAllPlayLists() throws Exception{
         return databaseAcces.getAllPlayLists();
     }
+    public void addSongToPlayList(PlayList playList, Song song) throws Exception {
+        databaseAcces.addSongToPlayList(playList, song);
+    }
 }

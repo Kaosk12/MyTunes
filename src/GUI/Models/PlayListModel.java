@@ -12,6 +12,16 @@ public class PlayListModel {
     private ObservableList<Song> songsInPlayList;
     private IPlayListManager playListManager;
 
+    public PlayList getSelectedPlayList() {
+        return selectedPlayList;
+    }
+
+    public void setSelectedPlayList(PlayList selectedPlayList) {
+        this.selectedPlayList = selectedPlayList;
+    }
+
+    private PlayList selectedPlayList;
+
     /**
      * returns the ObservableList playListsInList
      * @return an observable list woth all playlists
@@ -39,9 +49,11 @@ public class PlayListModel {
         playListManager = new PlayListManager();
         playListsInList = FXCollections.observableArrayList();
         playListsInList.addAll(playListManager.getAllPlayLists());
+    }
 
-
-
+    public void addSongToPlayList(Song song) throws Exception {
+        playListManager.addSongToPlayList(selectedPlayList, song);
+        songsInPlayList.add(song);
     }
 
 }

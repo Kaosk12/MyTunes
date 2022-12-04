@@ -5,10 +5,7 @@ import BE.Song;
 import DAL.Interfaces.IPlaylistDAO;
 import DAL.Interfaces.ISongDAO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class PlayListDAO_DB implements IPlaylistDAO {
@@ -108,6 +105,32 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
+    public void addSongToPlayList(PlayList playList, Song song) throws Exception{
+        String sql = "INSERT INTO SongsInPlaylists (SongId, PlaylistId, NumberInPlaylist) VALUES (?,?,?);";
+
+        try(Connection connection = databaseConnector.getConnection())
+        {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            //Parameters
+            int songID = song.getId();
+            int playlistId = playList.getPlayListId();
+            int songPlacement = playList.getSongAmount() + 1;
+
+
+
+            //Bind parameters
+            statement.setInt(1, songID);
+            statement.setInt(2, playlistId);
+            statement.setInt(3, songPlacement);
+            //Run the specified SQL statement
+            statement.executeUpdate();
+            System.out.println("Song " + song.getTitle() + " was added to " + playList.getTitle());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public void updatePlayList() {

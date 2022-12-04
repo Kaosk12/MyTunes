@@ -26,9 +26,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
-
-
-
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -137,7 +134,6 @@ public class MainController implements Initializable {
                     btnSongEdit.setDisable(false);
                     btnSongDelete.setDisable(false);
                     btnSOPAdd.setDisable(false);
-
                 }
                 if (newValue == null) {
                     btnSongEdit.setDisable(true);
@@ -158,6 +154,7 @@ public class MainController implements Initializable {
                     btnDeletePlayList.setDisable(false);
                     btnEditPlayList.setDisable(false);
                     tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
+                    playlistModel.setSelectedPlayList(newValue);
                 }
                 else {
                     btnDeletePlayList.setDisable(true);
@@ -239,7 +236,14 @@ public class MainController implements Initializable {
      * Add a new song from the library to the Songs on Playlist editor
      */
     public void handleSOPAdd() {
-        //TO DO
+        try {
+            Song song = lstSongs.getSelectionModel().getSelectedItem();
+            playlistModel.addSongToPlayList(song);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     /**
