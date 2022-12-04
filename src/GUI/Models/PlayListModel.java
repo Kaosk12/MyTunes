@@ -51,6 +51,11 @@ public class PlayListModel {
         playListsInList.addAll(playListManager.getAllPlayLists());
     }
 
+    /**
+     * add a song to the last selected PlayList
+     * @param song
+     * @throws Exception
+     */
     public void addSongToPlayList(Song song) throws Exception {
         playListManager.addSongToPlayList(selectedPlayList, song);
         songsInPlayList.add(song);

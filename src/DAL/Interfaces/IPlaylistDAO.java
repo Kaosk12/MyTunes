@@ -14,6 +14,13 @@ public interface IPlaylistDAO {
      * @throws Exception throws exception if it fails to return a list of Playlist objects.
      */
     List<PlayList> getAllPlayLists() throws Exception;
+
+    /**
+     * it inserts new data about the Playlists and Songs relation to the database
+     * @param playList last selected playlist
+     * @param song last selected song
+     * @throws Exception throws exception if it fails to insert new data to the database.
+     */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
     //void editPlayList() throws Exception;
     //void deletePlayList() throws Exception;

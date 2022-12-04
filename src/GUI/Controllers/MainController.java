@@ -154,6 +154,7 @@ public class MainController implements Initializable {
                     btnDeletePlayList.setDisable(false);
                     btnEditPlayList.setDisable(false);
                     tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
+                    //saves last selected playlist in PlayListModel
                     playlistModel.setSelectedPlayList(newValue);
                 }
                 else {
@@ -242,8 +243,6 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     /**

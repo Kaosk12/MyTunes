@@ -14,5 +14,11 @@ public interface IPlayListManager {
      */
     List<PlayList> getAllPlayLists() throws Exception;
 
+    /**
+     * adds the last selected song to the last selected playlist
+     * @param playList
+     * @param song
+     * @throws Exception
+     */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
 }
