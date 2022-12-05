@@ -29,16 +29,17 @@ public class MediaModel {
      */
     public void playMedia(Song song) {
 
-        if(isPlaying){
+
+        if(isPlaying){//if the song is playing pause it
             mediaPlayer.pause();
             isPlaying = false;
         }
-        else if(chosenSong == null || chosenSong != song){
+        else if(chosenSong == null || chosenSong != song){//crete a new media file and plays it
             mediaPlayer = new MediaPlayer(createMedia(song));
             mediaPlayer.play();
             isPlaying = true;
             chosenSong = song;
-        }else {
+        }else {//starts the song
             mediaPlayer.play();
             isPlaying = true;
         }
@@ -46,6 +47,7 @@ public class MediaModel {
 
     /**
      * starts the new song if the song was playing.
+     * else it just switches to a new song and waits.
      * @param song
      */
     public void skipSong(Song song){
@@ -72,16 +74,15 @@ public class MediaModel {
         String dataPath = "data\\";
         File file = new File(dataPath += song.getPath());
         return media = new Media(file.toURI().toString());
+
     }
 
 
+    /**
+     * make it play previously song
+     * @param song
+     */
     public void previousSong(Song song) {
-        System.out.println(getCurrentTime());
-        if(isPlaying){
-            mediaPlayer.pause();
-            mediaPlayer = new MediaPlayer(createMedia(song));
-            mediaPlayer.play();
-            System.out.println(chosenSong);
-        }
+        skipSong(song);
     }
 }
