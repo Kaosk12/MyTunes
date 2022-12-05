@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.swing.event.ChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,7 +61,7 @@ public class SongUpdateController implements Initializable {
      * Set the model to the same model used in MainView.
      * @param songModel, a songModel object
      */
-    public void setSongModel(SongModel songModel) {
+    public void setModel(SongModel songModel) {
         this.songModel = songModel;
     }
 
@@ -93,7 +92,7 @@ public class SongUpdateController implements Initializable {
             ErrorDisplayer.displayError(e);
         }
 
-        handleClose();;
+        handleClose();
 
     }
 

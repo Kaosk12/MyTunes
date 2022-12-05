@@ -11,6 +11,7 @@ public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
     private ObservableList<Song> songsInPlayList;
     private IPlayListManager playListManager;
+    public static PlayList selectedPlaylist;
 
     public PlayList getSelectedPlayList() {
         return selectedPlayList;
@@ -62,5 +63,8 @@ public class PlayListModel {
         songsInPlayList.add(song);
         //Updates the list in the effected PlayList object.
         selectedPlayList.getAllSongsInPlaylist().add(song);
+    }
+    public void setSelectedPlaylist(PlayList selectedPlaylist) {
+        PlayListModel.selectedPlaylist = selectedPlaylist;
     }
 }

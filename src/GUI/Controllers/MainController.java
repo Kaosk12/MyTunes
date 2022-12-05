@@ -217,13 +217,59 @@ public class MainController implements Initializable {
      * Create a new playlist
      */
     public void handlePlaylistNew() {
+        //Clear information about the selected playlist in the playListModel to make the input field empty for a new playlist.
+        playlistModel.setSelectedPlaylist(null);
+
+        //Load the new stage & view
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/PlaylistView.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to open playlist creator", e));
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Add new playlist");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+
+        //Set the PlaylistController's model to be the same PlayListModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        PlaylistController controller = loader.getController();
+        controller.setModel(playlistModel);
+
+        //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
 
     /**
      * Edit a playlist
      */
     public void handlePlaylistEdit() {
-        //TO DO
+        //Save information about the selected playlist in the playListModel.
+        PlayList playList = tbvPlayLists.getSelectionModel().getSelectedItem();
+        playlistModel.setSelectedPlaylist(playList);
+
+        //Load the new stage & view
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/PlaylistView.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to open playlist editor", e));
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Edit playlist name");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+
+        //Set the PlaylistController's model to be the same PlayListModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        PlaylistController controller = loader.getController();
+        controller.setModel(playlistModel);
+
+        //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
 
     /**
@@ -272,7 +318,24 @@ public class MainController implements Initializable {
      * Add a new song to the library
      */
     public void handleSongNew() {
-        //TO DO
+        //Load the new stage & view
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongCreateView.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            ErrorDisplayer.displayError(new Exception("Failed to open song creator", e));
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Add new song");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+
+        //Set the SongUpdateController's model to be the same songModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        SongCreateController controller = loader.getController();
+        controller.setModel(songModel);
     }
 
     /**
@@ -300,7 +363,7 @@ public class MainController implements Initializable {
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
         SongUpdateController controller = loader.getController();
-        controller.setSongModel(songModel);
+        controller.setModel(songModel);
     }
 
     /**
