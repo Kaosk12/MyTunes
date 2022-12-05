@@ -353,8 +353,9 @@ public class MainController implements Initializable {
      */
     public void handleSOPDelete() {
         try {
+            //Deletes in the DAL
             playlistModel.deleteSOP();
-
+            //Updates the GUI.
             tbvPlayLists.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);

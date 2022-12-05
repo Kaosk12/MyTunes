@@ -25,8 +25,8 @@ public interface IPlaylistDAO {
 
     /**
      * removes a songs from a playlist.
-     * @param playList
-     * @param song
+     * @param playList last selected playlist
+     * @param song last selected song
      * @throws Exception throws exception if it fails to remove song
      */
     void removeSOP(PlayList playList, Song song) throws Exception;

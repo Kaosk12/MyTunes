@@ -16,16 +16,16 @@ public interface IPlayListManager {
 
     /**
      * adds the last selected song to the last selected playlist
-     * @param playList
-     * @param song
+     * @param playList last selected playlist
+     * @param song last selected song
      * @throws Exception
      */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
 
     /**
      * removes a song from a playlist.
-     * @param playList
-     * @param song
+     * @param playList last selected playlist
+     * @param song last selected song
      * @throws Exception if it fails to remove the song.
      */
     void removeSOP(PlayList playList, Song song) throws Exception;

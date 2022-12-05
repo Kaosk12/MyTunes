@@ -132,6 +132,12 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
+    /**
+     * remove the song from the playlist in the database.
+     * @param playList last selected playlist
+     * @param song last selected song
+     * @throws Exception
+     */
     public void removeSOP(PlayList playList, Song song) throws Exception {
         String sql = "DELETE FROM SongsInPlaylists WHERE SongId = ? AND PlaylistId = ?;";
 
