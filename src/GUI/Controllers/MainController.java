@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.PlayList;
 import BE.Song;
+import GUI.Models.MediaModel;
 import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
@@ -26,6 +27,9 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
+
+
+    public Label btnPlayerPlaying;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -58,11 +62,15 @@ public class MainController implements Initializable {
 
     private SongModel songModel;
     private PlayListModel playlistModel;
+    private MediaModel mediaModel;
+
+    private Song chosenSong;
 
     public MainController(){
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
+            mediaModel = new MediaModel();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -134,6 +142,7 @@ public class MainController implements Initializable {
                     btnSongEdit.setDisable(false);
                     btnSongDelete.setDisable(false);
                     btnSOPAdd.setDisable(false);
+
                 }
                 if (newValue == null) {
                     btnSongEdit.setDisable(true);
@@ -182,23 +191,32 @@ public class MainController implements Initializable {
 
     /**
      * Change to previous song
+     * to do make a class that can see how far in the song you are, if over 10% strat song over elles skip to previous.
      */
     public void handlePlayerPrevious() {
-        //TO DO
+        lstSongs.getSelectionModel().selectPrevious();
+        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+        mediaModel.previousSong(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
      * Change to next song
      */
     public void handlePlayerNext() {
-        //TO DO
+        lstSongs.getSelectionModel().selectNext();
+        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+        mediaModel.skipSong(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
      * Play or pause the current song
      */
     public void handlePlayerPlayPause() {
-        //TO DO
+        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+        mediaModel.playMedia(chosenSong);
+        btnPlayerPlaying.setText(chosenSong.getTitle());
     }
 
     /**
@@ -343,8 +361,8 @@ public class MainController implements Initializable {
      */
     public void handleSongEdit() {
         //Save information about the selected song in the songModel.
-        Song song = lstSongs.getSelectionModel().getSelectedItem();
-        songModel.setSelectedSong(song);
+        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+        songModel.setSelectedSong(chosenSong);
 
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
@@ -371,13 +389,13 @@ public class MainController implements Initializable {
      */
     public void handleSongDelete() {
         try {
-            Song song = lstSongs.getSelectionModel().getSelectedItem();
+            chosenSong = lstSongs.getSelectionModel().getSelectedItem();
             String header = "Are you sure you want to delete this song?";
-            String content = song.getTitle();
+            String content = chosenSong.getTitle();
             boolean deleteSong = ConfirmDelete.confirm(header, content);
 
             if (deleteSong) {
-                songModel.deleteSong(song);
+                songModel.deleteSong(chosenSong);
             }
         }
         catch (Exception e) {
