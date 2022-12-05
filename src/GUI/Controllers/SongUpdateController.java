@@ -25,7 +25,7 @@ public class SongUpdateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        song = SongModel.selectedSong;
+        song = SongModel.getSelectedSong();
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());

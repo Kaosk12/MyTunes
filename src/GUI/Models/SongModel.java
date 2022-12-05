@@ -12,10 +12,16 @@ public class SongModel {
 
     private ObservableList<Song> songsInList;
     private ISongManager songManager;
-    public static Song selectedSong;
+
+
+
+    private static Song selectedSong;
 
     public ObservableList<Song> getObservableSongs() {
         return songsInList;
+    }
+    public static Song getSelectedSong() {
+        return selectedSong;
     }
 
     /**

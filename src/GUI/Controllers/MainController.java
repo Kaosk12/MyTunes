@@ -60,6 +60,8 @@ public class MainController implements Initializable {
     public Button btnDeletePlayList;
 
 
+
+
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
@@ -142,6 +144,7 @@ public class MainController implements Initializable {
                     btnSongEdit.setDisable(false);
                     btnSongDelete.setDisable(false);
                     btnSOPAdd.setDisable(false);
+                    songModel.setSelectedSong(newValue);
 
                 }
                 if (newValue == null) {
@@ -302,8 +305,7 @@ public class MainController implements Initializable {
      */
     public void handleSOPAdd() {
         try {
-            Song song = lstSongs.getSelectionModel().getSelectedItem();
-            playlistModel.addSongToPlayList(song);
+            playlistModel.addSongToPlayList();
             //updates the song amount
             tbvPlayLists.refresh();
         } catch (Exception e) {
@@ -360,10 +362,6 @@ public class MainController implements Initializable {
      * Open up a new window to edit the title, artist or genre of a song.
      */
     public void handleSongEdit() {
-        //Save information about the selected song in the songModel.
-        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
-        songModel.setSelectedSong(chosenSong);
-
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/SongUpdateView.fxml"));
         Parent root = null;

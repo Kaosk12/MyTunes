@@ -10,8 +10,11 @@ import javafx.collections.ObservableList;
 public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
     private ObservableList<Song> songsInPlayList;
+
+
+
     private IPlayListManager playListManager;
-    public static PlayList selectedPlaylist;
+    private static PlayList selectedPlaylist;
 
     public PlayList getSelectedPlayList() {
         return selectedPlayList;
@@ -54,10 +57,10 @@ public class PlayListModel {
 
     /**
      * add a song to the last selected PlayList
-     * @param song
      * @throws Exception
      */
-    public void addSongToPlayList(Song song) throws Exception {
+    public void addSongToPlayList() throws Exception {
+        Song song = SongModel.getSelectedSong();
         playListManager.addSongToPlayList(selectedPlayList, song);
         //This will update the GUI.
         songsInPlayList.add(song);
