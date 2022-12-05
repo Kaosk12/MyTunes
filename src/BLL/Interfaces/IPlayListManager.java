@@ -8,17 +8,17 @@ import java.util.List;
 public interface IPlayListManager {
 
     /**
-     * gets all playlists from PlayListDAO in DB.
+     * Returns all playlists.
      * @return a list of all playlists.
-     * @throws Exception throws exception if
+     * @throws Exception If it fails to retrieve all playlists.
      */
     List<PlayList> getAllPlayLists() throws Exception;
 
     /**
-     * adds the last selected song to the last selected playlist
-     * @param playList
-     * @param song
-     * @throws Exception
+     * Adds a song to a playlist.
+     * @param playList The playlist to add the song to.
+     * @param song The song to add to the playlist.
+     * @throws Exception If it fails to add the song.
      */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
 }

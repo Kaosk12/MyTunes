@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4da94cdc-9ee2-466f-bede-f253117ccc94" name="Changes" comment="I merged PlayList into a main branch">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BE/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BE/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/DB/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/DatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/Interfaces/ISongManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Interfaces/ISongManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/SongManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/SongManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BLL/Util/SongSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Util/SongSearcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
