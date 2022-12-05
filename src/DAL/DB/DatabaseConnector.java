@@ -2,9 +2,7 @@ package DAL.DB;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class DatabaseConnector {
     private SQLServerDataSource dataSource;
@@ -24,6 +22,10 @@ public class DatabaseConnector {
         return dataSource.getConnection();
     }
 
+    /**
+     * Test main method to test if the connection
+     * is successfully established.
+     */
     public static void main(String[] args) {
         DatabaseConnector dbConnector = new DatabaseConnector();
 
