@@ -61,7 +61,7 @@ public class PlayListModel {
      */
     public void addSongToPlayList() throws Exception {
         Song song = SongModel.getSelectedSong();
-        playListManager.addSongToPlayList(selectedPlayList, SongModel.getSelectedSong());
+        playListManager.addSongToPlayList(selectedPlayList, song);
         //This will update the GUI.
         songsInPlayList.add(song);
         //Updates the list in the effected PlayList object.
