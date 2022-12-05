@@ -1,15 +1,22 @@
 package GUI.Controllers;
 
+import BE.Song;
+import GUI.Models.MediaModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
+import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SongCreateController implements Initializable {
@@ -19,6 +26,8 @@ public class SongCreateController implements Initializable {
     @FXML
     private TextField textTitle, textArtist, textGenre, textTime, textFile;
     private SongModel songModel;
+
+    private  MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,7 +65,21 @@ public class SongCreateController implements Initializable {
     public void handleChooseFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Add your song");
-        fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-        textFile.setText(fileChooser.getInitialFileName());
+
+        FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Audio files", "*.mp3", "*.wav");
+        fileChooser.getExtensionFilters().add(fileExtensions);
+
+        File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
+
+        textFile.setText(file.getName());
+        Media media = new Media(file.toURI().toString());
+
+        mediaPlayer = new MediaPlayer(media);
+        media.getMetadata().addListener((MapChangeListener<String, Object>) change -> {
+            textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
+            textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));
+            textGenre.setText((String)mediaPlayer.getMedia().getMetadata().get("category"));
+            //System.out.println(title);
+        });
     }
 }
