@@ -30,6 +30,7 @@ public class MainController implements Initializable {
 
 
     public Label btnPlayerPlaying;
+    public Button btnSOPDelete;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -51,7 +52,7 @@ public class MainController implements Initializable {
     @FXML
     public TableView<PlayList> tbvPlayLists;
     @FXML
-    public ListView tbvSongsInPlayList;
+    public ListView<Song> tbvSongsInPlayList;
     @FXML
     public Button btnNewPlayList;
     @FXML
@@ -80,6 +81,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Adds a listener to the songs in a playlist.
+        songInPlaylistListener();
 
         lstSongs.setItems(songModel.getObservableSongs());
 
@@ -167,7 +170,7 @@ public class MainController implements Initializable {
                     btnEditPlayList.setDisable(false);
                     tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
                     //saves last selected playlist in PlayListModel
-                    playlistModel.setSelectedPlayList(newValue);
+                    playlistModel.setSelectedPlaylist(newValue);
                 }
                 else {
                     btnDeletePlayList.setDisable(true);
@@ -177,6 +180,24 @@ public class MainController implements Initializable {
         });
 
     }
+
+    private void songInPlaylistListener(){
+        btnSOPDelete.setDisable(true);
+        tbvSongsInPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            @Override
+            public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
+                if (newValue != null) {
+                    btnSOPDelete.setDisable(false);
+                    PlayListModel.setSelectedSOP(newValue);
+                }
+                if (newValue == null) {
+                    btnSOPDelete.setDisable(true);
+
+                }
+            }
+        });
+    }
+
     /**
      * converts time to hours, minutes and seconds
      * @param timeInSeconds
@@ -331,7 +352,13 @@ public class MainController implements Initializable {
      * Remove a song from the Songs on Playlist editor
      */
     public void handleSOPDelete() {
-        //TO DO
+        try {
+            playlistModel.deleteSOP();
+
+            tbvPlayLists.refresh();
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**

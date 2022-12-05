@@ -15,16 +15,24 @@ public class PlayListModel {
 
     private IPlayListManager playListManager;
     private static PlayList selectedPlaylist;
+    private static Song selectedSOP;
 
-    public PlayList getSelectedPlayList() {
-        return selectedPlayList;
+    public PlayList getSelectedPlaylist() {
+        return selectedPlaylist;
     }
 
-    public void setSelectedPlayList(PlayList selectedPlayList) {
-        this.selectedPlayList = selectedPlayList;
+    public void setSelectedPlaylist(PlayList selectedPlaylist) {
+        this.selectedPlaylist = selectedPlaylist;
+    }
+    public static Song getSelectedSOP() {
+        return selectedSOP;
     }
 
-    private PlayList selectedPlayList;
+    public static void setSelectedSOP(Song selectedSOP) {
+        PlayListModel.selectedSOP = selectedSOP;
+    }
+
+
 
     /**
      * returns the ObservableList playListsInList
@@ -61,13 +69,20 @@ public class PlayListModel {
      */
     public void addSongToPlayList() throws Exception {
         Song song = SongModel.getSelectedSong();
-        playListManager.addSongToPlayList(selectedPlayList, song);
+        playListManager.addSongToPlayList(selectedPlaylist, song);
         //This will update the GUI.
         songsInPlayList.add(song);
         //Updates the list in the effected PlayList object.
-        selectedPlayList.getAllSongsInPlaylist().add(song);
+        selectedPlaylist.addSongToPlaylist(song);
     }
-    public void setSelectedPlaylist(PlayList selectedPlaylist) {
-        PlayListModel.selectedPlaylist = selectedPlaylist;
+
+    public void deleteSOP() throws Exception {
+        //This will remove the song from the playlist in the database.
+        playListManager.removeSOP(selectedPlaylist, selectedSOP);
+        //this will remove the song from the GUI.
+        songsInPlayList.remove(selectedSOP);
+        //Updates the list in the effected PlayList object.
+        selectedPlaylist.removeSOP(selectedSOP);
     }
+
 }

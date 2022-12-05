@@ -50,5 +50,8 @@ public class PlayList {
     public void addSongToPlaylist(Song song){
         songList.add(song);
     }
+    public void removeSOP(Song song){
+        songList.remove(song);
+    }
 
 }

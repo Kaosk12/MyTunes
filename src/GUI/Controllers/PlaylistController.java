@@ -22,8 +22,8 @@ public class PlaylistController implements Initializable {
     private PlayList playList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (playListModel.getSelectedPlayList() != null) {
-            playList = playListModel.getSelectedPlayList();
+        if (playListModel.getSelectedPlaylist() != null) {
+            playList = playListModel.getSelectedPlaylist();
             textName.setText(playList.getTitle());
         }
 
@@ -45,7 +45,7 @@ public class PlaylistController implements Initializable {
 
     public void handleOK() {
         //TO DO: implement functionality.
-        if (playListModel.getSelectedPlayList() == null) {
+        if (playListModel.getSelectedPlaylist() == null) {
             //Create new playlist
         } else {
             //Update existing playlist

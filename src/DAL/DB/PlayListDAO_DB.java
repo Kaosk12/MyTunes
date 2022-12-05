@@ -4,6 +4,7 @@ import BE.PlayList;
 import BE.Song;
 import DAL.Interfaces.IPlaylistDAO;
 import DAL.Interfaces.ISongDAO;
+import DAL.Util.LocalFileDeleter;
 
 import java.sql.*;
 import java.util.*;
@@ -131,10 +132,30 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
+    public void removeSOP(PlayList playList, Song song) throws Exception {
+        String sql = "DELETE FROM SongsInPlaylists WHERE SongId = ? AND PlaylistId = ?;";
+
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            //Bind parameters
+            statement.setInt(1, song.getId());
+            statement.setInt(2, playList.getPlayListId());
+
+            //Run the specified SQL Statement
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to remove song", e);
+        }
+    }
+
 
     public void updatePlayList() {
 
     }
+
 
 
     public void deletePlayList() {

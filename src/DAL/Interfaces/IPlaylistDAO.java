@@ -22,6 +22,14 @@ public interface IPlaylistDAO {
      * @throws Exception throws exception if it fails to insert new data to the database.
      */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
+
+    /**
+     * removes a songs from a playlist.
+     * @param playList
+     * @param song
+     * @throws Exception throws exception if it fails to remove song
+     */
+    void removeSOP(PlayList playList, Song song) throws Exception;
     //void editPlayList() throws Exception;
     //void deletePlayList() throws Exception;
 }

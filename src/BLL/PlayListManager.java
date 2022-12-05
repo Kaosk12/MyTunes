@@ -30,4 +30,8 @@ public class PlayListManager implements IPlayListManager {
     public void addSongToPlayList(PlayList playList, Song song) throws Exception {
         databaseAcces.addSongToPlayList(playList, song);
     }
+
+    public void removeSOP(PlayList playList, Song song) throws Exception{
+        databaseAcces.removeSOP(playList, song);
+    }
 }

@@ -21,4 +21,12 @@ public interface IPlayListManager {
      * @throws Exception
      */
     void addSongToPlayList(PlayList playList, Song song) throws Exception;
+
+    /**
+     * removes a song from a playlist.
+     * @param playList
+     * @param song
+     * @throws Exception if it fails to remove the song.
+     */
+    void removeSOP(PlayList playList, Song song) throws Exception;
 }
