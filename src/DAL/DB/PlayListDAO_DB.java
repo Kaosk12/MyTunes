@@ -108,9 +108,10 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     public void addSongToPlayList(PlayList playList, Song song) throws Exception{
         String sql = "INSERT INTO SongsInPlaylists (SongId, PlaylistId, NumberInPlaylist) VALUES (?,?,?);";
 
-        try(Connection connection = databaseConnector.getConnection())
+        try(Connection connection = databaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);)
         {
-            PreparedStatement statement = connection.prepareStatement(sql);
+
 
             //Parameters
             int songID = song.getId();
@@ -125,7 +126,8 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             //Run the specified SQL statement
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new Exception("Failed to add new song", e);
         }
     }
 

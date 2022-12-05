@@ -243,7 +243,7 @@ public class MainController implements Initializable {
             //updates the song amount
             tbvPlayLists.refresh();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            ErrorDisplayer.displayError(e);
         }
     }
 
