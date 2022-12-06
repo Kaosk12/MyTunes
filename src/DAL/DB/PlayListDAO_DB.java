@@ -158,8 +158,20 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     }
 
 
-    public void updatePlayList() {
+    public void updatePlayList(PlayList playList) throws Exception {
+        String sql = "UPDATE Playlists SET Title = ? WHERE Id = ?;";
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
+            statement.setString(1, playList.getTitle());
+            statement.setInt(2, playList.getPlayListId());
+            //Run the specified SQL Statement
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to update playlist", e);
+        }
     }
 
 

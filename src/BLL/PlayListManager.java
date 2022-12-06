@@ -34,4 +34,8 @@ public class PlayListManager implements IPlayListManager {
     public void removeSOP(PlayList playList, Song song) throws Exception{
         databaseAcces.removeSOP(playList, song);
     }
+
+    public void updatePlayList(PlayList playList) throws Exception{
+        databaseAcces.updatePlayList(playList);
+    }
 }

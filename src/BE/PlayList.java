@@ -20,6 +20,10 @@ public class PlayList {
         return title;
     }
 
+    public void setTitle(String title){
+        this.title = title;
+    }
+
     public int getPlayListId() {
         return playListId;
     }

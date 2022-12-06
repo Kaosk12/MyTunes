@@ -61,8 +61,6 @@ public class MainController implements Initializable {
     public Button btnDeletePlayList;
 
 
-
-
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
@@ -276,11 +274,6 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 
-        //Set the PlaylistController's model to be the same PlayListModel as the main window.
-        //This should help show any changes in the main window once they are confirmed.
-        PlaylistController controller = loader.getController();
-        controller.setModel(playlistModel);
-
         //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
 
@@ -288,10 +281,6 @@ public class MainController implements Initializable {
      * Edit a playlist
      */
     public void handlePlaylistEdit() {
-        //Save information about the selected playlist in the playListModel.
-        PlayList playList = tbvPlayLists.getSelectionModel().getSelectedItem();
-        playlistModel.setSelectedPlaylist(playList);
-
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Views/PlaylistView.fxml"));
         Parent root = null;
@@ -305,11 +294,9 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-
-        //Set the PlaylistController's model to be the same PlayListModel as the main window.
-        //This should help show any changes in the main window once they are confirmed.
+        //Tableview to be refreshed
         PlaylistController controller = loader.getController();
-        controller.setModel(playlistModel);
+        controller.setTbvPlayLists(tbvPlayLists);
 
         //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
@@ -406,8 +393,12 @@ public class MainController implements Initializable {
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
-        SongUpdateController controller = loader.getController();
+        SongCreateController controller = loader.getController();
         controller.setModel(songModel);
+    }
+
+    public PlayListModel getPlaylistModel(){
+        return playlistModel;
     }
 
     /**

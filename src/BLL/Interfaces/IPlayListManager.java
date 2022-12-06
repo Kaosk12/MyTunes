@@ -24,9 +24,17 @@ public interface IPlayListManager {
 
     /**
      * removes a song from a playlist.
-     * @param playList last selected playlist
-     * @param song last selected song
+     * @param playList last selected playlist.
+     * @param song last selected song.
      * @throws Exception if it fails to remove the song.
      */
     void removeSOP(PlayList playList, Song song) throws Exception;
+
+    /**
+     * updates a playlist title.
+     * @param playList last selected playlist.
+     * @throws Exception if it fails to update playlist.
+     */
+    void updatePlayList(PlayList playList) throws Exception;
+
 }

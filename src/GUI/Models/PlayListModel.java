@@ -85,4 +85,8 @@ public class PlayListModel {
         selectedPlaylist.removeSOP(selectedSOP);
     }
 
+    public void updatePlayList(PlayList playList) throws Exception {
+        playListManager.updatePlayList(playList);
+    }
+
 }

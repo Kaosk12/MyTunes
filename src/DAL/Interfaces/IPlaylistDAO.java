@@ -30,6 +30,13 @@ public interface IPlaylistDAO {
      * @throws Exception throws exception if it fails to remove song
      */
     void removeSOP(PlayList playList, Song song) throws Exception;
-    //void editPlayList() throws Exception;
+
+    /**
+     * updates a playlist title.
+     * @param playList last selected playlist.
+     * @throws Exception throws exception if it fails to update song.
+     */
+    void updatePlayList(PlayList playList) throws Exception;
+
     //void deletePlayList() throws Exception;
 }
