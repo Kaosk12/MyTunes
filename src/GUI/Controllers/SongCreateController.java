@@ -42,7 +42,7 @@ public class SongCreateController implements Initializable {
         String title = textTitle.getText();
         String artist = textArtist.getText();
         String genre = textGenre.getText();
-        int time = Integer.parseInt(textTime.getText());
+        int time = 0;
         String path = textFile.getText(); //??
 
         Song song = new Song(title, artist, genre, time, path);
@@ -71,7 +71,7 @@ public class SongCreateController implements Initializable {
 
         File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
 
-        textFile.setText(file.getName());
+        textFile.setText(file.getAbsolutePath());
         Media media = new Media(file.toURI().toString());
 
         mediaPlayer = new MediaPlayer(media);

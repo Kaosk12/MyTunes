@@ -77,10 +77,8 @@ public class MediaModel {
      */
     public Media createMedia(Song song){
         Media media;
-        String dataPath = "data\\";
-        File file = new File(dataPath += song.getPath());
+        File file = new File(song.getPath());
         return media = new Media(file.toURI().toString());
-
     }
 
 

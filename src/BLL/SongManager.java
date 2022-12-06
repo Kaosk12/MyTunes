@@ -54,9 +54,9 @@ public class SongManager implements ISongManager {
         databaseAccess.deleteSong(song);
     }
 
-    public Song createSong(Song song){
-        databaseAccess.createSong(song);
-        return null;
+    public Song createSong(Song song) throws Exception {
+       return databaseAccess.createSong(song);
+
     }
 
 }

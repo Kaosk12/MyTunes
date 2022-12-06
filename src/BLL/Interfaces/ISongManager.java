@@ -36,5 +36,5 @@ public interface ISongManager {
      */
     void deleteSong(Song song) throws Exception;
 
-    Song createSong(Song song);
+    Song createSong(Song song) throws Exception;
 }

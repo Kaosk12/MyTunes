@@ -18,5 +18,5 @@ public interface ISongDAO {
     void deleteSong(Song song) throws Exception;
     Song getSongFromId(int songId) throws Exception;
 
-    void createSong(Song song);
+    Song createSong(Song song) throws Exception;
 }

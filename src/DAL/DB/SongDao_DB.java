@@ -1,10 +1,10 @@
 package DAL.DB;
 
 import BE.Song;
-import DAL.DB.DatabaseConnector;
 import DAL.Interfaces.ISongDAO;
-import DAL.Util.LocalFileDeleter;
+import DAL.Util.LocalFileHandler;
 
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +70,7 @@ public class SongDao_DB implements ISongDAO {
             //Run the specified SQL Statement
             statement.executeUpdate();
 
-            LocalFileDeleter.deleteLocalFile(song.getPath());
+            LocalFileHandler.deleteLocalFile(song.getPath());
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -137,7 +137,41 @@ public class SongDao_DB implements ISongDAO {
     }
 
     @Override
-    public void createSong(Song song) {
-        
+    public Song createSong(Song song) throws Exception {
+
+        String sql = "INSERT INTO Songs (Title, Artist, Genre, Duration, SongPath) VALUES (?,?,?,?,?) ;";
+
+        try(Connection connection = databaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+
+            Path relativPath = LocalFileHandler.createLocalFile(song.getPath());
+
+            String title = song.getTitle();
+            String artist = song.getArtist();
+            String genre = song.getGenre();
+            String path = String.valueOf(relativPath);
+
+            int time = song.getTime();
+
+            statement.setString(1, title);
+            statement.setString(2, artist);
+            statement.setString(3, genre);
+            statement.setInt(4, time);
+            statement.setString(5, path);
+
+            statement.executeUpdate();
+            int id = 0;
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+
+            Song generatedSong = new Song(title, artist, genre, time,path, id);
+            return generatedSong;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to create song", e);
+
+        }
     }
 }

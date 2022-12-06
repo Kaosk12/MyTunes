@@ -68,8 +68,7 @@ public class SongModel {
     }
 
 
-    public Song createSong(Song song) {
-        songManager.createSong(song);
-        return null;
+    public Song createSong(Song song) throws Exception {
+        return songManager.createSong(song);
     }
 }
