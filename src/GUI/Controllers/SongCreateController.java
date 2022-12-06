@@ -75,6 +75,22 @@ public class SongCreateController implements Initializable {
         Media media = new Media(file.toURI().toString());
 
         mediaPlayer = new MediaPlayer(media);
+
+        //MediaPlayer must be set on ready to get the duration
+        mediaPlayer.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+                int duration = (int) media.getDuration().toSeconds();
+                int m = duration/60;
+                int s = duration%60;
+                String mins = String.format("%02d", m);
+                String secs = String.format("%02d", s);
+
+                textTime.setText(mins+":"+secs);
+            }
+        });
+
+        //Insert the metadata to the text fields once it has been loaded
         media.getMetadata().addListener((MapChangeListener<String, Object>) change -> {
             textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
             textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));

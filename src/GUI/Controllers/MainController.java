@@ -7,6 +7,7 @@ import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
+import GUI.Util.TimeCellFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -48,7 +50,7 @@ public class MainController implements Initializable {
     @FXML
     public TableColumn<PlayList, Integer> clmPlayListSongs;
     @FXML
-    public TableColumn<PlayList, String> clmPlayListTime;
+    public TableColumn<PlayList, Integer> clmPlayListTime;
     @FXML
     public TableView<PlayList> tbvPlayLists;
     @FXML
@@ -88,6 +90,7 @@ public class MainController implements Initializable {
         artistColum.setCellValueFactory(new PropertyValueFactory<>("Artist"));
         genreColum.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        timeColum.setCellFactory(new TimeCellFactory<>());
 
         /**
          * sets the Cell value for the 3 cells in tableView for PlayList.
@@ -97,6 +100,7 @@ public class MainController implements Initializable {
         clmPlayListName.setCellValueFactory(new PropertyValueFactory<>("Title"));
         clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("SongAmount"));
         clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        clmPlayListTime.setCellFactory(new TimeCellFactory<>());
 
 
         /**
