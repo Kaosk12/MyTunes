@@ -81,13 +81,8 @@ public class MediaModel {
         return media = new Media(file.toURI().toString());
     }
 
-
-    /**
-     * Plays the previous song
-     * @param song The song to play.
-     */
-    public void previousSong(Song song) {
-        skipSong(song);
-        // TODO Restart song if played for a while.
+    public void restartSong(){
+        mediaPlayer.seek(Duration.millis(0));
     }
+
 }

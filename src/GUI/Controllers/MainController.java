@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -194,13 +195,17 @@ public class MainController implements Initializable {
 
     /**
      * Change to previous song
-     * to do make a class that can see how far in the song you are, if over 10% strat song over elles skip to previous.
+     * restarts song if over 5000 ms in
      */
     public void handlePlayerPrevious() {
-        lstSongs.getSelectionModel().selectPrevious();
-        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
-        mediaModel.previousSong(chosenSong);
-        btnPlayerPlaying.setText(chosenSong.getTitle());
+        if(mediaModel.getCurrentTime().lessThan(Duration.millis(5000))) {
+            lstSongs.getSelectionModel().selectPrevious();
+            chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+            mediaModel.skipSong(chosenSong);
+            btnPlayerPlaying.setText(chosenSong.getTitle());
+        }else{
+            mediaModel.restartSong();
+        }
     }
 
     /**
@@ -221,6 +226,7 @@ public class MainController implements Initializable {
         mediaModel.playMedia(chosenSong);
         btnPlayerPlaying.setText(chosenSong.getTitle());
     }
+
 
     /**
      * Search for a song in the library
