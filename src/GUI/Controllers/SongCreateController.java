@@ -39,16 +39,16 @@ public class SongCreateController implements Initializable {
     }
 
     public void handleOK() {
-        //String title = textTitle.getText();
-        //String artist = textArtist.getText();
-        //String genre = textGenre.getText();
-        //int time = Integer.parseInt(textTime.getText());
-        //String path = textFile.getText(); //??
-        //int id = ??;
-        //Song song = new Song(title, artist, genre, time, path, id);
+        String title = textTitle.getText();
+        String artist = textArtist.getText();
+        String genre = textGenre.getText();
+        int time = Integer.parseInt(textTime.getText());
+        String path = textFile.getText(); //??
+
+        Song song = new Song(title, artist, genre, time, path);
 
         try {
-            //songModel.createSong(song); //Send the song down the layers to create it in the Database.
+            songModel.createSong(song); //Send the song down the layers to create it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);

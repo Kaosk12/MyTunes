@@ -135,4 +135,9 @@ public class SongDao_DB implements ISongDAO {
             throw new Exception("Failed to retrieve songs", e);
         }
     }
+
+    @Override
+    public void createSong(Song song) {
+        
+    }
 }

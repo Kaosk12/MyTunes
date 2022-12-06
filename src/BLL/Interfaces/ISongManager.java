@@ -35,4 +35,6 @@ public interface ISongManager {
      * @throws Exception If it fails to delete the song.
      */
     void deleteSong(Song song) throws Exception;
+
+    Song createSong(Song song);
 }

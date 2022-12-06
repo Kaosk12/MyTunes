@@ -29,7 +29,6 @@ public class Song {
         this.duration = time;
         this.path = path;
         this.id = id;
-
     }
 
     public Song(String title, String artist, String genre, int time, String path){

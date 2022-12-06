@@ -66,4 +66,10 @@ public class SongModel {
     public void deleteSong(Song song) throws Exception {
         songManager.deleteSong(song);
     }
+
+
+    public Song createSong(Song song) {
+        songManager.createSong(song);
+        return null;
+    }
 }
