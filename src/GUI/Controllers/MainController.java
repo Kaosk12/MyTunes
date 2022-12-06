@@ -274,6 +274,14 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 
+        //we do this, so it creates a new playlist instead of editing an existing.
+        PlaylistController controller = loader.getController();
+        controller.setTbvPlayLists(tbvPlayLists);
+        controller.setCreateNewPlayList(true);
+        //Set the SongUpdateController's model to be the same songModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        controller.setModel(playlistModel);
+
         //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
 
@@ -297,6 +305,9 @@ public class MainController implements Initializable {
         //Tableview to be refreshed
         PlaylistController controller = loader.getController();
         controller.setTbvPlayLists(tbvPlayLists);
+        //Set the SongUpdateController's model to be the same songModel as the main window.
+        //This should help show any changes in the main window once they are confirmed.
+        controller.setModel(playlistModel);
 
         //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
@@ -307,6 +318,9 @@ public class MainController implements Initializable {
     public void handlePlaylistDelete() {
         try {
             playlistModel.deletePlayList();
+            //TODO why dosnt it work with just refresh
+            //tbvPlayLists.setItems(playlistModel.getObservablePlayLists());
+            //tbvPlayLists.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }

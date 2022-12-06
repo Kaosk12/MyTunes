@@ -29,13 +29,16 @@ public class PlaylistController implements Initializable {
     private PlayList playList;
     private MainController mainController;
     private String playlistName;
+    private Boolean createNewPlayList = false;
 
+    public void setModel(PlayListModel playListModel){
+        this.playListModel = playListModel;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mainController = new MainController();
-        playListModel = mainController.getPlaylistModel();
-        if (playListModel.getSelectedPlaylist() != null) {
-            playList = playListModel.getSelectedPlaylist();
+
+        if (PlayListModel.getSelectedPlaylist() != null) {
+            playList = PlayListModel.getSelectedPlaylist();
             textName.setText(playList.getTitle());
         }
 
@@ -57,16 +60,35 @@ public class PlaylistController implements Initializable {
     }
 
     public void handleOK() {
-
         try {
-            //set the new title
-            playList.setTitle(playlistName);
-            //updates title in the db
-            playListModel.updatePlayList(playList);
+            //we edit the selected playlist.
+            if (!createNewPlayList){
+
+                //set the new title
+                playList.setTitle(playlistName);
+               //updates title in the db
+                playListModel.updatePlayList(playList);
+                //refreshes the GUI.
+                //tbvPlayLists.refresh();
+
+            }
+            //we create a new playlist.
+            else if (createNewPlayList){
+                //we create a new playlist object.
+                PlayList p = new PlayList(playlistName);
+                //we insert our new playlist into the db.
+                playListModel.createPlayList(p);
+                //we do this, so we can edit a playlist if needed.
+                createNewPlayList = false;
+                //TODO find out why I cant just use refresh().
+                //tbvPlayLists.setItems(playListModel.getObservablePlayLists());
+
+            }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-        //refreshes the GUI.
+
+
         tbvPlayLists.refresh();
         //Closes the window.
         handleClose();
@@ -78,5 +100,8 @@ public class PlaylistController implements Initializable {
     }
     public void setTbvPlayLists(TableView tableView){
         tbvPlayLists = tableView;
+    }
+    public void setCreateNewPlayList(boolean createNewPlayList){
+        this.createNewPlayList = createNewPlayList;
     }
 }

@@ -17,7 +17,7 @@ public class PlayListModel {
     private static PlayList selectedPlaylist;
     private static Song selectedSOP;
 
-    public PlayList getSelectedPlaylist() {
+    public static PlayList getSelectedPlaylist() {
         return selectedPlaylist;
     }
 

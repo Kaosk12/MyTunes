@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="Edit playlist now works.">
+    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="delete playlist now works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BE/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670321741278</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="delete playlist now works.">
+      <created>1670323240924</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670323240924</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +138,7 @@
     <MESSAGE value="SongPath correction" />
     <MESSAGE value="I merged PlayList into a main branch" />
     <MESSAGE value="Edit playlist now works." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit playlist now works." />
+    <MESSAGE value="delete playlist now works." />
+    <option name="LAST_COMMIT_MESSAGE" value="delete playlist now works." />
   </component>
 </project>

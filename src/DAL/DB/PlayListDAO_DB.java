@@ -189,16 +189,26 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     }
 
     public void createPlayList(PlayList playList) throws Exception {
-        String sql = "INSERT INTO Playlists(Title) VALUES (?);";
+        String sql = "INSERT INTO Playlists(Title, Creator) VALUES (?,?);";
 
         try (Connection connection = databaseConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             //Bind parameters
             statement.setString(1, playList.getTitle());
+            statement.setString(2, playList.getCreatorName());
 
             //Run the specified SQL Statement
             statement.executeUpdate();
+
+            //Get the generated Id from the DB
+            ResultSet rs = statement.getGeneratedKeys();
+            int id = 0;
+
+            if(rs.next()){
+                id = rs.getInt(1);
+            }
+            playList.setPlayListId(id);
         }
         catch (SQLException e) {
             e.printStackTrace();
