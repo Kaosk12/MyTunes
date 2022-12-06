@@ -38,5 +38,17 @@ public interface IPlaylistDAO {
      */
     void updatePlayList(PlayList playList) throws Exception;
 
-    //void deletePlayList() throws Exception;
+    /**
+     * creates a new playlist.
+     * @param playList the new playlist.
+     * @throws Exception if it fails to create new playlist
+     */
+    public void createPlayList(PlayList playList) throws Exception;
+
+    /**
+     * deletes a playlist from the database
+     * @param playList selected playlist.
+     * @throws Exception if it fails to delete playlist.
+     */
+    public void deletePlayList(PlayList playList) throws Exception;
 }

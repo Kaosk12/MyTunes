@@ -38,4 +38,14 @@ public class PlayListManager implements IPlayListManager {
     public void updatePlayList(PlayList playList) throws Exception{
         databaseAcces.updatePlayList(playList);
     }
+
+    public void createPlayList(PlayList playList) throws Exception{
+        databaseAcces.createPlayList(playList);
+    }
+
+    public void deletePlayList(PlayList playList) throws Exception{
+        databaseAcces.deletePlayList(playList);
+    }
+
+
 }

@@ -305,7 +305,11 @@ public class MainController implements Initializable {
      * Delete a playlist
      */
     public void handlePlaylistDelete() {
-        //TO DO
+        try {
+            playlistModel.deletePlayList();
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**

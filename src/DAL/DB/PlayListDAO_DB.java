@@ -18,12 +18,6 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         songDAO = new SongDao_DB();
     }
 
-
-    public void createPlayList() {
-
-    }
-
-
     /**
      * reads all data in the Playlist table in the database. It makes the data into PlayList objects and adds
      * them to an ArrayList that it returns.
@@ -176,7 +170,39 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
 
 
-    public void deletePlayList() {
+    public void deletePlayList(PlayList playList) throws Exception {
+        String sql = "DELETE FROM Playlists WHERE Id = ?;";
 
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            //Bind parameters
+            statement.setInt(1, playList.getPlayListId());
+
+            //Run the specified SQL Statement
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to remove playlist", e);
+        }
+    }
+
+    public void createPlayList(PlayList playList) throws Exception {
+        String sql = "INSERT INTO Playlists(Title) VALUES (?);";
+
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            //Bind parameters
+            statement.setString(1, playList.getTitle());
+
+            //Run the specified SQL Statement
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to create playlist", e);
+        }
     }
 }

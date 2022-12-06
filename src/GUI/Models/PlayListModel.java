@@ -89,4 +89,18 @@ public class PlayListModel {
         playListManager.updatePlayList(playList);
     }
 
+    public void deletePlayList() throws Exception{
+        //deletes the playlist from the db
+        playListManager.deletePlayList(selectedPlaylist);
+        //removes the playlist from observables.
+        playListsInList.remove(selectedPlaylist);
+    }
+
+    public void createPlayList(PlayList playList) throws Exception {
+        //Inserts the new playlist into the db
+        playListManager.createPlayList(playList);
+        //Adds the new playlist to observable playlists.
+        playListsInList.add(playList);
+    }
+
 }
