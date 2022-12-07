@@ -19,9 +19,9 @@ public class Main extends Application {
 
         //Fixed width & height. Could be removed once HGrow & VGrow has been set correctly.
         primaryStage.setMinWidth(1010.0);
-        primaryStage.setMinHeight(640.0);
+        primaryStage.setMinHeight(736.0);
         primaryStage.setMaxWidth(1010.0);
-        primaryStage.setMaxHeight(640.0);
+        primaryStage.setMaxHeight(736.0);
 
         primaryStage.show();
     }
