@@ -144,12 +144,12 @@ public class SongDao_DB implements ISongDAO {
         try(Connection connection = databaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-            Path relativPath = LocalFileHandler.createLocalFile(song.getPath());
+            Path relativePath = LocalFileHandler.createLocalFile(song.getPath());
 
             String title = song.getTitle();
             String artist = song.getArtist();
             String genre = song.getGenre();
-            String path = String.valueOf(relativPath);
+            String path = String.valueOf(relativePath);
 
             int time = song.getTime();
 
