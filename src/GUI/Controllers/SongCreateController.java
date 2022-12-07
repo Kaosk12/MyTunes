@@ -38,6 +38,10 @@ public class SongCreateController implements Initializable {
         this.songModel = songModel;
     }
 
+    /**
+     * creates a song with the data from the input fields
+     * creates the song in the database.
+     */
     public void handleOK() {
         String title = textTitle.getText();
         String artist = textArtist.getText();
@@ -53,30 +57,57 @@ public class SongCreateController implements Initializable {
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-
         handleClose();
     }
 
+    /**
+     * closes the window
+     */
     public void handleClose() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * takes the path from input fields and fills the input fields with metadata from file.
+     */
     public void handleChooseFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Add your song");
 
         FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Audio files", "*.mp3", "*.wav");
         fileChooser.getExtensionFilters().add(fileExtensions);
-
         File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-
         textFile.setText(file.getAbsolutePath());
-        Media media = new Media(file.toURI().toString());
 
+        Media media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
 
         //MediaPlayer must be set on ready to get the duration
+        getSongDuration(media);
+
+        metaGetListener(media);
+    }
+
+    /**
+     * waits for metadata and fills out fields in view
+     * @param media
+     */
+    private void metaGetListener(Media media) {
+        //Insert the metadata to the text fields once it has been loaded
+        media.getMetadata().addListener((MapChangeListener<String, Object>) change -> {
+            textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
+            textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));
+            textGenre.setText((String)mediaPlayer.getMedia().getMetadata().get("category"));
+            //System.out.println(title);
+        });
+    }
+
+    /**
+     * gets the duration in seconds and turns it to minutes and seconds
+     * @param media
+     */
+    private void getSongDuration(Media media) {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
@@ -88,14 +119,6 @@ public class SongCreateController implements Initializable {
 
                 textTime.setText(mins+":"+secs);
             }
-        });
-
-        //Insert the metadata to the text fields once it has been loaded
-        media.getMetadata().addListener((MapChangeListener<String, Object>) change -> {
-            textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
-            textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));
-            textGenre.setText((String)mediaPlayer.getMedia().getMetadata().get("category"));
-            //System.out.println(title);
         });
     }
 }
