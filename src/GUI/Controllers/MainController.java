@@ -134,7 +134,7 @@ public class MainController implements Initializable {
                 // Displays the songs in this playlist.
                 tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
 
-                playlistModel.setSelectedPlayList(newValue);
+                playlistModel.setSelectedPlaylist(newValue);
             }
             else {
                 setPlaylistManipulatingButtons(true);
@@ -197,6 +197,27 @@ public class MainController implements Initializable {
         clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("SongAmount"));
         clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
     }
+
+    /**
+     * Add a listener to songs in playlists.
+     */
+    private void songInPlaylistListener(){
+        btnSOPDelete.setDisable(true);
+        tbvSongsInPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            @Override
+            public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
+                if (newValue != null) {
+                    btnSOPDelete.setDisable(false);
+                    PlayListModel.setSelectedSOP(newValue);
+                }
+                if (newValue == null) {
+                    btnSOPDelete.setDisable(true);
+
+                }
+            }
+        });
+    }
+
 
     /**
      * converts time to hours, minutes and seconds
