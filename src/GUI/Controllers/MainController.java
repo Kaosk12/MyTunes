@@ -53,7 +53,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<PlayList, Integer> clmPlayListSongs;
     @FXML
-    private TableColumn<PlayList, String> clmPlayListTime;
+    private TableColumn<PlayList, Integer> clmPlayListTime;
     @FXML
     private TableView<PlayList> tbvPlayLists;
     @FXML
