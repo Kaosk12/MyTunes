@@ -1,6 +1,5 @@
 package BLL.Interfaces;
 
-import BE.PlayList;
 import BE.Song;
 
 import java.util.List;
@@ -8,9 +7,9 @@ import java.util.List;
 public interface ISongManager {
 
     /**
-     * Get all songs in the library
-     * @return a list songs.
-     * @throws Exception up the layers
+     * Returns all songs
+     * @return A list of all songs.
+     * @throws Exception If it fails to retrieve all songs.
      */
     List<Song> getAllSongs() throws Exception;
 
@@ -18,14 +17,14 @@ public interface ISongManager {
      * Filter the list of songs in library using a search query
      * @param query, the string input used to filter
      * @return a list of songs matching the query in either title, artist or category
-     * @throws Exception up the layers
+     * @throws Exception If it fails to search.
      */
     List<Song> search(String query) throws Exception;
 
     /**
      * Update/Edit a song
      * @param song, the selected song to update
-     * @throws Exception up the layers
+     * @throws Exception If it fails to update the song.
      */
     void updateSong(Song song) throws Exception;
 

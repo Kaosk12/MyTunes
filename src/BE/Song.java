@@ -7,7 +7,6 @@ public class Song {
     private String artist;
     private String genre;
     private int duration;
-
     private String path;
 
     public void setTitle(String title) {
@@ -39,7 +38,6 @@ public class Song {
         this.path = path;
     }
 
-
     public String getTitle() {
         return title;
     }
@@ -48,14 +46,13 @@ public class Song {
         return duration;
     }
 
-
     public String getArtist() {
         return artist;
     }
+
     public String getGenre() {
         return genre;
     }
-
 
     public int getId() {
         return id;

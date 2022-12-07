@@ -8,34 +8,31 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class MediaModel {
-
-
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
-
     private Song chosenSong;
-
-    public MediaModel(){
-
-    }
 
     public boolean isPlaying() {
         return isPlaying;
     }
 
     /**
-     * if the song is playing it will pause, else it will start playing.
-     * finds the path of chosen song, the makes it a media and starts playing.
+     * Pauses the song if it is playing,
+     * or sets a new song and starts playing,
+     * else it just starts playing the song.
+     * @param song If this song isn't null, then set it as the new song to play.
      */
     public void playMedia(Song song) {
         if (isPlaying) {
             pauseMedia();
         }
-        else if(chosenSong == null || chosenSong != song){//crete a new media file and plays it
+        else if(chosenSong == null || chosenSong != song){
+            //crete a new media file and plays it
             mediaPlayer = new MediaPlayer(createMedia(song));
             startMedia();
             chosenSong = song;
-        }else {//starts the song
+        }else {
+            //starts the song
             startMedia();
         }
     }
@@ -71,7 +68,7 @@ public class MediaModel {
     }
 
     /**
-     * finds the path of chosen song and creates a media object from the file
+     * finds the path of the chosen song and creates a media object from the file.
      * @param song The song to get the path of.
      * @return A new media object, with the given song.
      */

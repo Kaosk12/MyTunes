@@ -13,15 +13,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SongUpdateController implements Initializable {
-
     private SongModel songModel;
     private Song song;
     @FXML
     private TextField textTitle, textArtist, textGenre;
-    
     @FXML
     private Button btnOK, btnCancel;
-    private boolean isTitleEmpty, isArtistEmpty;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,31 +27,47 @@ public class SongUpdateController implements Initializable {
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());
 
-        //Adding a listener, and enabling/disabling the OK button if title is empty
-        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try {
-                if(!textTitle.getText().trim().isEmpty()) {
-                    btnOK.setDisable(false);
-                } else {
-                    btnOK.setDisable(true);
-                }
-            } catch (Exception e) {
-                ErrorDisplayer.displayError(e);
-            }
-        });
+        addTitleListener();
+        addArtistListener();
+    }
 
+    /**
+     * Adds a listener to the artist property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addArtistListener() {
         //Adding a listener, and enabling/disabling the OK button if artist is empty
         textArtist.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try {
-                if(!textArtist.getText().trim().isEmpty()) {
-                    btnOK.setDisable(false);
-                } else {
-                    btnOK.setDisable(true);
-                }
-            } catch (Exception e) {
-                ErrorDisplayer.displayError(e);
+            if (isArtistEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isArtistEmpty() && !isTitleEmpty()) {
+                btnOK.setDisable(false);
             }
         });
+    }
+
+    /**
+     * Adds a listener to the title property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addTitleListener() {
+        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isTitleEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    private boolean isTitleEmpty() {
+        return textTitle.getText().trim().isEmpty();
+    }
+
+    private boolean isArtistEmpty() {
+        return textArtist.getText().trim().isEmpty();
     }
 
     /**
@@ -74,6 +87,7 @@ public class SongUpdateController implements Initializable {
             ErrorDisplayer.displayError(new Exception("Title can not be empty"));
             return;
         }
+
         if (textArtist.getText().trim().isEmpty()) {
             ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
             return;
@@ -93,7 +107,6 @@ public class SongUpdateController implements Initializable {
         }
 
         handleClose();
-
     }
 
     /***
