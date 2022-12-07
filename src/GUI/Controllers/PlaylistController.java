@@ -3,7 +3,6 @@ package GUI.Controllers;
 import BE.PlayList;
 import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

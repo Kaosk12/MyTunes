@@ -10,9 +10,6 @@ import javafx.collections.ObservableList;
 public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
     private ObservableList<Song> songsInPlayList;
-
-
-
     private IPlayListManager playListManager;
     private static PlayList selectedPlaylist;
     private static Song selectedSOP;
@@ -43,19 +40,20 @@ public class PlayListModel {
     }
 
     /**
-     * the method retreive and returns the songs of the Playlist object given i parameter.
-     * @param playList
-     * @return
+     * Returns all songs in playlist.
+     * @param playList The playlist to retrieve the songs from.
+     * @return An observable list of songs.
      */
     public ObservableList<Song> getObservableSongsInPlayList(PlayList playList){
         songsInPlayList = FXCollections.observableArrayList();
         songsInPlayList.addAll(playList.getAllSongsInPlaylist());
+
         return songsInPlayList;
     }
 
     /**
-     * adds all playlists to playListInList
-     * @throws Exception
+     * Adds all playlists to playListInList
+     * @throws Exception If it fails to retrieve all playlists.
      */
     public PlayListModel() throws Exception {
         playListManager = new PlayListManager();
@@ -64,14 +62,17 @@ public class PlayListModel {
     }
 
     /**
-     * add a song to the last selected PlayList
-     * @throws Exception
+     * Adds the last selected song to the last selected PlayList.
+     * @throws Exception If it fails to add the song to the playlist.
      */
     public void addSongToPlayList() throws Exception {
         Song song = SongModel.getSelectedSong();
+
         playListManager.addSongToPlayList(selectedPlaylist, song);
+
         //This will update the GUI.
         songsInPlayList.add(song);
+
         //Updates the list in the effected PlayList object.
         selectedPlaylist.addSongToPlaylist(song);
     }

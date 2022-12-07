@@ -45,14 +45,16 @@ public class PlayList {
     }
 
     /**
-     gets the time of each song and adds them all together, then
-     * @return returns the total time for all the songs in the playlist.
+     * Gets the time of each song and adds them all together.
+     * @return The total time for all the songs in the playlist.
      */
     public int getTime(){
         int totalTime = 0;
+
         for (Song song:songList){
-            totalTime = totalTime + song.getTime();
+            totalTime += song.getTime();
         }
+
         return time = totalTime;
     }
     public int getSongAmount(){
