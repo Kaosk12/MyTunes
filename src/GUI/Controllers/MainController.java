@@ -69,7 +69,8 @@ public class MainController implements Initializable {
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
 
-    
+
+
     public MainController(){
         try {
             songModel = new SongModel();
@@ -282,6 +283,7 @@ public class MainController implements Initializable {
 
     /**
      * Play or pause the current song
+     * set txt for song playing
      */
     public void handlePlayerPlayPause() {
 
