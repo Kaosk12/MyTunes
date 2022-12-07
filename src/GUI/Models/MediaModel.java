@@ -12,8 +12,19 @@ public class MediaModel {
     private boolean isPlaying = false;
     private Song chosenSong;
 
-    public boolean isPlaying() {
-        return isPlaying;
+    private boolean isPlaylistSelected;
+
+    public Song getSelectedSong() {
+        return selectedSong;
+    }
+
+    private Song selectedSong;
+
+    public boolean getIsPlaylistSelected() {
+        return isPlaylistSelected;
+    }
+    public void setIsPlaylistSelected(Boolean isPlaylistSelected){
+        this.isPlaylistSelected = isPlaylistSelected;
     }
 
     /**
@@ -23,18 +34,22 @@ public class MediaModel {
      * @param song If this song isn't null, then set it as the new song to play.
      */
     public void playMedia(Song song) {
-        if (isPlaying) {
-            pauseMedia();
-        }
-        else if(chosenSong == null || chosenSong != song){
-            //crete a new media file and plays it
-            mediaPlayer = new MediaPlayer(createMedia(song));
-            startMedia();
-            chosenSong = song;
-        }else {
+
+        if (!isPlaying && selectedSong == song){
             //starts the song
             startMedia();
         }
+        else if(selectedSong != null){
+            pauseMedia();
+        }
+
+       if (selectedSong == null || selectedSong != song){
+            //crete a new media file and plays it
+            mediaPlayer = new MediaPlayer(createMedia(song));
+            startMedia();
+        }
+
+       selectedSong = song;
     }
 
     private void pauseMedia() {
@@ -55,11 +70,12 @@ public class MediaModel {
     public void skipSong(Song song) {
         mediaPlayer.pause();
         mediaPlayer = new MediaPlayer(createMedia(song));
-
+        selectedSong = song;
         // If the previous song was playing, then start playing the next.
         if(isPlaying){
             mediaPlayer.play();
         }
+
     }
 
     public Duration getCurrentTime(){
