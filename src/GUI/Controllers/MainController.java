@@ -282,7 +282,9 @@ public class MainController implements Initializable {
         //This should help show any changes in the main window once they are confirmed.
         controller.setModel(playlistModel);
 
-        //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
+        //disables edit and delete playlist button.
+        btnEditPlayList.setDisable(true);
+        btnDeletePlayList.setDisable(true);
     }
 
     /**
@@ -317,10 +319,12 @@ public class MainController implements Initializable {
      */
     public void handlePlaylistDelete() {
         try {
-            playlistModel.deletePlayList();
-            //TODO why dosnt it work with just refresh
-            //tbvPlayLists.setItems(playlistModel.getObservablePlayLists());
-            //tbvPlayLists.refresh();
+            String header = "Are you sure you want to delete this playlist?";
+            String content = PlayListModel.getSelectedPlaylist().getTitle();
+            boolean deletePlayList = ConfirmDelete.confirm(header, content);
+            if (deletePlayList){
+                playlistModel.deletePlayList();
+            }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -358,10 +362,15 @@ public class MainController implements Initializable {
      */
     public void handleSOPDelete() {
         try {
-            //Deletes in the DAL
-            playlistModel.deleteSOP();
-            //Updates the GUI.
-            tbvPlayLists.refresh();
+            String header = "Are you sure you want to remove this song?";
+            String content = PlayListModel.getSelectedSOP().getTitle();
+            boolean deleteSOP = ConfirmDelete.confirm(header, content);
+            if (deleteSOP){
+                //Deletes in the DAL
+                playlistModel.deleteSOP();
+                //Updates the GUI.
+                tbvPlayLists.refresh();
+            }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }

@@ -27,7 +27,6 @@ public class PlaylistController implements Initializable {
 
     private PlayListModel playListModel;
     private PlayList playList;
-    private MainController mainController;
     private String playlistName;
     private Boolean createNewPlayList = false;
 
@@ -45,6 +44,10 @@ public class PlaylistController implements Initializable {
         //Disable the OK button until there is new input in the text field.
         btnOK.setDisable(true);
         //Adding a listener, and enabling/disabling the OK button if name is empty
+        textNameListener();
+    }
+
+    public void textNameListener(){
         textName.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 if(!textName.getText().trim().isEmpty()) {
@@ -68,27 +71,21 @@ public class PlaylistController implements Initializable {
                 playList.setTitle(playlistName);
                //updates title in the db
                 playListModel.updatePlayList(playList);
-                //refreshes the GUI.
-                //tbvPlayLists.refresh();
-
             }
             //we create a new playlist.
-            else if (createNewPlayList){
+            else {
                 //we create a new playlist object.
                 PlayList p = new PlayList(playlistName);
                 //we insert our new playlist into the db.
                 playListModel.createPlayList(p);
                 //we do this, so we can edit a playlist if needed.
                 createNewPlayList = false;
-                //TODO find out why I cant just use refresh().
-                //tbvPlayLists.setItems(playListModel.getObservablePlayLists());
 
             }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-
-
+        //refreshes GUI.
         tbvPlayLists.refresh();
         //Closes the window.
         handleClose();
