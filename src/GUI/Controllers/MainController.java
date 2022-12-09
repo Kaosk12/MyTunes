@@ -35,8 +35,6 @@ public class MainController implements Initializable {
     @FXML
     private Label btnPlayerPlaying;
     @FXML
-    private Button btnSOPDelete;
-    @FXML
     private TextField txtSongSearch;
     @FXML
     private TableView<Song> lstSongs;
@@ -45,7 +43,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Song, Integer> timeColum;
     @FXML
-    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd;
+    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown, btnClose, btnSearch;
 
     //PlayList variables
     @FXML
@@ -89,19 +87,31 @@ public class MainController implements Initializable {
         initializePlaylistTbv();
 
         //Disable the clear button
-        btnSearchClear.setDisable(true);
+        setSearchButtons(true);
 
         addSongSearchListener();
 
-        //Disable the Edit & Delete Song buttons and the Add to SoP button.
+        //Disable the Edit & Delete Song buttons.
         setSongManipulatingButtons(true);
 
         addSongSelectionListener();
 
-        //Disable the Edit & Delete button for Playlists.
+        //Disable the Edit & Delete button for Playlists and the Add to SoP button.
         setPlaylistManipulatingButtons(true);
 
         addPlaylistSelectionListener();
+
+        //Disable the Move Up/Down buttons for Song on Playlist.
+        setSongsOnPlaylistManipulatingButtons(true);
+    }
+
+    /**
+     * Allows for enabling and disabling the buttons
+     * for searching in the song list
+     */
+    private void setSearchButtons(boolean disable) {
+        btnSearchClear.setDisable(disable);
+        btnSearch.setDisable(disable);
     }
 
     /**
@@ -112,6 +122,7 @@ public class MainController implements Initializable {
     private void setPlaylistManipulatingButtons(boolean disable) {
         btnDeletePlayList.setDisable(disable);
         btnEditPlayList.setDisable(disable);
+        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -122,7 +133,17 @@ public class MainController implements Initializable {
     private void setSongManipulatingButtons(boolean disable) {
         btnSongEdit.setDisable(disable);
         btnSongDelete.setDisable(disable);
-        btnSOPAdd.setDisable(disable);
+    }
+
+    /**
+     * Allows for enabling and disabling the buttons
+     * for manipulating songs on a playlist.
+     * @param disable true to disable the buttons, false to enable.
+     */
+    private void setSongsOnPlaylistManipulatingButtons(boolean disable) {
+        btnSOPDelete.setDisable(disable);
+        btnSOPMoveUp.setDisable(disable);
+        btnSOPMoveDown.setDisable(disable);
     }
 
     /**
@@ -137,7 +158,6 @@ public class MainController implements Initializable {
 
                 // Displays the songs in this playlist.
                 tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
-
 
                 playlistModel.setSelectedPlaylist(newValue);
             }
@@ -163,7 +183,6 @@ public class MainController implements Initializable {
             }
             else {
                 setSongManipulatingButtons(true);
-
             }
         });
     }
@@ -175,9 +194,9 @@ public class MainController implements Initializable {
     private void addSongSearchListener() {
         txtSongSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!txtSongSearch.getText().isEmpty()) {
-                btnSearchClear.setDisable(false);
+                setSearchButtons(false);
             } else {
-                btnSearchClear.setDisable(true);
+                setSearchButtons(true);
             }
         });
     }
@@ -213,18 +232,17 @@ public class MainController implements Initializable {
      * Add a listener to songs in playlists.
      */
     private void songInPlaylistListener(){
-        btnSOPDelete.setDisable(true);
         tbvSongsInPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
             @Override
             public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
                 if (newValue != null) {
-                    btnSOPDelete.setDisable(false);
+                    setSongsOnPlaylistManipulatingButtons(false);
                     PlayListModel.setSelectedSOP(newValue);
                     mediaModel.setIsPlaylistSelected(true);
                     lstSongs.getSelectionModel().clearSelection();
                 }
                 if (newValue == null) {
-                    btnSOPDelete.setDisable(true);
+                    setSongsOnPlaylistManipulatingButtons(true);
                 }
             }
         });
@@ -502,7 +520,8 @@ public class MainController implements Initializable {
      * Close the application
      */
     public void handleClose() {
-        //TODO
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
 
     /**
