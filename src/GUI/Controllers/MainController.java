@@ -232,21 +232,6 @@ public class MainController implements Initializable {
 
 
     /**
-     * converts time to hours, minutes and seconds
-     * @param timeInSeconds The time to convert in seconds.
-     */
-    private void convertTime(int timeInSeconds){
-        int totalTime = timeInSeconds;
-        long hour = TimeUnit.MINUTES.toHours(totalTime);
-
-        long minute  = TimeUnit.SECONDS.toMinutes(totalTime) - (TimeUnit.MINUTES.toHours(totalTime) * 60);
-
-        long second = totalTime -(TimeUnit.SECONDS.toMinutes(totalTime)*60);
-
-        String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
-    }
-
-    /**
      * Change to the previous song.
      * to do make a class that can see how far in the song you are,
      * if over 10% start song over, otherwise skip to previous.
