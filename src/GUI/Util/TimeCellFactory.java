@@ -4,6 +4,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
+import java.util.concurrent.TimeUnit;
+
 public class TimeCellFactory<T> implements Callback<TableColumn<T, Integer>, TableCell<T, Integer>> {
 
     @Override
@@ -26,4 +28,21 @@ public class TimeCellFactory<T> implements Callback<TableColumn<T, Integer>, Tab
             }
         };
     }
+
+
+    /**
+     * converts time to hours, minutes and seconds
+     * @param totalTime The time to convert in seconds.
+     */
+    private void convertTime(int totalTime){
+
+        long hour = TimeUnit.MINUTES.toHours(totalTime);
+
+        long minute  = TimeUnit.SECONDS.toMinutes(totalTime) - (TimeUnit.MINUTES.toHours(totalTime) * 60);
+
+        long second = totalTime -(TimeUnit.SECONDS.toMinutes(totalTime)*60);
+
+        String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
+    }
+
 }

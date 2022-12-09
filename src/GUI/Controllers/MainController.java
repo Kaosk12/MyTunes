@@ -35,8 +35,6 @@ public class MainController implements Initializable {
     @FXML
     private Label btnPlayerPlaying;
     @FXML
-    private Button btnSOPDelete;
-    @FXML
     private TextField txtSongSearch;
     @FXML
     private TableView<Song> lstSongs;
@@ -45,7 +43,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Song, Integer> timeColum;
     @FXML
-    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd;
+    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown, btnClose, btnSearch;
 
     //PlayList variables
     @FXML
@@ -68,7 +66,8 @@ public class MainController implements Initializable {
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-    private Song chosenSong;
+
+
 
     public MainController(){
         try {
@@ -88,19 +87,31 @@ public class MainController implements Initializable {
         initializePlaylistTbv();
 
         //Disable the clear button
-        btnSearchClear.setDisable(true);
+        setSearchButtons(true);
 
         addSongSearchListener();
 
-        //Disable the Edit & Delete Song buttons and the Add to SoP button.
+        //Disable the Edit & Delete Song buttons.
         setSongManipulatingButtons(true);
 
         addSongSelectionListener();
 
-        //Disable the Edit & Delete button for Playlists.
+        //Disable the Edit & Delete button for Playlists and the Add to SoP button.
         setPlaylistManipulatingButtons(true);
 
         addPlaylistSelectionListener();
+
+        //Disable the Move Up/Down buttons for Song on Playlist.
+        setSongsOnPlaylistManipulatingButtons(true);
+    }
+
+    /**
+     * Allows for enabling and disabling the buttons
+     * for searching in the song list
+     */
+    private void setSearchButtons(boolean disable) {
+        btnSearchClear.setDisable(disable);
+        btnSearch.setDisable(disable);
     }
 
     /**
@@ -111,6 +122,7 @@ public class MainController implements Initializable {
     private void setPlaylistManipulatingButtons(boolean disable) {
         btnDeletePlayList.setDisable(disable);
         btnEditPlayList.setDisable(disable);
+        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -121,7 +133,17 @@ public class MainController implements Initializable {
     private void setSongManipulatingButtons(boolean disable) {
         btnSongEdit.setDisable(disable);
         btnSongDelete.setDisable(disable);
-        btnSOPAdd.setDisable(disable);
+    }
+
+    /**
+     * Allows for enabling and disabling the buttons
+     * for manipulating songs on a playlist.
+     * @param disable true to disable the buttons, false to enable.
+     */
+    private void setSongsOnPlaylistManipulatingButtons(boolean disable) {
+        btnSOPDelete.setDisable(disable);
+        btnSOPMoveUp.setDisable(disable);
+        btnSOPMoveDown.setDisable(disable);
     }
 
     /**
@@ -155,6 +177,8 @@ public class MainController implements Initializable {
             if (newValue != null) {
                 setSongManipulatingButtons(false);
 
+                mediaModel.setIsPlaylistSelected(false);
+                tbvSongsInPlayList.getSelectionModel().clearSelection();
                 songModel.setSelectedSong(newValue);
             }
             else {
@@ -170,9 +194,9 @@ public class MainController implements Initializable {
     private void addSongSearchListener() {
         txtSongSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!txtSongSearch.getText().isEmpty()) {
-                btnSearchClear.setDisable(false);
+                setSearchButtons(false);
             } else {
-                btnSearchClear.setDisable(true);
+                setSearchButtons(true);
             }
         });
     }
@@ -208,37 +232,22 @@ public class MainController implements Initializable {
      * Add a listener to songs in playlists.
      */
     private void songInPlaylistListener(){
-        btnSOPDelete.setDisable(true);
         tbvSongsInPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
             @Override
             public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
                 if (newValue != null) {
-                    btnSOPDelete.setDisable(false);
+                    setSongsOnPlaylistManipulatingButtons(false);
                     PlayListModel.setSelectedSOP(newValue);
+                    mediaModel.setIsPlaylistSelected(true);
+                    lstSongs.getSelectionModel().clearSelection();
                 }
                 if (newValue == null) {
-                    btnSOPDelete.setDisable(true);
-
+                    setSongsOnPlaylistManipulatingButtons(true);
                 }
             }
         });
     }
 
-
-    /**
-     * converts time to hours, minutes and seconds
-     * @param timeInSeconds The time to convert in seconds.
-     */
-    private void convertTime(int timeInSeconds){
-        int totalTime = timeInSeconds;
-        long hour = TimeUnit.MINUTES.toHours(totalTime);
-
-        long minute  = TimeUnit.SECONDS.toMinutes(totalTime) - (TimeUnit.MINUTES.toHours(totalTime) * 60);
-
-        long second = totalTime -(TimeUnit.SECONDS.toMinutes(totalTime)*60);
-
-        String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
-    }
 
     /**
      * Change to the previous song.
@@ -247,38 +256,50 @@ public class MainController implements Initializable {
      */
     public void handlePlayerPrevious() {
         if(mediaModel.getCurrentTime().lessThan(Duration.millis(5000))) {
-            lstSongs.getSelectionModel().selectPrevious();
-            chosenSong = lstSongs.getSelectionModel().getSelectedItem();
-            mediaModel.skipSong(chosenSong);
-            btnPlayerPlaying.setText(chosenSong.getTitle());
+            if (mediaModel.getIsPlaylistSelected()){
+                tbvSongsInPlayList.getSelectionModel().selectPrevious();
+                mediaModel.skipSong(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
+            }else {
+                lstSongs.getSelectionModel().selectPrevious();
+                mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
+            }
         }
         else{
             mediaModel.restartSong();
         }
+        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
     }
 
     /**
      * Change to the next song
      */
     public void handlePlayerNext() {
-        lstSongs.getSelectionModel().selectNext();
-
-        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
-
-        mediaModel.skipSong(chosenSong);
-
-        btnPlayerPlaying.setText(chosenSong.getTitle());
+        if (mediaModel.getIsPlaylistSelected()){
+            tbvSongsInPlayList.getSelectionModel().selectNext();
+            mediaModel.skipSong(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
+        }else {
+            lstSongs.getSelectionModel().selectNext();
+            mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
+        }
+        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
     }
 
     /**
      * Play or pause the current song
+     * set txt for song playing
      */
     public void handlePlayerPlayPause() {
-        chosenSong = lstSongs.getSelectionModel().getSelectedItem();
 
-        mediaModel.playMedia(chosenSong);
+        if(mediaModel.getIsPlaylistSelected()){
 
-        btnPlayerPlaying.setText(chosenSong.getTitle());
+            mediaModel.playMedia(PlayListModel.getSelectedSOP());
+            btnPlayerPlaying.setText(PlayListModel.getSelectedSOP().getTitle());
+
+        }else {
+            mediaModel.playMedia(SongModel.getSelectedSong());
+            btnPlayerPlaying.setText(SongModel.getSelectedSong().getTitle());
+        }
+        System.out.println(mediaModel.getIsPlaylistSelected());
     }
 
     /**
@@ -488,14 +509,14 @@ public class MainController implements Initializable {
      */
     public void handleSongDelete() {
         try {
-            chosenSong = lstSongs.getSelectionModel().getSelectedItem();
+            songModel.setSelectedSong(lstSongs.getSelectionModel().getSelectedItem());
 
             String header = "Are you sure you want to delete this song?";
-            String content = chosenSong.getTitle();
+            String content = SongModel.getSelectedSong().getTitle();
             boolean deleteSong = ConfirmDelete.confirm(header, content);
 
             if (deleteSong) {
-                songModel.deleteSong(chosenSong);
+                songModel.deleteSong(SongModel.getSelectedSong());
             }
         }
         catch (Exception e) {
@@ -509,7 +530,8 @@ public class MainController implements Initializable {
      * Close the application
      */
     public void handleClose() {
-        //TODO
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
 
     /**
