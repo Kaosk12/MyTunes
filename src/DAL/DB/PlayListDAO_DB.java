@@ -247,4 +247,64 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             throw new Exception("Failed to create playlist", e);
         }
     }
+
+    public void monveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception {
+
+        List songList = playList.getAllSongsInPlaylist();
+
+        int songIndex = songList.indexOf(song);
+
+        int playlistId = playList.getPlayListId();
+
+        int songId = song.getId();
+
+
+        //the chosen song gets moved up
+        if (moveUp && (songIndex != 0)) {
+            int previousSongIndex = songList.indexOf(song)-1;
+            Song previousSong = playList.getAllSongsInPlaylist().get(previousSongIndex);
+
+            int previousSongId = previousSong.getId();
+
+            swapSongPlacement(playlistId, songId, previousSongId, (songIndex), previousSongIndex+2);
+
+            playList.getAllSongsInPlaylist().set(songIndex, previousSong);
+            playList.getAllSongsInPlaylist().set(previousSongIndex, song);
+        }
+        //the chosen song gets moved down
+        if (!moveUp && ((songIndex+1) != songList.size())) {
+            int nextSongIndex = songList.indexOf(song)+1;
+
+            Song nextSong = playList.getAllSongsInPlaylist().get(nextSongIndex);
+
+            int nextSongId = nextSong.getId();
+            swapSongPlacement(playlistId, songId, nextSongId, (songIndex +2), nextSongIndex);
+
+            playList.getAllSongsInPlaylist().set(songIndex, nextSong);
+            playList.getAllSongsInPlaylist().set(nextSongIndex, song);
+        }
+    }
+    private void swapSongPlacement(int playlistId, int chosenSongId, int pushedSongId, int chosenSongNP, int pushedSongNP) throws Exception {
+        String sql = "UPDATE SongsInPlaylists SET NumberInplaylist = ? WHERE PlaylistId = ? AND SongId = ?;";
+        try (Connection connection = databaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+                //Bind parameters
+                statement.setInt(1, chosenSongNP);
+                statement.setInt(2, playlistId);
+                statement.setInt(3, chosenSongId);
+                //Run the specified SQL Statement
+                statement.executeUpdate();
+                //Bind parameters
+                statement.setInt(1, pushedSongNP);
+                statement.setInt(2, playlistId);
+                statement.setInt(3, pushedSongId);
+                //Run the specified SQL Statement
+                statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Failed to update playlist", e);
+        }
+
+    }
 }

@@ -392,14 +392,24 @@ public class MainController implements Initializable {
      * Move the song up in the order of Songs on Playlist
      */
     public void handleSOPMoveUp() {
-        // TODO
+        try {
+            playlistModel.monveSOP(true);
+            tbvSongsInPlayList.refresh();
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**
      * Move the song down in the order of Songs on Playlist
      */
     public void handleSOPMoveDown() {
-        // TODO
+        try {
+            playlistModel.monveSOP(false);
+            tbvSongsInPlayList.refresh();
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**

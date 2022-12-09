@@ -50,5 +50,9 @@ public class PlayListManager implements IPlayListManager {
         databaseAcces.deletePlayList(playList);
     }
 
+    public void monveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception{
+        databaseAcces.monveSOP(playList, song, moveUp);
+    }
+
 
 }
