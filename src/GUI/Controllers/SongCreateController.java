@@ -24,10 +24,11 @@ public class SongCreateController implements Initializable {
     @FXML
     private Button btnCancel;
     @FXML
-    private TextField textTitle, textArtist, textGenre, textTime, textFile;
+    private TextField textTitle, textArtist, textGenre, textFile;
     private SongModel songModel;
 
     private  MediaPlayer mediaPlayer;
+    private int duration;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,7 +47,7 @@ public class SongCreateController implements Initializable {
         String title = textTitle.getText();
         String artist = textArtist.getText();
         String genre = textGenre.getText();
-        int time = 0;
+        int time = duration;
         String path = textFile.getText(); //??
 
         Song song = new Song(title, artist, genre, time, path);
@@ -99,7 +100,6 @@ public class SongCreateController implements Initializable {
             textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
             textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));
             textGenre.setText((String)mediaPlayer.getMedia().getMetadata().get("category"));
-            //System.out.println(title);
         });
     }
 
@@ -111,13 +111,7 @@ public class SongCreateController implements Initializable {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
-                int duration = (int) media.getDuration().toSeconds();
-                int m = duration/60;
-                int s = duration%60;
-                String mins = String.format("%02d", m);
-                String secs = String.format("%02d", s);
-
-                textTime.setText(mins+":"+secs);
+                duration = (int) media.getDuration().toSeconds();
             }
         });
     }

@@ -21,19 +21,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
 
 
     @FXML
-    private Label btnPlayerPlaying;
+    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -42,8 +40,18 @@ public class MainController implements Initializable {
     private TableColumn<Song, String> titleColum, artistColum, genreColum;
     @FXML
     private TableColumn<Song, Integer> timeColum;
+
+    //Buttons by section
     @FXML
-    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown, btnClose, btnSearch;
+    private Button btnSearchClear, btnSearch, btnClose;
+    @FXML
+    private Button btnSongEdit, btnSongDelete;
+    @FXML
+    private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
+    @FXML
+    private Button btnPlayerPrevious, btnPlayerPlayPause, btnPlayerNext;
+    @FXML
+    private Button btnEditPlayList, btnDeletePlayList;
 
     //PlayList variables
     @FXML
@@ -56,17 +64,11 @@ public class MainController implements Initializable {
     private TableView<PlayList> tbvPlayLists;
     @FXML
     private ListView<Song> tbvSongsInPlayList;
-    @FXML
-    private Button btnNewPlayList;
-    @FXML
-    private Button btnEditPlayList;
-    @FXML
-    private Button btnDeletePlayList;
+
 
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-
 
 
     public MainController(){
@@ -267,7 +269,8 @@ public class MainController implements Initializable {
         else{
             mediaModel.restartSong();
         }
-        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
     }
 
     /**
@@ -281,7 +284,8 @@ public class MainController implements Initializable {
             lstSongs.getSelectionModel().selectNext();
             mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
         }
-        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
     }
 
     /**
@@ -293,13 +297,14 @@ public class MainController implements Initializable {
         if(mediaModel.getIsPlaylistSelected()){
 
             mediaModel.playMedia(PlayListModel.getSelectedSOP());
-            btnPlayerPlaying.setText(PlayListModel.getSelectedSOP().getTitle());
+            labelPlayerTitle.setText(PlayListModel.getSelectedSOP().getTitle());
+            labelPlayerArtist.setText((PlayListModel.getSelectedSOP().getArtist()));
 
         }else {
             mediaModel.playMedia(SongModel.getSelectedSong());
-            btnPlayerPlaying.setText(SongModel.getSelectedSong().getTitle());
+            labelPlayerTitle.setText(SongModel.getSelectedSong().getTitle());
+            labelPlayerArtist.setText((SongModel.getSelectedSong().getArtist()));
         }
-        System.out.println(mediaModel.getIsPlaylistSelected());
     }
 
     /**

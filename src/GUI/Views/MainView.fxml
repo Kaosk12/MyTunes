@@ -66,14 +66,14 @@
                      </HBox.margin>
                      <children>
                         <Slider layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="300.0" />
-                        <Label fx:id="btnPlayerPlaying" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="[Current song]" textAlignment="CENTER">
+                        <Label fx:id="labelPlayerTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="[Current song]" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                         <Label layoutX="15.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="0:00" />
                         <Label layoutX="290.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="4:41" />
-                        <Label fx:id="btnPlayerPlaying1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" text="[Artist]" textAlignment="CENTER" />
+                        <Label fx:id="labelPlayerArtist" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" text="[Artist]" textAlignment="CENTER" />
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
