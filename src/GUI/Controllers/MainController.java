@@ -305,6 +305,12 @@ public class MainController implements Initializable {
             labelPlayerTitle.setText(SongModel.getSelectedSong().getTitle());
             labelPlayerArtist.setText((SongModel.getSelectedSong().getArtist()));
         }
+
+        if (mediaModel.isPlaying()) {
+            btnPlayerPlayPause.setText("⏸");
+        } else {
+            btnPlayerPlayPause.setText("⏵");
+        }
     }
 
     /**

@@ -98,4 +98,8 @@ public class MediaModel {
         mediaPlayer.seek(Duration.millis(0));
     }
 
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
 }
