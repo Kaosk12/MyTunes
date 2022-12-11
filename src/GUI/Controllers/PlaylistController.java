@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -62,6 +64,9 @@ public class PlaylistController implements Initializable {
     }
 
     public void handleOK() {
+        if (isInputMissing()) {
+            return;
+        }
         try {
             //we edit the selected playlist.
             if (!createNewPlayList){
@@ -90,14 +95,41 @@ public class PlaylistController implements Initializable {
         handleClose();
     }
 
-    public void handleClose() {
-        Stage stage = (Stage) textName.getScene().getWindow();
-        stage.close();
-    }
     public void setTbvPlayLists(TableView tableView){
         tbvPlayLists = tableView;
     }
     public void setCreateNewPlayList(boolean createNewPlayList){
         this.createNewPlayList = createNewPlayList;
+    }
+
+    /**
+     * Double check that playlist name is added.
+     * (not-null value for the database).
+     */
+    private boolean isInputMissing() {
+        if (textName.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Name can not be empty"));
+            return true;
+        }
+        if (textName.getText().trim().matches(playList.getTitle())) {
+            ErrorDisplayer.displayError(new Exception("No changes were made"));
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Allows updating by pressing Enter (instead of using the OK-button).
+     * @param keyEvent, a key-press
+     */
+    public void handleEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            handleOK();
+        }
+    }
+
+    public void handleClose() {
+        Stage stage = (Stage) textName.getScene().getWindow();
+        stage.close();
     }
 }

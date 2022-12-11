@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -83,13 +85,7 @@ public class SongUpdateController implements Initializable {
      * closes the window 
      */
     public void handleOK() {
-        if (textTitle.getText().trim().isEmpty()) {
-            ErrorDisplayer.displayError(new Exception("Title can not be empty"));
-            return;
-        }
-
-        if (textArtist.getText().trim().isEmpty()) {
-            ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
+        if (isInputMissing()) {
             return;
         }
 
@@ -107,6 +103,33 @@ public class SongUpdateController implements Initializable {
         }
 
         handleClose();
+    }
+
+    /**
+     * Double check that title and artist is added.
+     * (not-null values for the database).
+     */
+    private boolean isInputMissing() {
+        if (textTitle.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Title can not be empty"));
+            return true;
+        }
+
+        if (textArtist.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Allows updating by pressing Enter (instead of using the OK-button).
+     * @param keyEvent, a key-press
+     */
+    public void handleEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            handleOK();
+        }
     }
 
     /***
