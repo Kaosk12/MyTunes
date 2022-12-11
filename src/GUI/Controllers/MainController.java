@@ -294,7 +294,7 @@ public class MainController implements Initializable {
         else{
             mediaModel.restartSong();
         }
-        displaySongInfo();
+        setPlayerLabels();
         endOfSongListener();
     }
 
@@ -330,7 +330,7 @@ public class MainController implements Initializable {
             mediaModel.playMedia(lstSongs.getSelectionModel().getSelectedItem());
         }
 
-        displaySongInfo();
+        setPlayerLabels();
         endOfSongListener();
     }
 
@@ -352,7 +352,6 @@ public class MainController implements Initializable {
             btnPlayerPlayPause.setText("⏵");
         }
 
-        displaySongInfo();
         endOfSongListener();
         setPlayerLabels();
     }
@@ -368,15 +367,6 @@ public class MainController implements Initializable {
         int s = duration%60;
         String time = m + ":" + s;
         labelPlayerDuration.setText(time);
-    }
-
-    /**
-     * displays the title and artist of the song
-     * TODO set duration of song in labelCurrentSongDuration
-     */
-    public void displaySongInfo(){
-        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
-        btnArtistPlaying.setText(mediaModel.getSelectedSong().getArtist());
     }
 
     /**
