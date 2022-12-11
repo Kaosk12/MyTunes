@@ -9,30 +9,24 @@ import java.io.File;
 
 public class MediaModel {
     private MediaPlayer mediaPlayer;
-    private boolean isPlaying = false;
+    private Song selectedSong;
 
-    public boolean isRepeatBtnSelected() {
-        return repeatBtnSelected;
-    }
 
-    public void setRepeatBtnSelected(boolean repeatBtnSelected) {
-        this.repeatBtnSelected = repeatBtnSelected;
-    }
 
+    private Double volume = 1.0;
     private boolean repeatBtnSelected = false;
-
-    public boolean isShuffleBtnSelected() {
-        return shuffleBtnSelected;
-    }
-
-    public void setShuffleBtnSelected(boolean shuffleBtnSelected) {
-        this.shuffleBtnSelected = shuffleBtnSelected;
-    }
-
     private boolean shuffleBtnSelected = false;
-
-
+    private boolean isPlaying = false;
     private boolean isPlaylistSelected;
+
+    /**
+     * creates a mediaPlayer when the model is set, multiple methods rely on a mediaPlayer for calls.
+     * @param song
+     */
+    public MediaModel(Song song){
+        mediaPlayer = new MediaPlayer(createMedia(song));
+        mediaPlayer.setVolume(volume);
+    }
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
@@ -42,7 +36,7 @@ public class MediaModel {
         return selectedSong;
     }
 
-    private Song selectedSong;
+
 
     public boolean getIsPlaylistSelected() {
         return isPlaylistSelected;
@@ -70,6 +64,7 @@ public class MediaModel {
        if (selectedSong == null || selectedSong != song){
             //crete a new media file and plays it
             mediaPlayer = new MediaPlayer(createMedia(song));
+           mediaPlayer.setVolume(volume);
             startMedia();
         }
 
@@ -106,10 +101,35 @@ public class MediaModel {
 
     public void restartSong(){
         mediaPlayer.seek(Duration.millis(0));
+        mediaPlayer.setVolume(volume);
     }
 
     public boolean isPlaying() {
         return isPlaying;
+    }
+
+    public boolean isShuffleBtnSelected() {
+        return shuffleBtnSelected;
+    }
+
+    public void setShuffleBtnSelected(boolean shuffleBtnSelected) {
+        this.shuffleBtnSelected = shuffleBtnSelected;
+    }
+
+    public boolean isRepeatBtnSelected() {
+        return repeatBtnSelected;
+    }
+
+    public void setRepeatBtnSelected(boolean repeatBtnSelected) {
+        this.repeatBtnSelected = repeatBtnSelected;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
     }
 
 }

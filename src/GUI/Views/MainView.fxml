@@ -72,7 +72,7 @@
                               </InnerShadow>
                            </effect>
                         </Label>
-                        <Slider layoutX="270.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
+                        <Slider fx:id="volumeSlider" layoutX="270.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
                         <Button fx:id="btnRepeatAtEnd" ellipsisString="" layoutX="237.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRepeatAtEnd" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔁/🔀/alm. afspilning" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="10.0" />
@@ -232,7 +232,7 @@
                               </Label>
                               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
+                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -350,7 +350,7 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="490.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="titleColum" prefWidth="200.0" text="Title" />
                               <TableColumn fx:id="artistColum" prefWidth="110.0" text="Artist" />

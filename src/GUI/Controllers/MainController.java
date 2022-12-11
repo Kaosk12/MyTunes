@@ -8,6 +8,8 @@ import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import GUI.Util.TimeCellFactory;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,11 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
-import javafx.scene.paint.Color;
+import javafx.scene.input.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -39,6 +37,7 @@ public class MainController implements Initializable {
     public Label labelCurrentSongDuration;
     public Button btnShuffleAtEnd;
     public Button btnRepeatAtEnd;
+    public Slider volumeSlider;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -84,7 +83,7 @@ public class MainController implements Initializable {
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
-            mediaModel = new MediaModel();
+            mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -114,6 +113,28 @@ public class MainController implements Initializable {
 
         //Disable the Move Up/Down buttons for Song on Playlist.
         setSongsOnPlaylistManipulatingButtons(true);
+
+
+        initializeVolumeSlider();
+        addVolumeSliderListener();
+    }
+
+    private void addVolumeSliderListener() {
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mediaModel.getMediaPlayer().setVolume(volumeSlider.getValue()/100);
+                mediaModel.setVolume(volumeSlider.getValue()/100);
+            }
+        });
+    }
+
+    /**
+     * sets the volume slider to max
+     */
+    private void initializeVolumeSlider() {
+        volumeSlider.setValue(100);
+
     }
 
     /**
@@ -343,8 +364,11 @@ public class MainController implements Initializable {
 
         if(mediaModel.getIsPlaylistSelected()){
             mediaModel.playMedia(PlayListModel.getSelectedSOP());
-        }else {//sets the selectedSong from song table.
+        }else if(lstSongs.getSelectionModel().getSelectedItem() != null) {//sets the selectedSong from song table.
             mediaModel.playMedia(SongModel.getSelectedSong());
+        }else {
+            lstSongs.getSelectionModel().selectFirst();
+            mediaModel.playMedia(lstSongs.getItems().get(0));
         }
 
         if (mediaModel.isPlaying()) {
@@ -686,6 +710,29 @@ public class MainController implements Initializable {
 
             mediaModel.setRepeatBtnSelected(false);
             btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75");
+        }
+    }
+
+    /**
+     * checks if any song has been double-clicked, then start playing it
+     * cekcks if it was from the songsTable or the playlist table
+     * @param mouseEvent
+     */
+    public void handleSongDoubleClick(MouseEvent mouseEvent) {
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+            //checks if there has been 2 clicks
+            if(mouseEvent.getClickCount() == 2){
+                //checks if the playlist is selected so the mediaPlayer know what song to play
+                if(mediaModel.getIsPlaylistSelected()){
+                    mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
+                }
+                else {
+                    mediaModel.playMedia(lstSongs.getSelectionModel().getSelectedItem());
+                }
+                //sets playButton and labelInfo
+                btnPlayerPlayPause.setText("⏸");
+                setPlayerLabels();
+            }
         }
     }
 }
