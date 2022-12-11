@@ -10,6 +10,7 @@ import GUI.Models.SongModel;
 import GUI.Util.TimeCellFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,23 +20,26 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
 
 
     public Label btnArtistPlaying;
     public Label labelCurrentSongDuration;
+    public Button btnShuffleAtEnd;
+    public Button btnRepeatAtEnd;
     @FXML
-    private Label btnPlayerPlaying;
+    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -44,8 +48,18 @@ public class MainController implements Initializable {
     private TableColumn<Song, String> titleColum, artistColum, genreColum;
     @FXML
     private TableColumn<Song, Integer> timeColum;
+
+    //Buttons by section
     @FXML
-    private Button btnSearchClear, btnSongEdit, btnSongDelete, btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown, btnClose, btnSearch;
+    private Button btnSearchClear, btnSearch, btnClose;
+    @FXML
+    private Button btnSongEdit, btnSongDelete;
+    @FXML
+    private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
+    @FXML
+    private Button btnPlayerPrevious, btnPlayerPlayPause, btnPlayerNext;
+    @FXML
+    private Button btnEditPlayList, btnDeletePlayList;
 
     //PlayList variables
     @FXML
@@ -58,17 +72,11 @@ public class MainController implements Initializable {
     private TableView<PlayList> tbvPlayLists;
     @FXML
     private ListView<Song> tbvSongsInPlayList;
-    @FXML
-    private Button btnNewPlayList;
-    @FXML
-    private Button btnEditPlayList;
-    @FXML
-    private Button btnDeletePlayList;
+
 
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-
 
 
     public MainController(){
@@ -338,8 +346,28 @@ public class MainController implements Initializable {
             mediaModel.playMedia(SongModel.getSelectedSong());
         }
 
+        if (mediaModel.isPlaying()) {
+            btnPlayerPlayPause.setText("⏸");
+        } else {
+            btnPlayerPlayPause.setText("⏵");
+        }
+
         displaySongInfo();
         endOfSongListener();
+        setPlayerLabels();
+    }
+
+    /**
+     * Sets the player's labels to the current song's title, artist and duration
+     */
+    private void setPlayerLabels() {
+        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
+        int duration = mediaModel.getSelectedSong().getTime();
+        int m = duration/60;
+        int s = duration%60;
+        String time = m + ":" + s;
+        labelPlayerDuration.setText(time);
     }
 
     /**
@@ -600,5 +628,12 @@ public class MainController implements Initializable {
     public void handleClear() {
         txtSongSearch.clear();
         handleSearch();
+    }
+
+    public void handleRepeatAtEnd(ActionEvent actionEvent) {
+        btnRepeatAtEnd.setStyle("-fx-background-color: Green");
+    }
+
+    public void handleShuffleAtEnd(ActionEvent actionEvent) {
     }
 }

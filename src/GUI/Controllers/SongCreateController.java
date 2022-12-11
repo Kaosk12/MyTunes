@@ -1,7 +1,6 @@
 package GUI.Controllers;
 
 import BE.Song;
-import GUI.Models.MediaModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.collections.MapChangeListener;
@@ -9,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -16,22 +17,28 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SongCreateController implements Initializable {
 
     @FXML
-    private Button btnCancel;
+    private Button btnCancel, btnOK;
     @FXML
-    private TextField textTitle, textArtist, textGenre, textTime, textFile;
+    private TextField textTitle, textArtist, textGenre, textFile;
     private SongModel songModel;
 
     private  MediaPlayer mediaPlayer;
+    private int duration;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Disable OK button until the 'not null' values are added
+        btnOK.setDisable(true);
 
+        //Add listeners for the 'not null' values
+        addFileListener();
+        addTitleListener();
+        addArtistListener();
     }
 
     public void setModel(SongModel songModel) {
@@ -43,10 +50,14 @@ public class SongCreateController implements Initializable {
      * creates the song in the database.
      */
     public void handleOK() {
+        if (isInputMissing()) {
+            return;
+        }
+
         String title = textTitle.getText();
         String artist = textArtist.getText();
         String genre = textGenre.getText();
-        int time = 0;
+        int time = duration;
         String path = textFile.getText(); //??
 
         Song song = new Song(title, artist, genre, time, path);
@@ -58,14 +69,6 @@ public class SongCreateController implements Initializable {
             ErrorDisplayer.displayError(e);
         }
         handleClose();
-    }
-
-    /**
-     * closes the window
-     */
-    public void handleClose() {
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
     }
 
     /**
@@ -99,7 +102,6 @@ public class SongCreateController implements Initializable {
             textTitle.setText((String)mediaPlayer.getMedia().getMetadata().get("title"));
             textArtist.setText((String)mediaPlayer.getMedia().getMetadata().get("artist"));
             textGenre.setText((String)mediaPlayer.getMedia().getMetadata().get("category"));
-            //System.out.println(title);
         });
     }
 
@@ -111,14 +113,105 @@ public class SongCreateController implements Initializable {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
-                int duration = (int) media.getDuration().toSeconds();
-                int m = duration/60;
-                int s = duration%60;
-                String mins = String.format("%02d", m);
-                String secs = String.format("%02d", s);
-
-                textTime.setText(mins+":"+secs);
+                duration = (int) media.getDuration().toSeconds();
             }
         });
+    }
+
+    /**
+     * Adds a listener to the file property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addFileListener() {
+        textFile.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isFileEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Adds a listener to the artist property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addArtistListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textArtist.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isArtistEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Double check that file, title, and artist is added.
+     * (not-null values for the database).
+     */
+    private boolean isInputMissing() {
+        if (textFile.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("No song file is chosen"));
+            return true;
+        }
+
+        if (textTitle.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Title can not be empty"));
+            return true;
+        }
+
+        if (textArtist.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adds a listener to the title property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addTitleListener() {
+        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isTitleEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    private boolean isFileEmpty() {
+        return textFile.getText().trim().isEmpty();
+    }
+    private boolean isTitleEmpty() {
+        return textTitle.getText().trim().isEmpty();
+    }
+
+    private boolean isArtistEmpty() {
+        return textArtist.getText().trim().isEmpty();
+    }
+
+    /**
+     * Allows updating by pressing Enter (instead of using the OK-button).
+     * @param keyEvent, a key-press
+     */
+    public void handleEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            handleOK();
+        }
+    }
+
+    /**
+     * closes the window
+     */
+    public void handleClose() {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 }

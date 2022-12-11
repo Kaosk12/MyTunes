@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.MainController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #1B262C;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.MainController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -21,28 +23,80 @@
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
-                        <Button fx:id="btnPlayerPrevious" layoutX="30.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerPrevious" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lightslategrey; -fx-background-radius: 50;" text="⏮" wrapText="true">
+                        <Button fx:id="btnPlayerPrevious" layoutX="30.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerPrevious" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="⏮" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="24.0" />
-                           </font></Button>
-                        <Button fx:id="btnPlayerPlayPause" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="100.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerPlayPause" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: lightslategrey; -fx-background-radius: 50;" text="⏵/⏸" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                           </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect></Button>
+                        <Button fx:id="btnPlayerPlayPause" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="100.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerPlayPause" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="⏵" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="48.0" />
                            </font>
                            <padding>
                               <Insets bottom="2.0" />
                            </padding>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
                         </Button>
-                        <Button fx:id="btnPlayerNext" layoutX="200.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerNext" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lightslategrey; -fx-background-radius: 50;" text="⏭" wrapText="true">
+                        <Button fx:id="btnPlayerNext" layoutX="200.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerNext" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="⏭" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="24.0" />
-                           </font></Button>
-                        <Label alignment="CENTER" layoutX="275.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" text="🔊">
+                           </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect></Button>
+                        <Label alignment="CENTER" layoutX="280.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="🔊" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
                         </Label>
                         <Slider layoutX="270.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
+                        <Button fx:id="btnRepeatAtEnd" ellipsisString="" layoutX="237.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRepeatAtEnd" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔁/🔀/alm. afspilning" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                        </Button>
+                        <Button fx:id="btnShuffleAtEnd" ellipsisString="" layoutX="283.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleShuffleAtEnd" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔀/alm. afspilning" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                        </Button>
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -54,14 +108,14 @@
                      </HBox.margin>
                      <children>
                         <Slider layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="300.0" />
-                        <Label fx:id="btnPlayerPlaying" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="[Current song]" textAlignment="CENTER">
+                        <Label fx:id="labelPlayerTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="0:00" />
-                        <Label fx:id="labelCurrentSongDuration" layoutX="290.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="4:41" />
-                        <Label fx:id="btnArtistPlaying" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" text="[Artist]" textAlignment="CENTER" />
+                        <Label fx:id="labelPlayerCounter" layoutX="15.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" textFill="WHITE" />
+                        <Label fx:id="labelPlayerDuration" layoutX="290.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" textFill="WHITE" />
+                        <Label fx:id="labelPlayerArtist" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" textAlignment="CENTER" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
@@ -70,15 +124,17 @@
                            <image>
                               <Image url="https://www.appledystopia.com/wp-content/uploads/2013/03/missing-itunes-album-art-icon.png" />
                            </image></ImageView>
-                        <Button layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: lightslategrey; -fx-background-radius: 50;" text="⚙" wrapText="true">
+                        <Button layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #0F4C75;" text="⚙" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
-                        </Button>
-                        <Button ellipsisString="" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: lightslategrey;" text="🔁/🔀/alm. afspilning" textOverrun="CLIP" wrapText="true">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
                         </Button>
                      </children>
                      <padding>
@@ -101,34 +157,62 @@
                <children>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="240.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" text="Playlists" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" text="Playlists" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="tbvPlayLists" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="tbvPlayLists" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="clmPlayListName" prefWidth="150.0" text="Name" />
                             <TableColumn fx:id="clmPlayListSongs" prefWidth="40.0" text="Songs" />
                               <TableColumn fx:id="clmPlayListTime" prefWidth="40.0" text="Time" />
                           </columns>
+                           <effect>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
                         </TableView>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="btnNewPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistNew" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="New..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnNewPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistNew" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="New..." textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
-                              <Button fx:id="btnEditPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistEdit" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Edit..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnEditPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistEdit" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Edit..." textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
-                              <Button fx:id="btnDeletePlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnDeletePlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlaylistDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Delete" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
                            </children>
                         </HBox>
@@ -141,22 +225,36 @@
                      <children>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" text="Songs on playlist" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" text="Songs on playlist" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font name="Calibri" size="18.0" />
                                  </font>
                               </Label>
                               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="210.0" HBox.hgrow="ALWAYS">
+                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <effect>
+                                          <InnerShadow>
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
                                     </ListView>
-                                    <Button fx:id="btnSOPAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPAdd" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: lightslategrey;" text="⏴" HBox.hgrow="ALWAYS">
+                                    <Button fx:id="btnSOPAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPAdd" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #0F4C75;" text="⏴" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets left="5.0" top="25.0" />
                                        </HBox.margin>
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
                                     </Button>
                                  </children>
                                  <VBox.margin>
@@ -165,26 +263,47 @@
                               </HBox>
                               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Button fx:id="btnSOPMoveUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPMoveUp" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: lightslategrey;" text="⯅" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <Button fx:id="btnSOPMoveUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPMoveUp" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: #0F4C75;" text="⯅" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
                                     </Button>
-                                    <Button fx:id="btnSOPMoveDown" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPMoveDown" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: lightslategrey;" text="⯆" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <Button fx:id="btnSOPMoveDown" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPMoveDown" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: #0F4C75;" text="⯆" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
                                     </Button>
-                                    <Button fx:id="btnSOPDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <Button fx:id="btnSOPDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSOPDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Delete" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </HBox.margin>
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
                                     </Button>
                                  </children>
                               </HBox>
@@ -199,53 +318,102 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="245.0" text="Songs" textAlignment="CENTER" wrapText="true">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="245.0" text="Songs" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Calibri" size="18.0" />
                                  </font>
                               </Label>
                               <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="245.0">
                                  <children>
-                                    <TextField fx:id="txtSongSearch" layoutX="7.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="30.0" prefWidth="205.0" promptText="Filter...">
+                                    <TextField fx:id="txtSongSearch" layoutX="7.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="30.0" prefWidth="205.0" promptText="Filter..." style="-fx-background-color: transparent; -fx-border-color: #0F4C75; -fx-text-fill: white;">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
                                     </TextField>
-                                    <Button fx:id="btnSearchClear" layoutX="185.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClear" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: lightslategrey;" text="x" />
-                                    <Button fx:id="btnSearch" layoutX="215.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: lightslategrey; -fx-background-radius: 50;" text="🔍" />
+                                    <Button fx:id="btnSearchClear" layoutX="185.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClear" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="x" textFill="WHITE">
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect></Button>
+                                    <Button fx:id="btnSearch" layoutX="215.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #0F4C75;" text="🔍" textFill="WHITE">
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect></Button>
                                  </children>
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="490.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="titleColum" prefWidth="200.0" text="Title" />
                               <TableColumn fx:id="artistColum" prefWidth="110.0" text="Artist" />
                               <TableColumn fx:id="genreColum" prefWidth="100.0" text="Category" />
                               <TableColumn fx:id="timeColum" prefWidth="60.0" text="Time" />
                            </columns>
+                           <effect>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
                         </TableView>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="btnSongNew" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongNew" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="New..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnSongNew" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongNew" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="New..." textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
-                              <Button fx:id="btnSongEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongEdit" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Edit..." textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnSongEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongEdit" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Edit..." textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
-                              <Button fx:id="btnSongDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Delete" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnSongDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSongDelete" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Delete" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
-                              <Button fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: lightslategrey;" text="Close" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #0F4C75;" text="Close" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="185.0" right="10.0" top="5.0" />
                                  </HBox.margin>
+                                 <effect>
+                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                       <color>
+                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Button>
                            </children>
                         </HBox>
