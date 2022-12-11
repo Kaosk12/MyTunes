@@ -269,8 +269,7 @@ public class MainController implements Initializable {
         else{
             mediaModel.restartSong();
         }
-        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
-        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
+        setPlayerLabels();
     }
 
     /**
@@ -284,8 +283,7 @@ public class MainController implements Initializable {
             lstSongs.getSelectionModel().selectNext();
             mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
         }
-        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
-        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
+        setPlayerLabels();
     }
 
     /**
@@ -295,15 +293,9 @@ public class MainController implements Initializable {
     public void handlePlayerPlayPause() {
 
         if(mediaModel.getIsPlaylistSelected()){
-
             mediaModel.playMedia(PlayListModel.getSelectedSOP());
-            labelPlayerTitle.setText(PlayListModel.getSelectedSOP().getTitle());
-            labelPlayerArtist.setText((PlayListModel.getSelectedSOP().getArtist()));
-
         }else {
             mediaModel.playMedia(SongModel.getSelectedSong());
-            labelPlayerTitle.setText(SongModel.getSelectedSong().getTitle());
-            labelPlayerArtist.setText((SongModel.getSelectedSong().getArtist()));
         }
 
         if (mediaModel.isPlaying()) {
@@ -311,6 +303,20 @@ public class MainController implements Initializable {
         } else {
             btnPlayerPlayPause.setText("⏵");
         }
+        setPlayerLabels();
+    }
+
+    /**
+     * Sets the player's labels to the current song's title, artist and duration
+     */
+    private void setPlayerLabels() {
+        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
+        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
+        int duration = mediaModel.getSelectedSong().getTime();
+        int m = duration/60;
+        int s = duration%60;
+        String time = m + ":" + s;
+        labelPlayerDuration.setText(time);
     }
 
     /**
