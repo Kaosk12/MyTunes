@@ -10,9 +10,13 @@ import java.io.File;
 public class MediaModel {
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
-    private Song chosenSong;
+
 
     private boolean isPlaylistSelected;
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
 
     public Song getSelectedSong() {
         return selectedSong;
@@ -62,21 +66,7 @@ public class MediaModel {
         isPlaying = true;
     }
 
-    /**
-     * starts the new song if the song was playing.
-     * else it just switches to a new song and waits.
-     * @param song the new song to switch to.
-     */
-    public void skipSong(Song song) {
-        mediaPlayer.pause();
-        mediaPlayer = new MediaPlayer(createMedia(song));
-        selectedSong = song;
-        // If the previous song was playing, then start playing the next.
-        if(isPlaying){
-            mediaPlayer.play();
-        }
 
-    }
 
     public Duration getCurrentTime(){
         Duration time = mediaPlayer.getCurrentTime();

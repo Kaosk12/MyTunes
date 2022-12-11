@@ -32,6 +32,8 @@ import java.util.concurrent.TimeUnit;
 public class MainController implements Initializable {
 
 
+    public Label btnArtistPlaying;
+    public Label labelCurrentSongDuration;
     @FXML
     private Label btnPlayerPlaying;
     @FXML
@@ -255,33 +257,73 @@ public class MainController implements Initializable {
      * if over 10% start song over, otherwise skip to previous.
      */
     public void handlePlayerPrevious() {
+        //checks if the player is over 5 seconds into the song.
         if(mediaModel.getCurrentTime().lessThan(Duration.millis(5000))) {
+            //checks if there is a playlist selected,
             if (mediaModel.getIsPlaylistSelected()){
-                tbvSongsInPlayList.getSelectionModel().selectPrevious();
-                mediaModel.skipSong(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
+                //if the top row is selected it will jump to the bottom.
+                if(tbvSongsInPlayList.getSelectionModel().getSelectedIndex() == 0){
+                    tbvSongsInPlayList.getSelectionModel().selectLast();
+                }
+                else {//selects the previous row
+                    tbvSongsInPlayList.getSelectionModel().selectPrevious();
+                }
+                //plays the selected media
+                mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
             }else {
-                lstSongs.getSelectionModel().selectPrevious();
-                mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
+
+                //if the top row is selected it will jump to the bottom.
+                if(lstSongs.getSelectionModel().getSelectedIndex() == 0){
+                    lstSongs.getSelectionModel().selectLast();
+                }
+                else {//selects the previous row
+                    lstSongs.getSelectionModel().selectPrevious();
+                }
+                //plays the selected media
+                mediaModel.playMedia(lstSongs.getSelectionModel().getSelectedItem());
             }
         }
         else{
             mediaModel.restartSong();
         }
-        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
+        displaySongInfo();
+        endOfSongListener();
     }
 
     /**
      * Change to the next song
+     * jumps to the top if there is no more rows on the table
      */
     public void handlePlayerNext() {
+
         if (mediaModel.getIsPlaylistSelected()){
-            tbvSongsInPlayList.getSelectionModel().selectNext();
-            mediaModel.skipSong(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
-        }else {
-            lstSongs.getSelectionModel().selectNext();
-            mediaModel.skipSong(lstSongs.getSelectionModel().getSelectedItem());
+
+            //checks if there is a next in the list if not it will go to the top,else it picks the next colum
+            if(tbvSongsInPlayList.getItems().size() <= tbvSongsInPlayList.getSelectionModel().getSelectedIndex() + 1){
+                tbvSongsInPlayList.getSelectionModel().selectFirst();
+            }
+            else {
+                tbvSongsInPlayList.getSelectionModel().selectNext();
+            }
+            //plays the selected media
+            mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
         }
-        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
+        else {
+
+            //checks if there is a next in the list if not it will go to the top,else it picks the next colum
+            if(lstSongs.getItems().size() <= lstSongs.getSelectionModel().getSelectedIndex() + 1){
+                lstSongs.getSelectionModel().selectFirst();
+            }
+            else {
+                lstSongs.getSelectionModel().selectNext();
+            }
+
+            //plays the selected media
+            mediaModel.playMedia(lstSongs.getSelectionModel().getSelectedItem());
+        }
+
+        displaySongInfo();
+        endOfSongListener();
     }
 
     /**
@@ -291,16 +333,33 @@ public class MainController implements Initializable {
     public void handlePlayerPlayPause() {
 
         if(mediaModel.getIsPlaylistSelected()){
-
             mediaModel.playMedia(PlayListModel.getSelectedSOP());
-            btnPlayerPlaying.setText(PlayListModel.getSelectedSOP().getTitle());
-
-        }else {
+        }else {//sets the selectedSong from song table.
             mediaModel.playMedia(SongModel.getSelectedSong());
-            btnPlayerPlaying.setText(SongModel.getSelectedSong().getTitle());
         }
-        System.out.println(mediaModel.getIsPlaylistSelected());
+
+        displaySongInfo();
+        endOfSongListener();
     }
+
+    /**
+     * displays the title and artist of the song
+     * TODO set duration of song in labelCurrentSongDuration
+     */
+    public void displaySongInfo(){
+        btnPlayerPlaying.setText(mediaModel.getSelectedSong().getTitle());
+        btnArtistPlaying.setText(mediaModel.getSelectedSong().getArtist());
+    }
+
+    /**
+     * ads a listener for when the song is over
+     * TODO make an if statement that checks if the random toggle is switched, and calls a play random mode instead of PlayerNext
+     */
+    public  void endOfSongListener(){
+        //calls the handlePlayerNext method when the song is finished.
+        mediaModel.getMediaPlayer().setOnEndOfMedia(this::handlePlayerNext);
+    }
+
 
     /**
      * Search for a song in the list.
