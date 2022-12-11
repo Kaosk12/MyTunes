@@ -10,6 +10,7 @@ import GUI.Models.SongModel;
 import GUI.Util.TimeCellFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,6 +34,8 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
 
+    public Button btnShuffleAtEnd;
+    public Button btnRepeatAtEnd;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -558,5 +564,12 @@ public class MainController implements Initializable {
     public void handleClear() {
         txtSongSearch.clear();
         handleSearch();
+    }
+
+    public void handleRepeatAtEnd(ActionEvent actionEvent) {
+        btnRepeatAtEnd.setStyle("-fx-background-color: Green");
+    }
+
+    public void handleShuffleAtEnd(ActionEvent actionEvent) {
     }
 }

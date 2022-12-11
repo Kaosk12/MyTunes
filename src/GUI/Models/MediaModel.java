@@ -10,7 +10,6 @@ import java.io.File;
 public class MediaModel {
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
-    private Song chosenSong;
 
     private boolean isPlaylistSelected;
 
