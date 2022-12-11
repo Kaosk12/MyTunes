@@ -11,6 +11,26 @@ public class MediaModel {
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
 
+    public boolean isRepeatBtnSelected() {
+        return repeatBtnSelected;
+    }
+
+    public void setRepeatBtnSelected(boolean repeatBtnSelected) {
+        this.repeatBtnSelected = repeatBtnSelected;
+    }
+
+    private boolean repeatBtnSelected = false;
+
+    public boolean isShuffleBtnSelected() {
+        return shuffleBtnSelected;
+    }
+
+    public void setShuffleBtnSelected(boolean shuffleBtnSelected) {
+        this.shuffleBtnSelected = shuffleBtnSelected;
+    }
+
+    private boolean shuffleBtnSelected = false;
+
 
     private boolean isPlaylistSelected;
 

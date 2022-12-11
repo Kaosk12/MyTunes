@@ -29,6 +29,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -371,11 +372,40 @@ public class MainController implements Initializable {
 
     /**
      * ads a listener for when the song is over
-     * TODO make an if statement that checks if the random toggle is switched, and calls a play random mode instead of PlayerNext
+     * if the repeat button is clicked the song will start over
+     * if the shuffle mode is clicked a random song from the selected table will start playing
+     * else it will play next song at end.
      */
     public  void endOfSongListener(){
         //calls the handlePlayerNext method when the song is finished.
-        mediaModel.getMediaPlayer().setOnEndOfMedia(this::handlePlayerNext);
+        mediaModel.getMediaPlayer().setOnEndOfMedia(() -> {
+            //if the repeat button is true the song will restart
+            if (mediaModel.isRepeatBtnSelected()){
+                mediaModel.restartSong();
+                endOfSongListener();
+            }
+            //if shuffle mode is selected a random son will play from the selected table.
+            else if (mediaModel.isShuffleBtnSelected()) {
+                Random random = new Random();
+
+                if(mediaModel.getIsPlaylistSelected()){
+                    int x = random.nextInt(tbvSongsInPlayList.getItems().size());
+                    mediaModel.playMedia(tbvSongsInPlayList.getItems().get(x));
+                }else{
+                    int x = random.nextInt(lstSongs.getItems().size());
+                    mediaModel.playMedia(lstSongs.getItems().get(x));
+                }
+                //adds listener for when the song is finished
+                endOfSongListener();
+            }
+            //play the next song if neither the repeat nor shuffle button is clicked
+            else {
+                handlePlayerNext();
+            }
+            System.out.println(mediaModel.getSelectedSong().getTitle());
+        });
+
+
     }
 
 
@@ -620,10 +650,42 @@ public class MainController implements Initializable {
         handleSearch();
     }
 
+    /**
+     * sets the boolean in mediaModel isRepeatSelected to true if the button is clicked.
+     * changes the color of the button to green if selected, and changes the shuffleAtEnd to blue if selected
+     * changes back to blue if pushed again, while sets boolean isRepeatSelected false
+     * @param actionEvent
+     */
     public void handleRepeatAtEnd(ActionEvent actionEvent) {
-        btnRepeatAtEnd.setStyle("-fx-background-color: Green");
+
+        if(mediaModel.isRepeatBtnSelected()){
+            mediaModel.setRepeatBtnSelected(false);
+            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75");
+        }else {
+            mediaModel.setRepeatBtnSelected(true);
+            btnRepeatAtEnd.setStyle("-fx-background-color: Green");
+
+            mediaModel.setShuffleBtnSelected(false);
+            btnShuffleAtEnd.setStyle("-fx-background-color:  #0F4C75");
+        }
     }
 
+    /**
+     * sets the boolean in mediaModel isShuffleSelected to true if the button is clicked.
+     * changes the color of the button to green if selected, and changes the repeatAtEnd button to blue if selected
+     * changes back to blue if pushed again, while sets boolean isShuffleSelected false
+     * @param actionEvent
+     */
     public void handleShuffleAtEnd(ActionEvent actionEvent) {
+        if(mediaModel.isShuffleBtnSelected()){
+            mediaModel.setShuffleBtnSelected(false);
+            btnShuffleAtEnd.setStyle("-fx-background-color:  #0F4C75");
+        }else {
+            mediaModel.setShuffleBtnSelected(true);
+            btnShuffleAtEnd.setStyle("-fx-background-color: Green");
+
+            mediaModel.setRepeatBtnSelected(false);
+            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75");
+        }
     }
 }
