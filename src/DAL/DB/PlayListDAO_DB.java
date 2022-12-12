@@ -159,10 +159,10 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     }
 
     /**
-     * remove the song from the playlist in the database.
+     * remove the song from the playlist in the database, based in the id of the given Playlist and Song object.
      * @param playList last selected playlist
      * @param song last selected song
-     * @throws Exception
+     * @throws Exception if it fails to remove song from playlist.
      */
     public void removeSOP(PlayList playList, Song song) throws Exception {
         String sql = "DELETE FROM SongsInPlaylists WHERE SongId = ? AND PlaylistId = ?;";
@@ -265,7 +265,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
     }
 
     /**
-     * the method handles and prepears the variables it needs to call the swapSongPlacement method.
+     * the method handles and prepares the variables it needs to call the swapSongPlacement method.
      * It will also determine if the song is moved up or down based on the boolean in its parameters.
      * @param playList the playlist the song is moved in.
      * @param song the song that is moved.
