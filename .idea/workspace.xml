@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="made changes according to card comments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IPlaylistDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -58,5 +58,5 @@ public interface IPlaylistDAO {
      * @param moveUp the direction the song should be moved.
      * @throws Exception if it fails to move the song.
      */
-    void monveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception;
+    void moveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception;
 }
