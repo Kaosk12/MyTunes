@@ -84,9 +84,6 @@ public class PlaylistController implements Initializable {
                 playListModel.createPlayList(p);
                 //we do this, so we can edit a playlist if needed.
                 createNewPlayList = false;
-                System.out.println(p);
-
-
             }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);

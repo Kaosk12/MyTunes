@@ -405,7 +405,9 @@ public class MainController implements Initializable {
         int duration = mediaModel.getSelectedSong().getTime();
         int m = duration/60;
         int s = duration%60;
-        String time = m + ":" + s;
+        String mins = String.format("%02d", m);
+        String secs = String.format("%02d", s);
+        String time = mins + ":" + secs;
         labelPlayerDuration.setText(time);
     }
 
