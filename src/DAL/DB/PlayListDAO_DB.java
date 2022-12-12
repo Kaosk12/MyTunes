@@ -339,7 +339,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            throw new Exception("Failed to update playlist", e);
+            throw new Exception("Failed to swap song", e);
         }
 
     }
