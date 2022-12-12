@@ -8,6 +8,7 @@ import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import GUI.Util.TimeCellFactory;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
@@ -39,6 +40,7 @@ public class MainController implements Initializable {
     public Button btnRepeatAtEnd;
     public Slider volumeSlider;
     public Button volumeButton;
+    public Slider timeSlider;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -118,7 +120,37 @@ public class MainController implements Initializable {
 
         initializeVolumeSlider();
         addVolumeSliderListener();
+
+        addTimeSliderListener();
     }
+
+    private void addTimeSliderListener() {
+        timeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mediaModel.getMediaPlayer().seek(mediaModel.getMediaPlayer().getTotalDuration().multiply(timeSlider.getValue() / 100));
+
+                if(timeSlider.isValueChanging()){
+                    mediaModel.getMediaPlayer().seek(mediaModel.getMediaPlayer().getMedia().getDuration().multiply(timeSlider.getValue() / 100.0));
+                }
+            }
+        });
+
+        mediaModel.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+            if (!timeSlider.isValueChanging()){
+                timeSlider.setValue(newValue.toSeconds());
+                System.out.println("gg");
+            }
+            System.out.println("jj");
+
+        });
+
+    }
+
+
+
+
+
 
     private void addVolumeSliderListener() {
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
@@ -198,6 +230,7 @@ public class MainController implements Initializable {
             }
         });
     }
+
 
     /**
      * Adds a listener for when the user selects a song.
