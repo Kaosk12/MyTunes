@@ -84,6 +84,8 @@ public class PlaylistController implements Initializable {
                 playListModel.createPlayList(p);
                 //we do this, so we can edit a playlist if needed.
                 createNewPlayList = false;
+                System.out.println(p);
+
 
             }
         } catch (Exception e) {
@@ -111,7 +113,7 @@ public class PlaylistController implements Initializable {
             ErrorDisplayer.displayError(new Exception("Name can not be empty"));
             return true;
         }
-        if (textName.getText().trim().matches(playList.getTitle())) {
+        if (!createNewPlayList && textName.getText().trim().matches(playList.getTitle())) {
             ErrorDisplayer.displayError(new Exception("No changes were made"));
             return true;
         }
