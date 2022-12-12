@@ -32,4 +32,12 @@ public interface ISongDAO {
      * @throws Exception If it fails to retrieve a song with given ID.
      */
     Song getSongFromId(int songId) throws Exception;
+
+    /**
+     * Creates a song in the database.
+     * @param song The song to create.
+     * @return Returns the newly created song.
+     * @throws Exception If it fails to create the song.
+     */
+    Song createSong(Song song) throws Exception;
 }

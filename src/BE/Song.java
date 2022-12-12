@@ -30,6 +30,14 @@ public class Song {
         this.id = id;
     }
 
+    public Song(String title, String artist, String genre, int time, String path){
+        this.title = title;
+        this.artist = artist;
+        this.genre = genre;
+        this.duration = time;
+        this.path = path;
+    }
+
     public String getTitle() {
         return title;
     }

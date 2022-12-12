@@ -58,4 +58,14 @@ public class SongManager implements ISongManager {
     public void deleteSong(Song song) throws Exception {
         databaseAccess.deleteSong(song);
     }
+
+    /**
+     * Creates a new song.
+     * @param song The song to create.
+     * @return The newly created song.
+     * @throws Exception If it fails to create the song.
+     */
+    public Song createSong(Song song) throws Exception {
+       return databaseAccess.createSong(song);
+    }
 }

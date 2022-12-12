@@ -51,6 +51,8 @@ public class SongModel {
         this.selectedSong = selectedSong;
     }
 
+
+
     /**
      * Update/Edit a song
      * @param song, the selected song to update
@@ -68,4 +70,10 @@ public class SongModel {
     public void deleteSong(Song song) throws Exception {
         songManager.deleteSong(song);
     }
+
+
+    public Song createSong(Song song) throws Exception {
+        return songManager.createSong(song);
+    }
+
 }
