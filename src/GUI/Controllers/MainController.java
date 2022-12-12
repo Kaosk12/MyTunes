@@ -665,7 +665,11 @@ public class MainController implements Initializable {
             boolean deleteSong = ConfirmDelete.confirm(header, content);
 
             if (deleteSong) {
+                mediaModel = null;
+
                 songModel.deleteSong(SongModel.getSelectedSong());
+
+                mediaModel = new MediaModel(songModel.getObservableSongs().get(0));
             }
         }
         catch (Exception e) {
