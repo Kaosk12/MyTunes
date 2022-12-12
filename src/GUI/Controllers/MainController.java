@@ -32,13 +32,8 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-
-    public Label btnArtistPlaying;
-    public Label labelCurrentSongDuration;
-    public Button btnShuffleAtEnd;
-    public Button btnRepeatAtEnd;
-    public Slider volumeSlider;
-    public Button volumeButton;
+    @FXML
+    private Slider volumeSlider;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -58,7 +53,7 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
     @FXML
-    private Button btnPlayerPrevious, btnPlayerPlayPause, btnPlayerNext;
+    private Button btnPlayerPlayPause, btnShuffleAtEnd, btnRepeatAtEnd, volumeButton; //+ btnPlayerNext,btnPlayerPrevious
     @FXML
     private Button btnEditPlayList, btnDeletePlayList;
 
@@ -244,12 +239,6 @@ public class MainController implements Initializable {
         genreColum.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
         timeColum.setCellFactory(new TimeCellFactory<>());
-
-        lstSongs.setStyle("-fx-text-background-color: white");
-        titleColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-        artistColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-        genreColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-        timeColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
     }
 
     /**
@@ -263,13 +252,6 @@ public class MainController implements Initializable {
         clmPlayListSongs.setCellValueFactory(new PropertyValueFactory<>("SongAmount"));
         clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
         clmPlayListTime.setCellFactory(new TimeCellFactory<>());
-
-        tbvPlayLists.setStyle("-fx-text-background-color: white");
-        clmPlayListName.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-        clmPlayListSongs.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-        clmPlayListTime.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
-
-
     }
 
     /**
@@ -483,6 +465,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new playlist");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
         //Set the PlaylistController's model to be the same PlayListModel as the main window.
@@ -517,6 +500,8 @@ public class MainController implements Initializable {
         stage.setTitle("Edit playlist name");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        //Add styling with CSS
+        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
         //Tableview to be refreshed
         PlaylistController controller = loader.getController();
@@ -524,8 +509,6 @@ public class MainController implements Initializable {
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
         controller.setModel(playlistModel);
-
-        //Move stage.show() down here, use showAndWait() instead, and clear+re-add all observable PlayLists to update the list?
     }
 
     /**
@@ -619,6 +602,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new song");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -645,6 +629,7 @@ public class MainController implements Initializable {
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -712,13 +697,13 @@ public class MainController implements Initializable {
 
         if(mediaModel.isRepeatBtnSelected()){
             mediaModel.setRepeatBtnSelected(false);
-            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75");
+            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75; -fx-text-fill: white");
         }else {
             mediaModel.setRepeatBtnSelected(true);
-            btnRepeatAtEnd.setStyle("-fx-background-color: Green");
+            btnRepeatAtEnd.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
             mediaModel.setShuffleBtnSelected(false);
-            btnShuffleAtEnd.setStyle("-fx-background-color:  #0F4C75");
+            btnShuffleAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }
     }
 
