@@ -78,8 +78,11 @@ public class SongCreateController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Add your song");
 
-        FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Audio files", "*.mp3", "*.wav");
-        fileChooser.getExtensionFilters().add(fileExtensions);
+        FileChooser.ExtensionFilter audioExtensions = new FileChooser.ExtensionFilter("Audio files", "*.mp3", "*.wav", "*.aif", "*.aiff", "*.m4a");
+        FileChooser.ExtensionFilter videoExtensions = new FileChooser.ExtensionFilter("Video files", "*.mp4", "*.m4v");
+
+        fileChooser.getExtensionFilters().add(audioExtensions);
+        fileChooser.getExtensionFilters().add(videoExtensions);
         File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
         textFile.setText(file.getAbsolutePath());
 
