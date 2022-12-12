@@ -250,7 +250,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
     public void monveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception {
 
-        List songList = playList.getAllSongsInPlaylist();
+        List<Song> songList = playList.getAllSongsInPlaylist();
 
         int songIndex = songList.indexOf(song);
 
@@ -268,20 +268,20 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
             swapSongPlacement(playlistId, songId, previousSongId, (songIndex), previousSongIndex+2);
 
-            playList.getAllSongsInPlaylist().set(songIndex, previousSong);
-            playList.getAllSongsInPlaylist().set(previousSongIndex, song);
+            songList.set(songIndex, previousSong);
+            songList.set(previousSongIndex, song);
         }
         //the chosen song gets moved down
         if (!moveUp && ((songIndex+1) != songList.size())) {
             int nextSongIndex = songList.indexOf(song)+1;
 
-            Song nextSong = playList.getAllSongsInPlaylist().get(nextSongIndex);
+            Song nextSong = songList.get(nextSongIndex);
 
             int nextSongId = nextSong.getId();
             swapSongPlacement(playlistId, songId, nextSongId, (songIndex +2), nextSongIndex);
 
-            playList.getAllSongsInPlaylist().set(songIndex, nextSong);
-            playList.getAllSongsInPlaylist().set(nextSongIndex, song);
+            songList.set(songIndex, nextSong);
+            songList.set(nextSongIndex, song);
         }
     }
     private void swapSongPlacement(int playlistId, int chosenSongId, int pushedSongId, int chosenSongNP, int pushedSongNP) throws Exception {

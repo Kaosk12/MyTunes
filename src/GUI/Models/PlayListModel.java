@@ -104,8 +104,8 @@ public class PlayListModel {
         playListsInList.add(playList);
     }
 
-    public void monveSOP(Boolean moveUp) throws Exception{
-        playListManager.monveSOP(selectedPlaylist, selectedSOP, moveUp);
+    public void moveSOP(Boolean moveUp) throws Exception{
+        playListManager.moveSOP(selectedPlaylist, selectedSOP, moveUp);
         songsInPlayList.clear();
         songsInPlayList.addAll(selectedPlaylist.getAllSongsInPlaylist());
     }

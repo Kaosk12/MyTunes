@@ -53,11 +53,11 @@ public interface IPlayListManager {
 
     /**
      * Moves the songsPlacement in a playlist in the database.
-     * @param playList
-     * @param song
+     * @param playList the playlist the song is moved in.
+     * @param song the song that is moved
      * @param moveUp the direction the song should be moved.
      * @throws Exception if it fails to move the song.
      */
-    void monveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception;
+    void moveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception;
 
 }

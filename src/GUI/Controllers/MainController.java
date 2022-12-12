@@ -414,7 +414,7 @@ public class MainController implements Initializable {
      */
     public void handleSOPMoveUp() {
         try {
-            playlistModel.monveSOP(true);
+            playlistModel.moveSOP(true);
             tbvSongsInPlayList.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
@@ -426,7 +426,7 @@ public class MainController implements Initializable {
      */
     public void handleSOPMoveDown() {
         try {
-            playlistModel.monveSOP(false);
+            playlistModel.moveSOP(false);
             tbvSongsInPlayList.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
