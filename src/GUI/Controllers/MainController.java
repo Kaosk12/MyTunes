@@ -38,6 +38,7 @@ public class MainController implements Initializable {
     public Button btnShuffleAtEnd;
     public Button btnRepeatAtEnd;
     public Slider volumeSlider;
+    public Button volumeButton;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -190,7 +191,6 @@ public class MainController implements Initializable {
 
                 // Displays the songs in this playlist.
                 tbvSongsInPlayList.setItems(playlistModel.getObservableSongsInPlayList(newValue));
-
                 playlistModel.setSelectedPlaylist(newValue);
             }
             else {
@@ -244,6 +244,12 @@ public class MainController implements Initializable {
         genreColum.setCellValueFactory(new PropertyValueFactory<>("Genre"));
         timeColum.setCellValueFactory(new PropertyValueFactory<>("Time"));
         timeColum.setCellFactory(new TimeCellFactory<>());
+
+        lstSongs.setStyle("-fx-text-background-color: white");
+        titleColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+        artistColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+        genreColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+        timeColum.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
     }
 
     /**
@@ -258,6 +264,12 @@ public class MainController implements Initializable {
         clmPlayListTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
         clmPlayListTime.setCellFactory(new TimeCellFactory<>());
 
+        tbvPlayLists.setStyle("-fx-text-background-color: white");
+        clmPlayListName.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+        clmPlayListSongs.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+        clmPlayListTime.setStyle("-fx-background-color: rgba(27, 38, 44, 0.90); -fx-text-fill: white");
+
+
     }
 
     /**
@@ -269,9 +281,9 @@ public class MainController implements Initializable {
             public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue) {
                 if (newValue != null) {
                     setSongsOnPlaylistManipulatingButtons(false);
+                    lstSongs.getSelectionModel().clearSelection();
                     PlayListModel.setSelectedSOP(newValue);
                     mediaModel.setIsPlaylistSelected(true);
-                    lstSongs.getSelectionModel().clearSelection();
                 }
                 if (newValue == null) {
                     setSongsOnPlaylistManipulatingButtons(true);
@@ -715,24 +727,33 @@ public class MainController implements Initializable {
 
     /**
      * checks if any song has been double-clicked, then start playing it
-     * cekcks if it was from the songsTable or the playlist table
      * @param mouseEvent
      */
     public void handleSongDoubleClick(MouseEvent mouseEvent) {
         if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
             //checks if there has been 2 clicks
             if(mouseEvent.getClickCount() == 2){
-                //checks if the playlist is selected so the mediaPlayer know what song to play
-                if(mediaModel.getIsPlaylistSelected()){
-                    mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
-                }
-                else {
-                    mediaModel.playMedia(lstSongs.getSelectionModel().getSelectedItem());
-                }
-                //sets playButton and labelInfo
-                btnPlayerPlayPause.setText("⏸");
-                setPlayerLabels();
+                handlePlayerPlayPause();
             }
+        }
+    }
+
+    /**
+     * checks if the volume button is clicked
+     * when clicked it will mute and change color, click again to unmute and change color back to normal
+     * @param actionEvent
+     */
+    public void handleVolumeButton(ActionEvent actionEvent) {
+        if(mediaModel.isMute()){
+            volumeButton.setText("\uD83D\uDD0A");
+            mediaModel.setMute(false);
+            volumeButton.setStyle("-fx-background-color:  #0F4C75; -fx-background-radius: 50");
+
+        }else {
+            volumeButton.setText("\uD83D\uDD07");
+            mediaModel.setMute(true);
+            volumeButton.setStyle("-fx-background-color: Gray; -fx-background-radius: 50");
+
         }
     }
 }

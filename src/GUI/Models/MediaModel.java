@@ -11,12 +11,11 @@ public class MediaModel {
     private MediaPlayer mediaPlayer;
     private Song selectedSong;
 
-
-
     private Double volume = 1.0;
-    private boolean repeatBtnSelected = false;
-    private boolean shuffleBtnSelected = false;
-    private boolean isPlaying = false;
+    private boolean isMute;
+    private boolean repeatBtnSelected;
+    private boolean shuffleBtnSelected;
+    private boolean isPlaying;
     private boolean isPlaylistSelected;
 
     /**
@@ -25,7 +24,7 @@ public class MediaModel {
      */
     public MediaModel(Song song){
         mediaPlayer = new MediaPlayer(createMedia(song));
-        mediaPlayer.setVolume(volume);
+        mediaPlayer.setVolume(getVolume());
     }
 
     public MediaPlayer getMediaPlayer() {
@@ -64,7 +63,7 @@ public class MediaModel {
        if (selectedSong == null || selectedSong != song){
             //crete a new media file and plays it
             mediaPlayer = new MediaPlayer(createMedia(song));
-           mediaPlayer.setVolume(volume);
+           mediaPlayer.setVolume(getVolume());
             startMedia();
         }
 
@@ -80,8 +79,6 @@ public class MediaModel {
         mediaPlayer.play();
         isPlaying = true;
     }
-
-
 
     public Duration getCurrentTime(){
         Duration time = mediaPlayer.getCurrentTime();
@@ -101,7 +98,7 @@ public class MediaModel {
 
     public void restartSong(){
         mediaPlayer.seek(Duration.millis(0));
-        mediaPlayer.setVolume(volume);
+        mediaPlayer.setVolume(getVolume());
     }
 
     public boolean isPlaying() {
@@ -124,12 +121,37 @@ public class MediaModel {
         this.repeatBtnSelected = repeatBtnSelected;
     }
 
+    /**
+     * gets the volume unless the volume is on mute, then it returns zero.
+     * @return
+     */
     public Double getVolume() {
-        return volume;
+        Double res;
+        if(isMute) {
+            res = 0.0;
+        }else{
+            res = volume;}
+        return res;
     }
 
     public void setVolume(Double volume) {
         this.volume = volume;
     }
 
+    public boolean isMute() {
+        return isMute;
+    }
+
+    /**
+     * sets the mediavolume to 0 if mute and back to normal if unmute
+     * @param mute
+     */
+    public void setMute(boolean mute) {
+        isMute = mute;
+        if(mute){
+            mediaPlayer.setVolume(0.0);
+        }else {
+            mediaPlayer.setVolume(getVolume());
+        }
+    }
 }

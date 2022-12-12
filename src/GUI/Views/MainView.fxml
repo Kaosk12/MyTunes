@@ -21,7 +21,7 @@
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
+                  <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
                         <Button fx:id="btnPlayerPrevious" layoutX="30.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayerPrevious" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="⏮" textFill="WHITE" wrapText="true">
                            <font>
@@ -60,18 +60,6 @@
                                  </color>
                               </InnerShadow>
                            </effect></Button>
-                        <Label alignment="CENTER" layoutX="280.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="🔊" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <effect>
-                              <InnerShadow height="20.0" radius="9.5" width="20.0">
-                                 <color>
-                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
-                                 </color>
-                              </InnerShadow>
-                           </effect>
-                        </Label>
                         <Slider fx:id="volumeSlider" layoutX="270.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
                         <Button fx:id="btnRepeatAtEnd" ellipsisString="" layoutX="237.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRepeatAtEnd" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔁/🔀/alm. afspilning" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                            <font>
@@ -96,6 +84,18 @@
                                  </color>
                               </InnerShadow>
                            </effect>
+                        </Button>
+                        <Button fx:id="volumeButton" contentDisplay="CENTER" layoutX="283.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVolumeButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #0F4C75; -fx-background-radius: 50;" text="🔊" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <effect>
+                              <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                 <color>
+                                    <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Button>
                      </children>
                      <HBox.margin>
@@ -166,7 +166,7 @@
                           <columns>
                             <TableColumn fx:id="clmPlayListName" prefWidth="150.0" text="Name" />
                             <TableColumn fx:id="clmPlayListSongs" prefWidth="40.0" text="Songs" />
-                              <TableColumn fx:id="clmPlayListTime" prefWidth="40.0" text="Time" />
+                              <TableColumn fx:id="clmPlayListTime" prefWidth="47.19999694824219" text="Time" />
                           </columns>
                            <effect>
                               <InnerShadow>
@@ -232,7 +232,7 @@
                               </Label>
                               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="240.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
+                                    <ListView fx:id="tbvSongsInPlayList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="210.0" style="-fx-background-color: #1B262C; -fx-border-color: #BBE1FA; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -352,10 +352,10 @@
                         </HBox>
                         <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="490.0" style="-fx-background-color: transparent; -fx-border-color: #BBE1FA; -fx-text-fill: white;" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="titleColum" prefWidth="200.0" text="Title" />
+                              <TableColumn fx:id="titleColum" prefWidth="200.0" style="-fx-text-fill: white;" text="Title" />
                               <TableColumn fx:id="artistColum" prefWidth="110.0" text="Artist" />
                               <TableColumn fx:id="genreColum" prefWidth="100.0" text="Category" />
-                              <TableColumn fx:id="timeColum" prefWidth="60.0" text="Time" />
+                              <TableColumn fx:id="timeColum" prefWidth="77.60001220703123" text="Time" />
                            </columns>
                            <effect>
                               <InnerShadow>
