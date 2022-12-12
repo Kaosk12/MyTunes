@@ -13,11 +13,6 @@ public class PlayList {
     private int songAmount;
     private ArrayList<Song> songList = new ArrayList<>();
 
-    public PlayList(int playListId, String title, String creatorName){
-        this.creatorName = creatorName;
-        this.playListId = playListId;
-        this.title = title;
-    }
     public PlayList(int playListId, String title){
         this.playListId = playListId;
         this.title = title;
@@ -38,8 +33,15 @@ public class PlayList {
         return playListId;
     }
 
+    public void setPlayListId(int Id){
+        playListId = Id;
+    }
+
     public String getCreatorName() {
         return creatorName;
+    }
+    public void setCreatorName(String creatorName){
+        this.creatorName = creatorName;
     }
 
     /**

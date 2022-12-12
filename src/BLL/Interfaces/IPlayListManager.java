@@ -38,12 +38,11 @@ public interface IPlayListManager {
     void updatePlayList(PlayList playList) throws Exception;
 
     /**
-     creates a new playlist.
+     * creates a new playlist.
      * @param playList the new playlist.
-     * @return returns a new playlist.
-     * @throws Exception if it fails to create new playlist.
+     * @throws Exception if it fails to create new playlist
      */
-    public PlayList createPlayList(PlayList playList) throws Exception;
+    public void createPlayList(PlayList playList) throws Exception;
 
     /**
      * deletes a playlist from the database

@@ -220,7 +220,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
-    public PlayList createPlayList(PlayList playList) throws Exception {
+    public void createPlayList(PlayList playList) throws Exception {
         String sql = "INSERT INTO Playlists(Title, Creator) VALUES (?,?);";
 
         try (Connection connection = databaseConnector.getConnection();
@@ -240,12 +240,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             if(rs.next()){
                 id = rs.getInt(1);
             }
-
-            //new playlist variables.
-            String title = playList.getTitle();
-            String creator = playList.getCreatorName();
-            PlayList newPlaylist = new PlayList(id, title, creator);
-            return newPlaylist;
+            playList.setPlayListId(id);
         }
         catch (SQLException e) {
             e.printStackTrace();

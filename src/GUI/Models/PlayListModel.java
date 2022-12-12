@@ -99,9 +99,9 @@ public class PlayListModel {
 
     public void createPlayList(PlayList playList) throws Exception {
         //Inserts the new playlist into the db
-        PlayList newPlaylist = playListManager.createPlayList(playList);
+        playListManager.createPlayList(playList);
         //Adds the new playlist to observable playlists.
-        playListsInList.add(newPlaylist);
+        playListsInList.add(playList);
     }
 
 }
