@@ -168,6 +168,11 @@ public class SongCreateController implements Initializable {
             ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
             return true;
         }
+
+        if (textGenre.getText().trim().isEmpty()) {
+            ErrorDisplayer.displayError(new Exception("Genre can not be empty"));
+            return true;
+        }
         return false;
     }
 
