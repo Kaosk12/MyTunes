@@ -284,6 +284,7 @@ public class MainController implements Initializable {
                     lstSongs.getSelectionModel().clearSelection();
                     PlayListModel.setSelectedSOP(newValue);
                     mediaModel.setIsPlaylistSelected(true);
+
                 }
                 if (newValue == null) {
                     setSongsOnPlaylistManipulatingButtons(true);
@@ -337,8 +338,10 @@ public class MainController implements Initializable {
      * jumps to the top if there is no more rows on the table
      */
     public void handlePlayerNext() {
-
-        if (mediaModel.getIsPlaylistSelected()){
+        if (mediaModel.isShuffleBtnSelected()) {
+            shuffleSongs();
+        }
+        else if (mediaModel.getIsPlaylistSelected()){
 
             //checks if there is a next in the list if not it will go to the top,else it picks the next colum
             if(tbvSongsInPlayList.getItems().size() <= tbvSongsInPlayList.getSelectionModel().getSelectedIndex() + 1){
@@ -412,36 +415,39 @@ public class MainController implements Initializable {
      * if the shuffle mode is clicked a random song from the selected table will start playing
      * else it will play next song at end.
      */
-    public  void endOfSongListener(){
+    public void endOfSongListener(){
         //calls the handlePlayerNext method when the song is finished.
         mediaModel.getMediaPlayer().setOnEndOfMedia(() -> {
             //if the repeat button is true the song will restart
             if (mediaModel.isRepeatBtnSelected()){
                 mediaModel.restartSong();
-                endOfSongListener();
             }
             //if shuffle mode is selected a random son will play from the selected table.
             else if (mediaModel.isShuffleBtnSelected()) {
-                Random random = new Random();
-
-                if(mediaModel.getIsPlaylistSelected()){
-                    int x = random.nextInt(tbvSongsInPlayList.getItems().size());
-                    mediaModel.playMedia(tbvSongsInPlayList.getItems().get(x));
-                }else{
-                    int x = random.nextInt(lstSongs.getItems().size());
-                    mediaModel.playMedia(lstSongs.getItems().get(x));
-                }
-                //adds listener for when the song is finished
-                endOfSongListener();
+                shuffleSongs();
             }
             //play the next song if neither the repeat nor shuffle button is clicked
             else {
                 handlePlayerNext();
             }
-            System.out.println(mediaModel.getSelectedSong().getTitle());
+            //adds listener for when the song is finished
+            endOfSongListener();
         });
+        setPlayerLabels();
+    }
 
+    private void shuffleSongs() {
+        Random random = new Random();
 
+        if(mediaModel.getIsPlaylistSelected()){
+            int x = random.nextInt(tbvSongsInPlayList.getItems().size());
+            mediaModel.playMedia(tbvSongsInPlayList.getItems().get(x));
+            tbvSongsInPlayList.getSelectionModel().select(x);
+        }else{
+            int x = random.nextInt(lstSongs.getItems().size());
+            mediaModel.playMedia(lstSongs.getItems().get(x));
+            lstSongs.getSelectionModel().select(x);
+        }
     }
 
 

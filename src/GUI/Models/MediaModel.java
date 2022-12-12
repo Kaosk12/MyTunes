@@ -126,12 +126,10 @@ public class MediaModel {
      * @return
      */
     public Double getVolume() {
-        Double res;
         if(isMute) {
-            res = 0.0;
-        }else{
-            res = volume;}
-        return res;
+            volume = 0.0;
+        }
+        return volume;
     }
 
     public void setVolume(Double volume) {
