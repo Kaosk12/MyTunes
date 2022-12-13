@@ -387,7 +387,9 @@ public class MainController implements Initializable {
         int duration = mediaModel.getSelectedSong().getTime();
         int m = duration/60;
         int s = duration%60;
-        String time = m + ":" + s;
+        String mins = String.format("%02d", m);
+        String secs = String.format("%02d", s);
+        String time = mins + ":" + secs;
         labelPlayerDuration.setText(time);
     }
 
@@ -716,13 +718,13 @@ public class MainController implements Initializable {
     public void handleShuffleAtEnd(ActionEvent actionEvent) {
         if(mediaModel.isShuffleBtnSelected()){
             mediaModel.setShuffleBtnSelected(false);
-            btnShuffleAtEnd.setStyle("-fx-background-color:  #0F4C75");
+            btnShuffleAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }else {
             mediaModel.setShuffleBtnSelected(true);
-            btnShuffleAtEnd.setStyle("-fx-background-color: Green");
+            btnShuffleAtEnd.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
             mediaModel.setRepeatBtnSelected(false);
-            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75");
+            btnRepeatAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }
     }
 
@@ -748,12 +750,12 @@ public class MainController implements Initializable {
         if(mediaModel.isMute()){
             volumeButton.setText("\uD83D\uDD0A");
             mediaModel.setMute(false);
-            volumeButton.setStyle("-fx-background-color:  #0F4C75; -fx-background-radius: 50");
+            volumeButton.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
 
         }else {
             volumeButton.setText("\uD83D\uDD07");
             mediaModel.setMute(true);
-            volumeButton.setStyle("-fx-background-color: Gray; -fx-background-radius: 50");
+            volumeButton.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
         }
     }
