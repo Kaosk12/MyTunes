@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.PlayList;
 import BE.Song;
+import GUI.Models.AlbumCoverModel;
 import GUI.Models.MediaModel;
 import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +34,8 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    @FXML
+    private ImageView imageAlbumCover;
     @FXML
     private Slider volumeSlider;
     @FXML
@@ -73,6 +77,7 @@ public class MainController implements Initializable {
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
+    private AlbumCoverModel albumCoverModel;
 
 
     public MainController(){
@@ -80,6 +85,7 @@ public class MainController implements Initializable {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
             mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
+            albumCoverModel = new AlbumCoverModel();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -382,15 +388,21 @@ public class MainController implements Initializable {
      * Sets the player's labels to the current song's title, artist and duration
      */
     private void setPlayerLabels() {
-        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
-        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
-        int duration = mediaModel.getSelectedSong().getTime();
+        Song song = mediaModel.getSelectedSong();
+        labelPlayerTitle.setText(song.getTitle());
+        labelPlayerArtist.setText(song.getArtist());
+        int duration = song.getTime();
         int m = duration/60;
         int s = duration%60;
         String mins = String.format("%02d", m);
         String secs = String.format("%02d", s);
         String time = mins + ":" + secs;
         labelPlayerDuration.setText(time);
+        try {
+            imageAlbumCover.setImage(albumCoverModel.getAlbumCover(song.getId()));
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
+import GUI.Models.AlbumCoverModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.fxml.FXML;
@@ -9,16 +10,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SongUpdateController implements Initializable {
     private SongModel songModel;
     private Song song;
+    private AlbumCoverModel albumCoverModel;
+    private File albumCover;
     @FXML
-    private TextField textTitle, textArtist, textGenre;
+    private TextField textTitle, textArtist, textGenre, textImage;
     @FXML
     private Button btnOK, btnCancel;
 
@@ -98,11 +103,30 @@ public class SongUpdateController implements Initializable {
         try {
             songModel.updateSong(song); //Send the song down the layers to update it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
+            albumCoverModel.updateCover(song.getId(), albumCover);
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
 
         handleClose();
+    }
+
+    /**
+     * Loads an album cover image into a file
+     */
+    public void handleChooseImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Add album cover art");
+
+        FileChooser.ExtensionFilter imageExtensions = new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.jpeg", "*.png");
+
+        fileChooser.getExtensionFilters().add(imageExtensions);
+
+        albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
+        textImage.setText(albumCover.getAbsolutePath());
+    }
+    public void handleDeleteImage() {
+        //TODO
     }
 
     /**

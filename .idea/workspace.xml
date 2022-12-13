@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="fixed comments a bit more.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/AlbumCoverManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IAlbumCoverManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAL/DB/AlbumCoverDAO_DB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAL/Interfaces/IAlbumCoverDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Models/AlbumCoverModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyTunes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Views/SongCreateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/SongCreateView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Views/SongUpdateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/SongUpdateView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,18 +44,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="GUI.Models" />

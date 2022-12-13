@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import BE.Song;
+import GUI.Models.AlbumCoverModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.collections.MapChangeListener;
@@ -24,14 +25,17 @@ public class SongCreateController implements Initializable {
     @FXML
     private Button btnCancel, btnOK;
     @FXML
-    private TextField textTitle, textArtist, textGenre, textFile;
+    private TextField textTitle, textArtist, textGenre, textFile, textImage;
     private SongModel songModel;
+    private AlbumCoverModel albumCoverModel;
 
     private  MediaPlayer mediaPlayer;
     private int duration;
+    private File albumCover;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        albumCoverModel = new AlbumCoverModel();
         //Disable OK button until the 'not null' values are added
         btnOK.setDisable(true);
 
@@ -65,6 +69,9 @@ public class SongCreateController implements Initializable {
         try {
             songModel.createSong(song); //Send the song down the layers to create it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
+            if(albumCover != null) {
+                albumCoverModel.createAlbumCover(song.getId(), albumCover);
+            }
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -93,6 +100,26 @@ public class SongCreateController implements Initializable {
         getSongDuration(media);
 
         metaGetListener(media);
+    }
+
+    /**
+     * Loads an album cover image into a file
+     */
+    public void handleChooseImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Add album cover art");
+
+        FileChooser.ExtensionFilter imageExtensions = new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.jpeg", "*.png");
+
+        fileChooser.getExtensionFilters().add(imageExtensions);
+
+        albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
+        textImage.setText(albumCover.getAbsolutePath());
+    }
+
+    public void handleRemoveImage() {
+        albumCover = null;
+        textImage.setText("");
     }
 
     /**
