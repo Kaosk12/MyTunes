@@ -150,7 +150,6 @@ public class MainController implements Initializable {
     private void setPlaylistManipulatingButtons(boolean disable) {
         btnDeletePlayList.setDisable(disable);
         btnEditPlayList.setDisable(disable);
-        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -161,6 +160,7 @@ public class MainController implements Initializable {
     private void setSongManipulatingButtons(boolean disable) {
         btnSongEdit.setDisable(disable);
         btnSongDelete.setDisable(disable);
+        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -535,6 +535,15 @@ public class MainController implements Initializable {
     public void handleSOPAdd() {
         try {
             playlistModel.addSongToPlayList();
+
+            //if no playlist have been selected, then asks the user to create one.
+            if(PlayListModel.getSelectedPlaylist() == null){
+                String header = "No playlist have been selected!";
+                String content = "Do you want to create a new playlist?";
+                if (ConfirmDelete.confirm(header, content)){
+                    handlePlaylistNew();
+                }
+            }
 
             //updates the song amount
             tbvPlayLists.refresh();

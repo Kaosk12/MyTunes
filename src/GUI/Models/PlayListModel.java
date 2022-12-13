@@ -4,6 +4,7 @@ import BE.PlayList;
 import BE.Song;
 import BLL.Interfaces.IPlayListManager;
 import BLL.PlayListManager;
+import GUI.Util.ConfirmDelete;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -67,14 +68,16 @@ public class PlayListModel {
      */
     public void addSongToPlayList() throws Exception {
         Song song = SongModel.getSelectedSong();
+        //if the user have selected a playlist, then adds a song to it.
+        if(selectedPlaylist != null){
+            playListManager.addSongToPlayList(selectedPlaylist, song);
 
-        playListManager.addSongToPlayList(selectedPlaylist, song);
+            //This will update the GUI.
+            songsInPlayList.add(song);
 
-        //This will update the GUI.
-        songsInPlayList.add(song);
-
-        //Updates the list in the effected PlayList object.
-        selectedPlaylist.addSongToPlaylist(song);
+            //Updates the list in the effected PlayList object.
+            selectedPlaylist.addSongToPlaylist(song);
+        }
     }
 
     public void deleteSOP() throws Exception {
