@@ -190,6 +190,7 @@ public class MainController implements Initializable {
             }
             else {
                 setPlaylistManipulatingButtons(true);
+                playlistModel.setSelectedPlaylist(null);
             }
         });
     }
