@@ -3,17 +3,14 @@ package GUI.Controllers;
 import BE.PlayList;
 import BE.Song;
 import GUI.Models.MediaModel;
-import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
-import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
+import GUI.Util.ConfirmDelete;
+import GUI.Util.ErrorDisplayer;
 import GUI.Util.TimeCellFactory;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -25,7 +22,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -35,17 +37,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
 
 public class MainController implements Initializable {
-
-
     @FXML
-    private Label btnArtistPlaying;
-    @FXML
-    private Label labelCurrentSongDuration;
+    private GridPane app;
+    private double xOffset = 0;
+    private double yOffset = 0;
     @FXML
     private Slider volumeSlider;
     @FXML
@@ -53,7 +50,7 @@ public class MainController implements Initializable {
     @FXML
     private Label labelPlayerCounter;
     @FXML
-    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
+    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration, labelCurrentSongDuration;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -105,8 +102,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Adds a listener to the songs in a playlist.
-        songInPlaylistListener();
+        //Initialize tables & volume slider
         initializeSongTbv();
         initializePlaylistTbv();
         initializeVolumeSlider();
@@ -125,15 +121,31 @@ public class MainController implements Initializable {
         setPlaylistManipulatingButtons(true);
 
         addPlaylistSelectionListener();
+        songInPlaylistListener();
 
         //Disable the Move Up/Down buttons for Song on Playlist.
         setSongsOnPlaylistManipulatingButtons(true);
 
-
-
         addVolumeSliderListener();
-
         addTimeSliderListener();
+        addMoveWindowListener();
+    }
+
+    private void addMoveWindowListener() {
+        app.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        app.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                app.getScene().getWindow().setX(event.getScreenX() - xOffset);
+                app.getScene().getWindow().setY(event.getScreenY() - yOffset);
+            }
+        });
     }
 
     /**

@@ -4,6 +4,7 @@ import BE.PlayList;
 import GUI.Models.PlayListModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,12 +12,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlaylistController implements Initializable {
+    @FXML
+    private GridPane app;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML
     private TextField textName;
@@ -51,6 +58,25 @@ public class PlaylistController implements Initializable {
         btnOK.setDisable(true);
         //Adding a listener, and enabling/disabling the OK button if name is empty
         textNameListener();
+
+        addMoveWindowListener();
+    }
+
+    private void addMoveWindowListener() {
+        app.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        app.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                app.getScene().getWindow().setX(event.getScreenX() - xOffset);
+                app.getScene().getWindow().setY(event.getScreenY() - yOffset);
+            }
+        });
     }
 
     public void textNameListener(){
