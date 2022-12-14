@@ -46,13 +46,7 @@ public class MainController implements Initializable {
     @FXML
     private Label labelCurrentSongDuration;
     @FXML
-    private Button btnShuffleAtEnd;
-    @FXML
-    private Button btnRepeatAtEnd;
-    @FXML
     private Slider volumeSlider;
-    @FXML
-    private Button volumeButton;
     @FXML
     private Slider timeSlider;
     @FXML
