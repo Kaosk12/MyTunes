@@ -543,6 +543,7 @@ public class MainController implements Initializable {
                 String content = "Do you want to create a new playlist?";
                 if (ConfirmDelete.confirm(header, content)){
                     handlePlaylistNew();
+                    PlaylistController.setAddSong(true);
                 }
             }
 

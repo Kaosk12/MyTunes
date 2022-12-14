@@ -100,9 +100,12 @@ public class PlayListModel {
         playListsInList.remove(selectedPlaylist);
     }
 
-    public void createPlayList(PlayList playList) throws Exception {
+    public void createPlayList(PlayList playList, boolean addSong) throws Exception {
         //Inserts the new playlist into the db
         PlayList newPlaylist = playListManager.createPlayList(playList);
+        if (addSong){
+            newPlaylist.addSongToPlaylist(SongModel.getSelectedSong());
+        }
         //Adds the new playlist to observable playlists.
         playListsInList.add(newPlaylist);
     }
