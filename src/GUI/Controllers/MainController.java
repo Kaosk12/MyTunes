@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -467,6 +468,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new playlist");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
@@ -502,6 +504,7 @@ public class MainController implements Initializable {
         stage.setTitle("Edit playlist name");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         //Add styling with CSS
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
@@ -604,6 +607,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new song");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
@@ -631,6 +635,7 @@ public class MainController implements Initializable {
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
