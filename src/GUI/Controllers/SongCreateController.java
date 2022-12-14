@@ -109,16 +109,18 @@ public class SongCreateController implements Initializable {
 
         fileChooser.getExtensionFilters().add(audioExtensions);
         fileChooser.getExtensionFilters().add(videoExtensions);
-        File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-        textFile.setText(file.getAbsolutePath());
+        if (fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow()) != null) {
+            File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
+            textFile.setText(file.getAbsolutePath());
 
-        Media media = new Media(file.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
 
-        //MediaPlayer must be set on ready to get the duration
-        getSongDuration(media);
+            //MediaPlayer must be set on ready to get the duration
+            getSongDuration(media);
 
-        metaGetListener(media);
+            metaGetListener(media);
+        }
     }
 
     /**

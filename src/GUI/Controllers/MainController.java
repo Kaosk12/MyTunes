@@ -39,6 +39,8 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+    private boolean darkMode;
+    private String style = "/GUI/CSS/DarkMode.css";
     @FXML
     private GridPane app;
     private double xOffset = 0;
@@ -68,7 +70,9 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
     @FXML
-    private Button btnPlayerPlayPause, btnShuffleAtEnd, btnRepeatAtEnd, volumeButton; //+ btnPlayerNext,btnPlayerPrevious
+    private Button btnPlayerPlayPause; //+ btnPlayerNext,btnPlayerPrevious
+    @FXML
+    private ToggleButton volumeButton, btnSettings;
     @FXML
     private Button btnEditPlayList, btnDeletePlayList;
 
@@ -91,6 +95,7 @@ public class MainController implements Initializable {
 
 
     public MainController(){
+        darkMode = true;
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
@@ -563,7 +568,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
         stage.show();
 
         //Set the PlaylistController's model to be the same PlayListModel as the main window.
@@ -600,7 +605,7 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         //Add styling with CSS
-        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
         stage.show();
         //Tableview to be refreshed
         PlaylistController controller = loader.getController();
@@ -720,7 +725,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -748,7 +753,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -816,13 +821,10 @@ public class MainController implements Initializable {
 
         if(mediaModel.isRepeatBtnSelected()){
             mediaModel.setRepeatBtnSelected(false);
-            btnRepeatAtEnd.setStyle("-fx-background-color:  #0F4C75; -fx-text-fill: white");
         }else {
             mediaModel.setRepeatBtnSelected(true);
-            btnRepeatAtEnd.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
             mediaModel.setShuffleBtnSelected(false);
-            btnShuffleAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }
     }
 
@@ -835,13 +837,10 @@ public class MainController implements Initializable {
     public void handleShuffleAtEnd(ActionEvent actionEvent) {
         if(mediaModel.isShuffleBtnSelected()){
             mediaModel.setShuffleBtnSelected(false);
-            btnShuffleAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }else {
             mediaModel.setShuffleBtnSelected(true);
-            btnShuffleAtEnd.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
             mediaModel.setRepeatBtnSelected(false);
-            btnRepeatAtEnd.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
         }
     }
 
@@ -865,15 +864,25 @@ public class MainController implements Initializable {
      */
     public void handleVolumeButton(ActionEvent actionEvent) {
         if(mediaModel.isMute()){
-            volumeButton.setText("\uD83D\uDD0A");
+            volumeButton.setText("🔊");
             mediaModel.setMute(false);
-            volumeButton.setStyle("-fx-background-color: #0F4C75; -fx-text-fill: white");
-
         }else {
-            volumeButton.setText("\uD83D\uDD07");
+            volumeButton.setText("🔇");
             mediaModel.setMute(true);
-            volumeButton.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
+        }
+    }
 
+    public void handleStyle() {
+        Scene scene = btnSettings.getScene();
+        scene.getStylesheets().remove(style);
+        if (darkMode) {
+            style = "/GUI/CSS/LightMode.css";
+            scene.getStylesheets().add(style);
+            darkMode = false;
+        } else {
+            style = "/GUI/CSS/DarkMode.css";
+            scene.getStylesheets().add(style);
+            darkMode = true;
         }
     }
 }
