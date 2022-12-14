@@ -46,9 +46,12 @@ public class PlayListModel {
      * @return An observable list of songs.
      */
     public ObservableList<Song> getObservableSongsInPlayList(PlayList playList){
-        songsInPlayList = FXCollections.observableArrayList();
-        songsInPlayList.addAll(playList.getAllSongsInPlaylist());
-
+        if (playList == null) {
+            songsInPlayList.clear();
+        } else {
+            songsInPlayList = FXCollections.observableArrayList();
+            songsInPlayList.addAll(playList.getAllSongsInPlaylist());
+        }
         return songsInPlayList;
     }
 

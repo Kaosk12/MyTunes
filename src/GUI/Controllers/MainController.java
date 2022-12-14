@@ -191,6 +191,8 @@ public class MainController implements Initializable {
             else {
                 setPlaylistManipulatingButtons(true);
                 playlistModel.setSelectedPlaylist(null);
+                // Clears the Songs in Playlist table when playlist is de-selected
+                playlistModel.getObservableSongsInPlayList(PlayListModel.getSelectedPlaylist());
             }
         });
     }
