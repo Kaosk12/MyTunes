@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -18,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class SongCreateController implements Initializable {
@@ -25,9 +29,11 @@ public class SongCreateController implements Initializable {
     @FXML
     private Button btnCancel, btnOK;
     @FXML
-    private TextField textTitle, textArtist, textGenre, textFile, textImage;
+    private TextField textTitle, textArtist, textGenre, textFile;
+    @FXML
+    private ImageView imageCover;
     private SongModel songModel;
-    private AlbumCoverModel albumCoverModel;
+    //private AlbumCoverModel albumCoverModel;
 
     private  MediaPlayer mediaPlayer;
     private int duration;
@@ -35,7 +41,7 @@ public class SongCreateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        albumCoverModel = new AlbumCoverModel();
+        //albumCoverModel = new AlbumCoverModel();
         //Disable OK button until the 'not null' values are added
         btnOK.setDisable(true);
 
@@ -63,18 +69,21 @@ public class SongCreateController implements Initializable {
         String genre = textGenre.getText();
         int time = duration;
         String path = textFile.getText(); //??
+            String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
 
-        Song song = new Song(title, artist, genre, time, path);
+
+        Song song = new Song(title, artist, genre, time, path, coverPath);
 
         try {
             songModel.createSong(song); //Send the song down the layers to create it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
-            if(albumCover != null) {
+            /*if(albumCover != null) {
                 albumCoverModel.createAlbumCover(song.getId(), albumCover);
-            }
+            }*/
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
+
         handleClose();
     }
 
@@ -114,12 +123,17 @@ public class SongCreateController implements Initializable {
         fileChooser.getExtensionFilters().add(imageExtensions);
 
         albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-        textImage.setText(albumCover.getAbsolutePath());
+
+        Path coverPath = Paths.get(albumCover.getAbsolutePath());
+        Image cover = new Image(coverPath.toUri().toString());
+        imageCover.setImage(cover);
+
+        //textImage.setText(albumCover.getAbsolutePath());
     }
 
     public void handleRemoveImage() {
         albumCover = null;
-        textImage.setText("");
+        imageCover.setImage(null);
     }
 
     /**

@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.stage.Modality;
@@ -29,6 +30,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -77,7 +80,7 @@ public class MainController implements Initializable {
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-    private AlbumCoverModel albumCoverModel;
+    //private AlbumCoverModel albumCoverModel;
 
 
     public MainController(){
@@ -85,7 +88,7 @@ public class MainController implements Initializable {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
             mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
-            albumCoverModel = new AlbumCoverModel();
+            //albumCoverModel = new AlbumCoverModel();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -398,11 +401,19 @@ public class MainController implements Initializable {
         String secs = String.format("%02d", s);
         String time = mins + ":" + secs;
         labelPlayerDuration.setText(time);
-        try {
+
+        if (song.getCoverPath() != null) {
+            Path coverPath = Paths.get(song.getCoverPath());
+            Image cover = new Image(coverPath.toUri().toString());
+
+            imageAlbumCover.setImage(cover);
+        }
+
+        /*try {
             imageAlbumCover.setImage(albumCoverModel.getAlbumCover(song.getId()));
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
-        }
+        }*/
     }
 
     /**

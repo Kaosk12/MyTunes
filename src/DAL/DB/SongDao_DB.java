@@ -39,8 +39,9 @@ public class SongDao_DB implements ISongDAO {
                 int time = rs.getInt("Duration");
                 String path = rs.getString("SongPath");
                 int id = rs.getInt("Id");
+                String coverPath = rs.getString("CoverPath");
 
-                Song song = new Song(title, artist, genre, time, path, id);
+                Song song = new Song(title, artist, genre, time, path, id, coverPath);
                 allSongs.add(song);
             }
         } catch (SQLException e) {
@@ -126,8 +127,9 @@ public class SongDao_DB implements ISongDAO {
                 int time = rs.getInt("Duration");
                 String path = rs.getString("SongPath");
                 int id = rs.getInt("Id");
+                String coverPath = rs.getString("CoverPath");
 
-                Song song = new Song(title, artist, genre, time, path, id);
+                Song song = new Song(title, artist, genre, time, path, id, coverPath);
 
                 return song;
             }
@@ -142,17 +144,19 @@ public class SongDao_DB implements ISongDAO {
     @Override
     public Song createSong(Song song) throws Exception {
 
-        String sql = "INSERT INTO Songs (Title, Artist, Genre, Duration, SongPath) VALUES (?,?,?,?,?) ;";
+        String sql = "INSERT INTO Songs (Title, Artist, Genre, Duration, SongPath, CoverPath) VALUES (?,?,?,?,?,?) ;";
 
         try(Connection connection = databaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-            Path relativePath = LocalFileHandler.createLocalFile(song.getPath());
+            Path relativePath = LocalFileHandler.createLocalFile(song.getPath(), 0);
+            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), 1) : null;
 
             String title = song.getTitle();
             String artist = song.getArtist();
             String genre = song.getGenre();
             String path = String.valueOf(relativePath);
+            String coverPath = String.valueOf(relativeCoverPath);
 
             int time = song.getTime();
 
@@ -161,6 +165,7 @@ public class SongDao_DB implements ISongDAO {
             statement.setString(3, genre);
             statement.setInt(4, time);
             statement.setString(5, path);
+            statement.setString(6, coverPath);
 
             statement.executeUpdate();
             int id = 0;
@@ -169,7 +174,8 @@ public class SongDao_DB implements ISongDAO {
                 id = resultSet.getInt(1);
             }
 
-            Song generatedSong = new Song(title, artist, genre, time,path, id);
+            Song generatedSong = new Song(title, artist, genre, time,path, id, coverPath);
+
             return generatedSong;
         } catch (SQLException e) {
             e.printStackTrace();

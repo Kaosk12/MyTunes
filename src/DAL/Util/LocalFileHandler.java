@@ -29,15 +29,20 @@ public class LocalFileHandler {
     /**
      * gets the local path for the song, then creates a new file in the data package and copies song over in the new file
      * @param path
+     * @param folder 0 if it is a song, 1 if it is an image.
      * @return new path for the song
      * @throws Exception
      */
-    public static Path createLocalFile(String path) throws Exception {
+    public static Path createLocalFile(String path, int folder) throws Exception {
         try {
             File localFilePath = new File(path);
             String fileName = localFilePath.getName();
 
             String relativeFilePath = "data//";
+
+            if (folder == 0) relativeFilePath += "songs//";
+
+            if (folder == 1) relativeFilePath += "images//";
 
             Path originalFile = Paths.get(path);
             File song = new File(relativeFilePath+=fileName);
