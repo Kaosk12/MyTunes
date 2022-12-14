@@ -540,19 +540,26 @@ public class MainController implements Initializable {
             }
             //if no playlist have been selected, then asks the user to create one.
             else {
-                String header = "No playlist have been selected!";
-                String content = "Do you want to create a new playlist?";
-                if (ConfirmDelete.confirm(header, content)){
-                    handlePlaylistNew();
-                    PlaylistController.setAddSong(true);
-                }
+                newPlaylistWithSOP();
             }
-
             //updates the song amount
             tbvPlayLists.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
+    }
+
+    /**
+     * creates a playlist and adds a song to it.
+     */
+    public void newPlaylistWithSOP(){
+        String header = "No playlist have been selected!";
+        String content = "Do you want to create a new playlist?";
+        if (ConfirmDelete.confirm(header, content)){
+            handlePlaylistNew();
+            PlaylistController.setAddSong(true);
+        }
+
     }
 
     /**
