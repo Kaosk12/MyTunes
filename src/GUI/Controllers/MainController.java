@@ -40,7 +40,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     private boolean darkMode;
-    public static String style = "/GUI/CSS/DarkMode.css";
+    public static String style = "/GUI/CSS/TestColorVar.css";
     @FXML
     private GridPane app;
     private double xOffset = 0;
