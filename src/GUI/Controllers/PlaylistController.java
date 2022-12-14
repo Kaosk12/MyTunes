@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import BE.PlayList;
 import GUI.Models.PlayListModel;
+import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,10 +30,14 @@ public class PlaylistController implements Initializable {
     private PlayListModel playListModel;
     private PlayList playList;
     private String playlistName;
-    private Boolean createNewPlayList = false;
+    private boolean createNewPlayList = false;
+    private static boolean addSong = false;
 
     public void setModel(PlayListModel playListModel){
         this.playListModel = playListModel;
+    }
+    public static void setAddSong(boolean addSOP){
+        addSong = addSOP;
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,7 +86,13 @@ public class PlaylistController implements Initializable {
                 //we create a new playlist object.
                 PlayList p = new PlayList(playlistName);
                 //we insert our new playlist into the db.
-                playListModel.createPlayList(p);
+                playListModel.createPlayList(p, addSong);
+
+                //we set focus on the new playlist
+                tbvPlayLists.getSelectionModel().selectLast();
+
+                //we reset the add song boolean.
+                addSong = false;
                 //we do this, so we can edit a playlist if needed.
                 createNewPlayList = false;
             }

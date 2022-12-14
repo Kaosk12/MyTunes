@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="fixed comments a bit more.">
+    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="error with songsInPlayList">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="MainView_Igen" />
+        <entry key="$PROJECT_DIR$" value="TestingDeselect" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,18 +36,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="GUI.Models" />
@@ -75,6 +76,7 @@
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -90,6 +92,7 @@
       <workItem from="1670401156209" duration="4564000" />
       <workItem from="1670573987522" duration="364000" />
       <workItem from="1670843582611" duration="17000" />
+      <workItem from="1670919223362" duration="4905000" />
     </task>
     <task id="LOCAL-00001" summary="SongPath correction">
       <created>1669802607131</created>
@@ -133,7 +136,35 @@
       <option name="project" value="LOCAL" />
       <updated>1670403897334</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Merges and fix for createPlaylist.">
+      <created>1670844975864</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670844975864</updated>
+    </task>
+    <task id="LOCAL-00008" summary="now ask to create a playlist if no playlist have been clicked. Need to fix that you cant deselect a playlist properly.">
+      <created>1670923765605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670923765605</updated>
+    </task>
+    <task id="LOCAL-00009" summary="the song is now added when you create a playlist.">
+      <created>1671007485919</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671007485919</updated>
+    </task>
+    <task id="LOCAL-00010" summary="error with songsInPlayList">
+      <created>1671011438624</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671011438624</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +188,10 @@
     <MESSAGE value="delete playlist now works." />
     <MESSAGE value="Create playlist now works." />
     <MESSAGE value="made changes according to card comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="made changes according to card comments." />
+    <MESSAGE value="Merges and fix for createPlaylist." />
+    <MESSAGE value="now ask to create a playlist if no playlist have been clicked. Need to fix that you cant deselect a playlist properly." />
+    <MESSAGE value="the song is now added when you create a playlist." />
+    <MESSAGE value="error with songsInPlayList" />
+    <option name="LAST_COMMIT_MESSAGE" value="error with songsInPlayList" />
   </component>
 </project>
