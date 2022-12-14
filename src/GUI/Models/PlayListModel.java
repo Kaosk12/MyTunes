@@ -68,6 +68,7 @@ public class PlayListModel {
      */
     public void addSongToPlayList() throws Exception {
         Song song = SongModel.getSelectedSong();
+        System.out.println("check song" + song.getTitle());
         //if the user have selected a playlist, then adds a song to it.
         if(selectedPlaylist != null){
             playListManager.addSongToPlayList(selectedPlaylist, song);
@@ -77,6 +78,7 @@ public class PlayListModel {
 
             //Updates the list in the effected PlayList object.
             selectedPlaylist.addSongToPlaylist(song);
+            System.out.println("check 2");
         }
     }
 
@@ -100,14 +102,17 @@ public class PlayListModel {
         playListsInList.remove(selectedPlaylist);
     }
 
-    public void createPlayList(PlayList playList, boolean addSong) throws Exception {
+    public PlayList createPlayList(PlayList playList, boolean addSong) throws Exception {
         //Inserts the new playlist into the db
         PlayList newPlaylist = playListManager.createPlayList(playList);
-        if (addSong){
-            newPlaylist.addSongToPlaylist(SongModel.getSelectedSong());
-        }
+
         //Adds the new playlist to observable playlists.
         playListsInList.add(newPlaylist);
+        if (addSong){
+            selectedPlaylist = newPlaylist;
+            addSongToPlayList();
+        }
+        return newPlaylist;
     }
 
     public void moveSOP(Boolean moveUp) throws Exception{

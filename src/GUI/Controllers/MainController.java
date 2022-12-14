@@ -535,10 +535,11 @@ public class MainController implements Initializable {
      */
     public void handleSOPAdd() {
         try {
-            playlistModel.addSongToPlayList();
-
+            if (PlayListModel.getSelectedPlaylist() != null) {
+                playlistModel.addSongToPlayList();
+            }
             //if no playlist have been selected, then asks the user to create one.
-            if(PlayListModel.getSelectedPlaylist() == null){
+            else {
                 String header = "No playlist have been selected!";
                 String content = "Do you want to create a new playlist?";
                 if (ConfirmDelete.confirm(header, content)){
