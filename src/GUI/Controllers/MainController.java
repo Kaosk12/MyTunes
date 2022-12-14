@@ -72,7 +72,7 @@ public class MainController implements Initializable {
     @FXML
     private Button btnPlayerPlayPause; //+ btnPlayerNext,btnPlayerPrevious
     @FXML
-    private ToggleButton volumeButton, btnSettings;
+    private ToggleButton volumeButton, btnSettings, btnShuffleAtEnd, btnRepeatAtEnd;
     @FXML
     private Button btnEditPlayList, btnDeletePlayList;
 
@@ -825,6 +825,7 @@ public class MainController implements Initializable {
             mediaModel.setRepeatBtnSelected(true);
 
             mediaModel.setShuffleBtnSelected(false);
+            btnShuffleAtEnd.setSelected(false);
         }
     }
 
@@ -841,6 +842,7 @@ public class MainController implements Initializable {
             mediaModel.setShuffleBtnSelected(true);
 
             mediaModel.setRepeatBtnSelected(false);
+            btnRepeatAtEnd.setSelected(false);
         }
     }
 
