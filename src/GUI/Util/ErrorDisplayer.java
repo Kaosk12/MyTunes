@@ -1,6 +1,8 @@
 package GUI.Util;
 
+import GUI.Controllers.MainController;
 import javafx.scene.control.Alert;
+import javafx.stage.StageStyle;
 
 public class ErrorDisplayer {
     /**
@@ -9,6 +11,9 @@ public class ErrorDisplayer {
      */
     public static void displayError(Throwable throwable) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().getStylesheets().removeAll();
+        alert.getDialogPane().getStylesheets().add(MainController.style);
+        alert.initStyle(StageStyle.UNDECORATED);
         alert.setTitle("Something went wrong...");
         alert.setHeaderText(throwable.getLocalizedMessage());
         alert.showAndWait();

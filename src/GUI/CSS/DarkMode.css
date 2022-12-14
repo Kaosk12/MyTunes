@@ -142,3 +142,8 @@
     -fx-text-background-color: #1B262C;
     -fx-background-radius: 15px;
 }
+
+.dialog-pane, .dialog-pane .header-panel {
+    -fx-background-color: #1B262C;
+    -fx-border-color: #bbe1fa;
+}

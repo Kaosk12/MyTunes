@@ -1,7 +1,9 @@
 package GUI.Util;
 
+import GUI.Controllers.MainController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.StageStyle;
 
 import java.util.Optional;
 
@@ -14,6 +16,9 @@ public class ConfirmDelete {
      */
     public static boolean confirm(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.getDialogPane().getStylesheets().removeAll();
+        alert.getDialogPane().getStylesheets().add(MainController.style);
+        alert.initStyle(StageStyle.UNDECORATED);
         alert.setTitle("Confirm Delete");
         alert.setHeaderText(header);
         alert.setContentText(content);
