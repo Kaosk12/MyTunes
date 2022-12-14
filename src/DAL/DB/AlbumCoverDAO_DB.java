@@ -57,18 +57,19 @@ public class AlbumCoverDAO_DB implements IAlbumCoverDAO {
 
     @Override
     public void createAlbumCover(int songID, File file) throws Exception {
-        String path = file.getAbsolutePath();
         FileInputStream fileInputStream = null;
+        String path = file.getAbsolutePath();
 
-        String sql = "INSERT INTO AlbumCovers (SongID, Image) VALUES (?,?);";
+        String sql = "INSERT INTO AlbumCovers (SongId, ImageName, ImageData) VALUES (?,?,?);";
 
         try(Connection connection = databaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            fileInputStream = new FileInputStream(path);
+            fileInputStream = new FileInputStream(file);
 
             statement.setInt(1, songID);
-            statement.setBinaryStream(2, fileInputStream);
+            statement.setString(2, path);
+            statement.setBinaryStream(3, fileInputStream, fileInputStream.available());
 
         } catch (SQLException e) {
             e.printStackTrace();
