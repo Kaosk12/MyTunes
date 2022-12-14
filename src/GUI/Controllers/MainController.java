@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainController implements Initializable {
 
@@ -41,6 +43,7 @@ public class MainController implements Initializable {
     public Slider volumeSlider;
     public Button volumeButton;
     public Slider timeSlider;
+    public Label labelPlayerCounter;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -125,27 +128,29 @@ public class MainController implements Initializable {
     }
 
     private void addTimeSliderListener() {
-        timeSlider.valueProperty().addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-                mediaModel.getMediaPlayer().seek(mediaModel.getMediaPlayer().getTotalDuration().multiply(timeSlider.getValue() / 100));
 
-                if(timeSlider.isValueChanging()){
-                    mediaModel.getMediaPlayer().seek(mediaModel.getMediaPlayer().getMedia().getDuration().multiply(timeSlider.getValue() / 100.0));
+        timeSlider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!newValue) {
+                    timeSlider.setMax(mediaModel.getMediaPlayer().getTotalDuration().toSeconds());
+
+                    mediaModel.getMediaPlayer().seek(Duration.seconds(timeSlider.getValue()));
                 }
             }
         });
-
-        mediaModel.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-            if (!timeSlider.isValueChanging()){
-                timeSlider.setValue(newValue.toSeconds());
-                System.out.println("gg");
+        timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double currentTime = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                if (Math.abs(currentTime - newValue.doubleValue()) > 0.5) {
+                    mediaModel.getMediaPlayer().seek(Duration.seconds(newValue.doubleValue()));
+                }
             }
-            System.out.println("jj");
-
         });
-
     }
+    
+
 
 
 
@@ -421,6 +426,7 @@ public class MainController implements Initializable {
 
         if (mediaModel.isPlaying()) {
             btnPlayerPlayPause.setText("⏸");
+            beginTimer();
         } else {
             btnPlayerPlayPause.setText("⏵");
         }
@@ -465,8 +471,23 @@ public class MainController implements Initializable {
             }
             //adds listener for when the song is finished
             endOfSongListener();
+            beginTimer();
         });
         setPlayerLabels();
+    }
+
+    public void beginTimer() {
+         Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                timeSlider.setMax(mediaModel.getMediaPlayer().getTotalDuration().toSeconds());
+                double current = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                timeSlider.setValue(current);
+                labelPlayerCounter.setText(String.valueOf(mediaModel.getMediaPlayer().getCurrentTime().toSeconds()));
+            }
+        };
+        timer.scheduleAtFixedRate(task, 10, 10);
     }
 
     private void shuffleSongs() {

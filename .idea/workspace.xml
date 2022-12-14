@@ -4,7 +4,6 @@
     <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="fixed comments a bit more.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +91,8 @@
       <workItem from="1670573987522" duration="364000" />
       <workItem from="1670843582611" duration="17000" />
       <workItem from="1670847925051" duration="4929000" />
+      <workItem from="1670920191931" duration="635000" />
+      <workItem from="1671001223353" duration="2101000" />
     </task>
     <task id="LOCAL-00001" summary="SongPath correction">
       <created>1669802607131</created>
