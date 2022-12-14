@@ -470,7 +470,6 @@ public class MainController implements Initializable {
             beginTimer();
         });
         setPlayerLabels();
-        System.out.println(mediaModel.getSelectedSong());
     }
 
     /**
