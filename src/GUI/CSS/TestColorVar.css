@@ -1,37 +1,59 @@
 
+/*
+
+hey Michael, jeg har lavet en topklasse alle "arver fra" den bruger vi til at sætte alle farver og effekter.
+tænker det kan være en sketch for hvordan vi opbygger dark og light theme og måske flere hvis vi har lyst.
+den er bygget ud fra dark theme men tænker vi laver den færdig inden vi laver andre themes ud fra den.
+
+jeg prøvede lige for sjov at smide en color pallet ind og det tog 3 minutter, at lave den programmet starter op med nu.
+jeg har kun lige udfyldt lidt af hvad hver farve gør så hvis du spotter noget må du gerne skrive det på.
+
+todo:
+jeg tænker vi skal have det delt op i variabler der giver mening, så en variable ikke gør for mange ting, da det er træls at designe med.
+se color2 der både gør noget med volume og med artist name...
+tror det er nemmest at få gjordt før vi bygger flere linjer css så det er nemt at implementere nyt design i længden + det ser fed ud
+ */
+
+
 *{
-    -fx-color1: #1B262C;
+    -fx-color1: #CCD6A6; /* main background, table background*/
+    -fx-color2: #227C70; /* volume slider btn, time slider btn, artist name, album name */
+    -fx-color3: #F4EAD5;/*buttons*/
+    -fx-color4: #227C70;/* colum title , volume bar, time seeker bar*/
+    -fx-color5: #CCD6A6;/*option button icon when select*/
+    -fx-color6: #F4EAD5; /* option button background*/
+    -fx-color20: #FFFBE9;/*button text*/
 
-    -fx-color2: #bbe1fa;
-    -fx-color3: #0F4C75;/*   */
-    -fx-color4: #3282B8;/*   */
-    -fx-color5: #555555;/*   */
+    -fx-effect1: innershadow(three-pass-box, rgb(255,250,250), 10, 0, 0, 0); /* button outline, table text, button text bottom */
+    -fx-effect2: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0); /*image view, button border when pressed */
+    -fx-effect3: innershadow(three-pass-box, rgb(255,127,80), 10, 0, 0, 0); /* toggle button border when on, repeat button border when on, mute border when on*/
+    -fx-effect4: innershadow(three-pass-box, rgb(0,0,0), 10, 0, 0, 0); /* options button border when selected */
 
-    -fx-color6: white;/*   */
+
 }
 
 .root {
     -fx-background-color: -fx-color1;
-    -fx-border-color: #-fx-color2;
+    -fx-border-color: -fx-color2;
     -fx-border-radius: 10;
 }
 
 .button, .toggle-button {
     -fx-background-color: -fx-color3;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
-    -fx-text-fill: -fx-color6;
+    -fx-effect: -fx-effect1;
+    -fx-text-fill: -fx-color20;
     -fx-background-radius: 15;
 }
 
 .button:pressed {
     -fx-background-color: -fx-color3;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0);
+    -fx-effect: -fx-effect2;
     -fx-text-fill: -fx-color2;
 }
 
 .toggle-button:selected {
     -fx-background-color: -fx-color2;
-    -fx-effect: innershadow(three-pass-box, rgb(15, 76, 117), 10, 0, 0, 0);
+    -fx-effect: -fx-effect3;
     -fx-text-fill: -fx-color3;
     -fx-background-radius: 15;
 }
@@ -41,8 +63,8 @@
 }
 
 #btnSettings:selected {
-    -fx-background-color: #D9E4DD;
-    -fx-effect: innershadow(three-pass-box, rgb(217, 228, 221), 10, 0, 0, 0);
+    -fx-background-color: -fx-color6;
+    -fx-effect:   -fx-effect4;
     -fx-text-fill: -fx-color5;
 }
 
@@ -59,7 +81,7 @@
 }
 
 .image-view {
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0);
+    -fx-effect: -fx-effect2;
 }
 
 .text-field {
@@ -82,7 +104,7 @@
     -fx-control-inner-background: transparent;
     -fx-border-color: -fx-color2;
     -fx-border-radius: 10;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
+    -fx-effect: -fx-effect1;
 }
 
 .table-view .column-header-background .filler, .list-view .column-header-background .filler {

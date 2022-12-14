@@ -28,7 +28,7 @@ public class Main extends Application {
         primaryStage.setMaxHeight(736.0);
 
         //Add styling with CSS
-        primaryStage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/TestColorVar.css").toExternalForm());
 
         primaryStage.show();
     }
