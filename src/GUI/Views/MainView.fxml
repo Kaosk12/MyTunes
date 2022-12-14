@@ -119,7 +119,7 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                        <Slider layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="300.0" />
+                        <Slider fx:id="timeSlider" layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="300.0" />
                         <Label fx:id="labelPlayerTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="16.0" />

@@ -8,11 +8,16 @@ import GUI.Models.PlayListModel;
 import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
 import GUI.Util.TimeCellFactory;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,11 +34,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 public class MainController implements Initializable {
 
+
+    @FXML
+    private Label btnArtistPlaying;
+    @FXML
+    private Label labelCurrentSongDuration;
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private Slider timeSlider;
+    @FXML
+    private Label labelPlayerCounter;
     @FXML
     private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
     @FXML
@@ -91,6 +108,7 @@ public class MainController implements Initializable {
         songInPlaylistListener();
         initializeSongTbv();
         initializePlaylistTbv();
+        initializeVolumeSlider();
 
         //Disable the clear button
         setSearchButtons(true);
@@ -111,17 +129,39 @@ public class MainController implements Initializable {
         setSongsOnPlaylistManipulatingButtons(true);
 
 
-        initializeVolumeSlider();
+
         addVolumeSliderListener();
+
+        addTimeSliderListener();
     }
 
-    private void addVolumeSliderListener() {
-        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+    /**
+     * Sets the current time on the song to
+     * match the time slider's position.
+     */
+    private void addTimeSliderListener() {
+        timeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
-            public void invalidated(Observable observable) {
-                mediaModel.getMediaPlayer().setVolume(volumeSlider.getValue()/100);
-                mediaModel.setVolume(volumeSlider.getValue()/100);
+            public void handle(MouseEvent event) {
+                double currentTime = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                double timeSliderValue = timeSlider.getValue();
+                // Makes sure that the user can't seek under 0.5 seconds.
+                double minSeek = 0.5;
+                if (Math.abs(currentTime - timeSliderValue) > minSeek) {
+                    mediaModel.getMediaPlayer().seek(Duration.seconds(timeSliderValue));
+                }
             }
+        });
+    }
+
+
+    /**
+     * sets volume in mediaPlayer according to the volume slider.
+     */
+    private void addVolumeSliderListener() {
+        volumeSlider.valueProperty().addListener(observable -> {
+            mediaModel.getMediaPlayer().setVolume(volumeSlider.getValue()/100);
+            mediaModel.setVolume(volumeSlider.getValue()/100);
         });
     }
 
@@ -373,6 +413,7 @@ public class MainController implements Initializable {
 
         if (mediaModel.isPlaying()) {
             btnPlayerPlayPause.setText("⏸");
+            beginTimer();
         } else {
             btnPlayerPlayPause.setText("⏵");
         }
@@ -419,8 +460,46 @@ public class MainController implements Initializable {
             }
             //adds listener for when the song is finished
             endOfSongListener();
+            beginTimer();
         });
         setPlayerLabels();
+    }
+
+    /**
+     * begins a timer that updates the time slider and sets current time in song
+     */
+    public void beginTimer() {
+        //sets a timer that updates time-slider each second
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            if (!timeSlider.isValueChanging()) {
+                //sets the max index of time slider to song duration
+                timeSlider.setMax(mediaModel.getMediaPlayer().getTotalDuration().toSeconds());
+                //updates the time slider to current time in song
+                double current = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                timeSlider.setValue(current);
+
+                //display the current time in song
+                int duration = (int) mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                labelPlayerCounter.setText(timeWriter(duration));
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    /**
+     * returns seconds formatted as min:seconds
+     * @param seconds to convert
+     * @return formatted string of min:seconds
+     */
+    private String timeWriter(int seconds){
+
+        int m = seconds/60;
+        int s = seconds%60;
+        String mins = String.format("%02d", m);
+        String secs = String.format("%02d", s);
+        String time = mins + ":" + secs;
+        return time;
     }
 
     private void shuffleSongs() {
