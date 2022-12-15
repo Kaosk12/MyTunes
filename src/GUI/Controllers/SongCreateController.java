@@ -43,6 +43,7 @@ public class SongCreateController implements Initializable {
     private  MediaPlayer mediaPlayer;
     private int duration;
     private File albumCover;
+    private File file;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -120,16 +121,21 @@ public class SongCreateController implements Initializable {
 
         fileChooser.getExtensionFilters().add(audioExtensions);
         fileChooser.getExtensionFilters().add(videoExtensions);
-        File file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-        textFile.setText(file.getAbsolutePath());
 
-        Media media = new Media(file.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+        file = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
 
-        //MediaPlayer must be set on ready to get the duration
-        getSongDuration(media);
+        if(file != null) {
+            textFile.setText(file.getAbsolutePath());
 
-        metaGetListener(media);
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+
+            //MediaPlayer must be set on ready to get the duration
+            getSongDuration(media);
+
+            metaGetListener(media);
+        }
+
     }
 
     /**
