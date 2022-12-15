@@ -67,6 +67,16 @@ public class PlayListModel {
     }
 
     /**
+     * clears the playlist and retrieves the playlist from the database again.
+     * @throws Exception
+     */
+    public void refreshPlaylist() throws Exception {
+        playListsInList.clear();
+        playListsInList.addAll(playListManager.getAllPlayLists());
+
+    }
+
+    /**
      * Adds the last selected song to the last selected PlayList.
      * @throws Exception If it fails to add the song to the playlist.
      */

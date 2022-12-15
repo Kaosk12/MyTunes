@@ -749,13 +749,18 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
-        stage.show();
-
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
         SongUpdateController controller = loader.getController();
         controller.setModel(songModel);
+
+        //shows the Edit song window and wait for it to shut down.
+        stage.showAndWait();
+        //refreshes the playlists.
+        refreshPlaylist();
     }
+
+
 
     /**
      * Delete a song from the library
@@ -770,12 +775,14 @@ public class MainController implements Initializable {
 
             if (deleteSong) {
                 songModel.deleteSong(SongModel.getSelectedSong());
+
             }
+
         }
         catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-
+        refreshPlaylist();
         handleClear();
     }
 
@@ -875,5 +882,18 @@ public class MainController implements Initializable {
             volumeButton.setStyle("-fx-background-color: #bbe1fa; -fx-text-fill: #1B262C");
 
         }
+    }
+
+    /**
+     * clears all playlist objects, then retrieves them again from the database.
+     */
+    private void refreshPlaylist(){
+        try {
+            playlistModel.refreshPlaylist();
+            tbvPlayLists.getSelectionModel().select(PlayListModel.getSelectedPlaylist());
+        } catch (Exception e) {
+            ErrorDisplayer.displayError(e);
+        }
+
     }
 }
