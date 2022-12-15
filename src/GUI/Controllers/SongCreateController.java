@@ -33,7 +33,7 @@ public class SongCreateController implements Initializable {
     private double yOffset = 0;
 
     @FXML
-    private Button btnCancel, btnOK;
+    private Button btnCancel, btnOK, btnRemoveImage;
     @FXML
     private TextField textTitle, textArtist, textGenre, textFile, textImage;
     @FXML
@@ -57,7 +57,10 @@ public class SongCreateController implements Initializable {
         addFileListener();
         addTitleListener();
         addArtistListener();
+        addGenreListener();
          */
+        btnRemoveImage.setDisable(true);
+        addImageListener();
         addMoveWindowListener();
     }
 
@@ -210,6 +213,21 @@ public class SongCreateController implements Initializable {
     }
 
     /**
+     * Adds a listener to the title property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addTitleListener() {
+        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isTitleEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
      * Adds a listener to the artist property.
      * If it is empty, then it disables the "ok" button.
      */
@@ -221,6 +239,37 @@ public class SongCreateController implements Initializable {
             }
             else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
                 btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Adds a listener to the genre property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addGenreListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textGenre.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isGenreEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Adds a listener to the image property.
+     * If it is empty, then it disables the "remove" button.
+     */
+    private void addImageListener() {
+        textImage.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isImageEmpty()) {
+                btnRemoveImage.setDisable(true);
+            }
+            else {
+                btnRemoveImage.setDisable(false);
             }
         });
     }
@@ -252,30 +301,20 @@ public class SongCreateController implements Initializable {
         return false;
     }
 
-    /**
-     * Adds a listener to the title property.
-     * If it is empty, then it disables the "ok" button.
-     */
-    private void addTitleListener() {
-        textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (isTitleEmpty()) {
-                btnOK.setDisable(true);
-            }
-            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
-                btnOK.setDisable(false);
-            }
-        });
-    }
-
     private boolean isFileEmpty() {
         return textFile.getText().trim().isEmpty();
     }
     private boolean isTitleEmpty() {
         return textTitle.getText().trim().isEmpty();
     }
-
     private boolean isArtistEmpty() {
         return textArtist.getText().trim().isEmpty();
+    }
+    private boolean isGenreEmpty() {
+        return textGenre.getText().trim().isEmpty();
+    }
+    private boolean isImageEmpty() {
+        return textImage.getText().trim().isEmpty();
     }
 
     /**

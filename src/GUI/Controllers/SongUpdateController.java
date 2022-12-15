@@ -36,7 +36,7 @@ public class SongUpdateController implements Initializable {
     @FXML
     private TextField textTitle, textArtist, textGenre, textImage;
     @FXML
-    private Button btnOK, btnCancel;
+    private Button btnOK, btnCancel, btnDeleteImage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +53,9 @@ public class SongUpdateController implements Initializable {
         addTitleListener();
         addArtistListener();
         addMoveWindowListener();
+
+        btnDeleteImage.setDisable(isImageEmpty());
+        addImageListener();
     }
 
     private void addMoveWindowListener() {
@@ -103,12 +106,30 @@ public class SongUpdateController implements Initializable {
         });
     }
 
+    /**
+     * Adds a listener to the image property.
+     * If it is empty or null, then it disables the "remove" button.
+     */
+    private void addImageListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textImage.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isImageEmpty()) {
+                btnDeleteImage.setDisable(true);
+            }
+            else {
+                btnDeleteImage.setDisable(false);
+            }
+        });
+    }
+
     private boolean isTitleEmpty() {
         return textTitle.getText().trim().isEmpty();
     }
-
     private boolean isArtistEmpty() {
         return textArtist.getText().trim().isEmpty();
+    }
+    private boolean isImageEmpty() {
+        return textImage.getText().trim().isEmpty() || textImage.getText().equalsIgnoreCase("null");
     }
 
     /**
