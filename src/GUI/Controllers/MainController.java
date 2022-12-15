@@ -3,16 +3,20 @@ package GUI.Controllers;
 import BE.PlayList;
 import BE.Song;
 import GUI.Models.MediaModel;
-import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
-import GUI.Util.ErrorDisplayer;
 import GUI.Models.SongModel;
+import GUI.Util.ConfirmDelete;
+import GUI.Util.ErrorDisplayer;
 import GUI.Util.TimeCellFactory;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,8 +27,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -35,13 +46,20 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
+    @FXML
+    private GridPane app;
+    private double xOffset = 0;
+    private double yOffset = 0;
     @FXML
     private ImageView imageAlbumCover;
     @FXML
     private Slider volumeSlider;
     @FXML
-    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration;
+    private Slider timeSlider;
+    @FXML
+    private Label labelPlayerCounter;
+    @FXML
+    private Label labelPlayerTitle, labelPlayerArtist, labelPlayerDuration, labelCurrentSongDuration;
     @FXML
     private TextField txtSongSearch;
     @FXML
@@ -92,10 +110,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Adds a listener to the songs in a playlist.
-        songInPlaylistListener();
+        //Initialize tables & volume slider
         initializeSongTbv();
         initializePlaylistTbv();
+        initializeVolumeSlider();
 
         //Disable the clear button
         setSearchButtons(true);
@@ -111,22 +129,60 @@ public class MainController implements Initializable {
         setPlaylistManipulatingButtons(true);
 
         addPlaylistSelectionListener();
+        songInPlaylistListener();
 
         //Disable the Move Up/Down buttons for Song on Playlist.
         setSongsOnPlaylistManipulatingButtons(true);
 
-
-        initializeVolumeSlider();
         addVolumeSliderListener();
+        addTimeSliderListener();
+        addMoveWindowListener();
     }
 
-    private void addVolumeSliderListener() {
-        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+    private void addMoveWindowListener() {
+        app.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void invalidated(Observable observable) {
-                mediaModel.getMediaPlayer().setVolume(volumeSlider.getValue()/100);
-                mediaModel.setVolume(volumeSlider.getValue()/100);
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
             }
+        });
+        app.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                app.getScene().getWindow().setX(event.getScreenX() - xOffset);
+                app.getScene().getWindow().setY(event.getScreenY() - yOffset);
+            }
+        });
+    }
+
+    /**
+     * Sets the current time on the song to
+     * match the time slider's position.
+     */
+    private void addTimeSliderListener() {
+        timeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double currentTime = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                double timeSliderValue = timeSlider.getValue();
+                // Makes sure that the user can't seek under 0.5 seconds.
+                double minSeek = 0.5;
+                if (Math.abs(currentTime - timeSliderValue) > minSeek) {
+                    mediaModel.getMediaPlayer().seek(Duration.seconds(timeSliderValue));
+                }
+            }
+        });
+    }
+
+
+    /**
+     * sets volume in mediaPlayer according to the volume slider.
+     */
+    private void addVolumeSliderListener() {
+        volumeSlider.valueProperty().addListener(observable -> {
+            mediaModel.getMediaPlayer().setVolume(volumeSlider.getValue()/100);
+            mediaModel.setVolume(volumeSlider.getValue()/100);
         });
     }
 
@@ -155,7 +211,6 @@ public class MainController implements Initializable {
     private void setPlaylistManipulatingButtons(boolean disable) {
         btnDeletePlayList.setDisable(disable);
         btnEditPlayList.setDisable(disable);
-        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -166,6 +221,7 @@ public class MainController implements Initializable {
     private void setSongManipulatingButtons(boolean disable) {
         btnSongEdit.setDisable(disable);
         btnSongDelete.setDisable(disable);
+        btnSOPAdd.setDisable(disable);
     }
 
     /**
@@ -195,6 +251,9 @@ public class MainController implements Initializable {
             }
             else {
                 setPlaylistManipulatingButtons(true);
+                playlistModel.setSelectedPlaylist(null);
+                // Clears the Songs in Playlist table when playlist is de-selected
+                playlistModel.getObservableSongsInPlayList(PlayListModel.getSelectedPlaylist());
             }
         });
     }
@@ -375,6 +434,7 @@ public class MainController implements Initializable {
 
         if (mediaModel.isPlaying()) {
             btnPlayerPlayPause.setText("⏸");
+            beginTimer();
         } else {
             btnPlayerPlayPause.setText("⏵");
         }
@@ -429,8 +489,46 @@ public class MainController implements Initializable {
             }
             //adds listener for when the song is finished
             endOfSongListener();
+            beginTimer();
         });
         setPlayerLabels();
+    }
+
+    /**
+     * begins a timer that updates the time slider and sets current time in song
+     */
+    public void beginTimer() {
+        //sets a timer that updates time-slider each second
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+            if (!timeSlider.isValueChanging()) {
+                //sets the max index of time slider to song duration
+                timeSlider.setMax(mediaModel.getMediaPlayer().getTotalDuration().toSeconds());
+                //updates the time slider to current time in song
+                double current = mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                timeSlider.setValue(current);
+
+                //display the current time in song
+                int duration = (int) mediaModel.getMediaPlayer().getCurrentTime().toSeconds();
+                labelPlayerCounter.setText(timeWriter(duration));
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    /**
+     * returns seconds formatted as min:seconds
+     * @param seconds to convert
+     * @return formatted string of min:seconds
+     */
+    private String timeWriter(int seconds){
+
+        int m = seconds/60;
+        int s = seconds%60;
+        String mins = String.format("%02d", m);
+        String secs = String.format("%02d", s);
+        String time = mins + ":" + secs;
+        return time;
     }
 
     private void shuffleSongs() {
@@ -480,6 +578,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new playlist");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
@@ -515,6 +614,7 @@ public class MainController implements Initializable {
         stage.setTitle("Edit playlist name");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         //Add styling with CSS
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
@@ -547,13 +647,31 @@ public class MainController implements Initializable {
      */
     public void handleSOPAdd() {
         try {
-            playlistModel.addSongToPlayList();
-
+            if (PlayListModel.getSelectedPlaylist() != null) {
+                playlistModel.addSongToPlayList();
+            }
+            //if no playlist have been selected, then asks the user to create one.
+            else {
+                newPlaylistWithSOP();
+            }
             //updates the song amount
             tbvPlayLists.refresh();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
+    }
+
+    /**
+     * creates a playlist and adds a song to it.
+     */
+    public void newPlaylistWithSOP(){
+        String header = "No playlist have been selected!";
+        String content = "Do you want to create a new playlist?";
+        if (ConfirmDelete.confirm(header, content)){
+            handlePlaylistNew();
+            PlaylistController.setAddSong(true);
+        }
+
     }
 
     /**
@@ -617,6 +735,7 @@ public class MainController implements Initializable {
         stage.setTitle("Add new song");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 
@@ -644,6 +763,7 @@ public class MainController implements Initializable {
         stage.setTitle("Edit");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
         stage.show();
 

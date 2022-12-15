@@ -1,18 +1,32 @@
+
+
+*{
+    -fx-mainBgColor: #1B262C;
+    -fx-borderColor: #bbe1fa;
+    -fx-textColor: #bbe1fa;
+    -fx-textColor2: white;
+    -fx-buttonColor: #0F4C75;
+    -fx-sliderColor: #3282B8;
+}
+
+
 .root {
-    -fx-background-color: #1B262C;
+    -fx-background-color: -fx-mainBgColor;
+    -fx-border-color: -fx-borderColor;
+    -fx-border-radius: 10;
 }
 
 .button {
-    -fx-background-color: #0F4C75;
+    -fx-background-color: -fx-buttonColor;
     -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-textColor2;
     -fx-background-radius: 15;
 }
 
 .button:pressed {
-    -fx-background-color: #0F4C75;
+    -fx-background-color: -fx-buttonColor;
     -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0);
-    -fx-text-fill: #bbe1fa;
+    -fx-text-fill: -fx-textColor;
 }
 
 #btnPlayerPrevious,#btnPlayerPlayPause,#btnPlayerNext,#btnRepeatAtEnd,#btnShuffleAtEnd,#volumeButton,#btnSearch,#btnSearchClear,#btnSettings {
@@ -24,11 +38,11 @@
 }
 
 .slider .track {
-    -fx-background-color: #3282B8;
+    -fx-background-color: -fx-sliderColor;
 }
 
 .slider .thumb {
-    -fx-background-color: #bbe1fa;
+    -fx-background-color: -fx-borderColor;
 }
 
 .image-view {
@@ -37,14 +51,14 @@
 
 .text-field {
     -fx-background-color: transparent;
-    -fx-border-color: #0F4C75;
+    -fx-border-color: -fx-buttonColor;
     -fx-border-radius: 15;
-    -fx-text-fill: #bbe1fa;
-    -fx-prompt-text-fill: #bbe1fa;
+    -fx-text-fill: -fx-textColor;
+    -fx-prompt-text-fill: -fx-textColor;
 }
 
 .label {
-    -fx-text-fill: #bbe1fa;
+    -fx-text-fill: -fx-textColor;
 }
 
 /*
@@ -53,9 +67,9 @@
 .table-view, .list-view {
     -fx-background-color: transparent;
     -fx-control-inner-background: transparent;
-    -fx-border-color: #BBE1FA;
+    -fx-border-color: -fx-borderColor;
     -fx-border-radius: 10;
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-textColor2;
     -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
 }
 
@@ -68,7 +82,7 @@
 }
 
 .table-view .column-header-background, .list-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #3282B8, #0F4C75);
+    -fx-background-color: linear-gradient(to bottom, -fx-sliderColor, -fx-buttonColor);
     -fx-background-radius: 10px 10px 0px 0px;
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 5px 0;
@@ -76,7 +90,7 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
-    -fx-text-background-color: #bbe1fa;
+    -fx-text-background-color: -fx-textColor;
 }
 
 .table-view .table-cell, .list-view .table-cell {
@@ -84,7 +98,7 @@
     -fx-padding: 2 0 2 10px;
 }
 .table-row-cell:hover, .list-cell:hover {
-    -fx-text-background-color: #0F4C75;
+    -fx-text-background-color: -fx-buttonColor;
 }
 .table-row-cell:odd, .list-cell:odd {
     -fx-background-color: transparent;
@@ -116,15 +130,15 @@
 
 .table-view .virtual-flow .scroll-bar:vertical .thumb,
 .list-view .virtual-flow .scroll-bar:vertical .thumb {
-    -fx-background-color:  linear-gradient(to bottom, #3282B8, #0F4C75);
+    -fx-background-color:  linear-gradient(to bottom, -fx-sliderColor, -fx-buttonColor);
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb,
 .list-view .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color:  linear-gradient(to right, #3282B8, #0F4C75);
+    -fx-background-color:  linear-gradient(to right, -fx-sliderColor, -fx-buttonColor);
 }
 
 .table-row-cell:selected, .list-cell:selected {
-    -fx-background-color: #bbe1fa;
-    -fx-text-background-color: #1B262C;
+    -fx-background-color: -fx-borderColor;
+    -fx-text-background-color: -fx-mainBgColor;
     -fx-background-radius: 15px;
 }
