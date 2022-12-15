@@ -1,7 +1,6 @@
 package GUI.Controllers;
 
 import BE.Song;
-import GUI.Models.AlbumCoverModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.collections.MapChangeListener;
@@ -29,19 +28,16 @@ public class SongCreateController implements Initializable {
     @FXML
     private Button btnCancel, btnOK;
     @FXML
-    private TextField textTitle, textArtist, textGenre, textFile;
+    private TextField textTitle, textArtist, textGenre, textFile, textImage;
     @FXML
     private ImageView imageCover;
     private SongModel songModel;
-    //private AlbumCoverModel albumCoverModel;
-
     private  MediaPlayer mediaPlayer;
     private int duration;
     private File albumCover;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //albumCoverModel = new AlbumCoverModel();
         //Disable OK button until the 'not null' values are added
         btnOK.setDisable(true);
 
@@ -68,18 +64,14 @@ public class SongCreateController implements Initializable {
         String artist = textArtist.getText();
         String genre = textGenre.getText();
         int time = duration;
-        String path = textFile.getText(); //??
-            String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
-
+        String path = textFile.getText();
+        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
 
         Song song = new Song(title, artist, genre, time, path, coverPath);
 
         try {
             songModel.createSong(song); //Send the song down the layers to create it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
-            /*if(albumCover != null) {
-                albumCoverModel.createAlbumCover(song.getId(), albumCover);
-            }*/
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -124,21 +116,26 @@ public class SongCreateController implements Initializable {
 
         albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
 
-        Path coverPath = Paths.get(albumCover.getAbsolutePath());
-        Image cover = new Image(coverPath.toUri().toString());
-        imageCover.setImage(cover);
+        if (albumCover != null) {
+            textImage.setText(albumCover.getAbsolutePath());
 
-        //textImage.setText(albumCover.getAbsolutePath());
+            Path coverPath = Paths.get(albumCover.getAbsolutePath());
+            Image cover = new Image(coverPath.toUri().toString());
+            imageCover.setImage(cover);
+        }
     }
 
     public void handleRemoveImage() {
-        albumCover = null;
-        imageCover.setImage(null);
+        if (!textImage.getText().isEmpty()) {
+            albumCover = null;
+            textImage.setText("");
+            imageCover.setImage(null);
+        }
     }
 
     /**
      * waits for metadata and fills out fields in view
-     * @param media
+     * @param media The media file to get the metadata from.
      */
     private void metaGetListener(Media media) {
         //Insert the metadata to the text fields once it has been loaded
@@ -151,7 +148,7 @@ public class SongCreateController implements Initializable {
 
     /**
      * gets the duration in seconds and turns it to minutes and seconds
-     * @param media
+     * @param media The media file to get the duration of.
      */
     private void getSongDuration(Media media) {
         mediaPlayer.setOnReady(new Runnable() {

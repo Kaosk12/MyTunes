@@ -2,7 +2,6 @@ package GUI.Controllers;
 
 import BE.PlayList;
 import BE.Song;
-import GUI.Models.AlbumCoverModel;
 import GUI.Models.MediaModel;
 import GUI.Util.ConfirmDelete;
 import GUI.Models.PlayListModel;
@@ -80,15 +79,12 @@ public class MainController implements Initializable {
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-    //private AlbumCoverModel albumCoverModel;
-
 
     public MainController(){
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
             mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
-            //albumCoverModel = new AlbumCoverModel();
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -408,12 +404,6 @@ public class MainController implements Initializable {
 
             imageAlbumCover.setImage(cover);
         }
-
-        /*try {
-            imageAlbumCover.setImage(albumCoverModel.getAlbumCover(song.getId()));
-        } catch (Exception e) {
-            ErrorDisplayer.displayError(e);
-        }*/
     }
 
     /**

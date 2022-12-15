@@ -1,13 +1,14 @@
 package GUI.Controllers;
 
 import BE.Song;
-import GUI.Models.AlbumCoverModel;
 import GUI.Models.SongModel;
 import GUI.Util.ErrorDisplayer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
@@ -15,13 +16,16 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class SongUpdateController implements Initializable {
     private SongModel songModel;
     private Song song;
-    private AlbumCoverModel albumCoverModel;
     private File albumCover;
+    @FXML
+    private ImageView imageCover;
     @FXML
     private TextField textTitle, textArtist, textGenre, textImage;
     @FXML
@@ -29,11 +33,15 @@ public class SongUpdateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        albumCoverModel = new AlbumCoverModel();
         song = SongModel.getSelectedSong();
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());
+        textImage.setText(song.getCoverPath());
+
+        Path coverPath = Paths.get(song.getCoverPath());
+        Image cover = new Image(coverPath.toUri().toString());
+        imageCover.setImage(cover);
 
         addTitleListener();
         addArtistListener();
@@ -99,12 +107,13 @@ public class SongUpdateController implements Initializable {
         song.setTitle(textTitle.getText());
         song.setArtist(textArtist.getText());
         song.setGenre(textGenre.getText());
+        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
+        song.setCoverPath(coverPath);
 
 
         try {
             songModel.updateSong(song); //Send the song down the layers to update it in the Database.
             songModel.search(""); //Refreshes the list shown to the user by simply searching an empty string.
-            albumCoverModel.updateCover(song.getId(), albumCover);
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -124,10 +133,21 @@ public class SongUpdateController implements Initializable {
         fileChooser.getExtensionFilters().add(imageExtensions);
 
         albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
-        textImage.setText(albumCover.getAbsolutePath());
+
+        if (albumCover != null) {
+            textImage.setText(albumCover.getAbsolutePath());
+
+            Path coverPath = Paths.get(albumCover.getAbsolutePath());
+            Image cover = new Image(coverPath.toUri().toString());
+            imageCover.setImage(cover);
+        }
     }
     public void handleDeleteImage() {
-        //TODO
+        if (!textImage.getText().isEmpty()) {
+            albumCover = null;
+            textImage.setText("");
+            imageCover.setImage(null);
+        }
     }
 
     /**

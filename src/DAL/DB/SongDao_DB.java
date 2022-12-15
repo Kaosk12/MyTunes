@@ -2,6 +2,7 @@ package DAL.DB;
 
 import BE.Song;
 import DAL.Interfaces.ISongDAO;
+import DAL.Util.FileType;
 import DAL.Util.LocalFileHandler;
 
 import java.nio.file.Path;
@@ -84,16 +85,20 @@ public class SongDao_DB implements ISongDAO {
      */
     @Override
     public void updateSong(Song song) throws Exception {
-        String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=? WHERE Id=?;";
+        String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=?, CoverPath=? WHERE Id=?;";
 
         try (Connection connection = databaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
+            String coverPath = String.valueOf(relativeCoverPath);
 
             // Bind parameters
             statement.setString(1, song.getTitle());
             statement.setString(2, song.getArtist());
             statement.setString(3, song.getGenre());
-            statement.setInt(4, song.getId());
+            statement.setString(4, coverPath);
+            statement.setInt(5, song.getId());
 
             // Run the specified SQL statement
             statement.executeUpdate();
@@ -149,8 +154,8 @@ public class SongDao_DB implements ISongDAO {
         try(Connection connection = databaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-            Path relativePath = LocalFileHandler.createLocalFile(song.getPath(), 0);
-            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), 1) : null;
+            Path relativePath = LocalFileHandler.createLocalFile(song.getPath(), FileType.SONG);
+            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
 
             String title = song.getTitle();
             String artist = song.getArtist();
@@ -180,7 +185,6 @@ public class SongDao_DB implements ISongDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new Exception("Failed to create song", e);
-
         }
     }
 }

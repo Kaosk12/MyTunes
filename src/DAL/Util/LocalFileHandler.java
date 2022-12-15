@@ -27,26 +27,26 @@ public class LocalFileHandler {
     }
 
     /**
-     * gets the local path for the song, then creates a new file in the data package and copies song over in the new file
-     * @param path
-     * @param folder 0 if it is a song, 1 if it is an image.
+     * gets the local path for the file, then creates a new file in the data package and copies the original over in the new file
+     * @param path The path of the file to create.
+     * @param fileType The type of the file.
      * @return new path for the song
-     * @throws Exception
+     * @throws Exception If it fails to create the local file.
      */
-    public static Path createLocalFile(String path, int folder) throws Exception {
+    public static Path createLocalFile(String path, FileType fileType) throws Exception {
         try {
             File localFilePath = new File(path);
             String fileName = localFilePath.getName();
 
             String relativeFilePath = "data//";
 
-            if (folder == 0) relativeFilePath += "songs//";
+            if (fileType == FileType.SONG) relativeFilePath += "songs//";
 
-            if (folder == 1) relativeFilePath += "images//";
+            if (fileType == FileType.IMAGE) relativeFilePath += "images//";
 
             Path originalFile = Paths.get(path);
-            File song = new File(relativeFilePath+=fileName);
-            Path finalFile = Paths.get(song.getPath());
+            File file = new File(relativeFilePath+=fileName);
+            Path finalFile = Paths.get(file.getPath());
             Files.copy(originalFile, finalFile, REPLACE_EXISTING);
             return finalFile;
 
@@ -56,5 +56,4 @@ public class LocalFileHandler {
             throw new Exception("Failed to create song", e);
         }
     }
-
 }

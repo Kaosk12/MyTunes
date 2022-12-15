@@ -65,6 +65,8 @@ public class Song {
 
     public String getCoverPath() { return coverPath; }
 
+    public void setCoverPath(String coverPath) { this.coverPath = coverPath; }
+
     @Override
     public String toString() {
         return title;
