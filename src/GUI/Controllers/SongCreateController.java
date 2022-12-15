@@ -38,6 +38,9 @@ public class SongCreateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /**
+         *
+
         //Disable OK button until the 'not null' values are added
         btnOK.setDisable(true);
 
@@ -45,6 +48,7 @@ public class SongCreateController implements Initializable {
         addFileListener();
         addTitleListener();
         addArtistListener();
+         */
     }
 
     public void setModel(SongModel songModel) {
