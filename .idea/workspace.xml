@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Models/AlbumCoverModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/MainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Views/SongCreateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/SongCreateView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Views/SongUpdateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Views/SongUpdateView.fxml" afterDir="false" />
     </list>
