@@ -1,9 +1,9 @@
 *{
     /*<variable>: <color>; <Main purpose> */
-    -fx-color1: #1B262C; /* Background */
-    -fx-color2: #BBE1FA; /* Text */
-    -fx-color3: #0F4C75; /* Buttons */
-    -fx-color4: #3282B8; /* Color Gradient effect */
+    -fx-color1: #C9182B; /* Background */
+    -fx-color2: #F1F8FD; /* Text */
+    -fx-color3: #446A46; /* Buttons */
+    -fx-color4: #446A46; /* Color Gradient effect */
 
     /* Woah den kunne ikke lide det her ... */
     /*-fx-color2rgb: rgb(187, 225, 250); /* Shadow - same as #2 but in rgb */
@@ -18,20 +18,21 @@
 
 .button, .toggle-button {
     -fx-background-color: -fx-color3;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0); */
     -fx-text-fill: -fx-color2;
     -fx-background-radius: 15;
 }
 
 .button:pressed {
     -fx-background-color: -fx-color3;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0); */
     -fx-text-fill: -fx-color2;
+    -fx-font-weight: bold;
 }
 
 .toggle-button:selected {
     -fx-background-color: -fx-color2;
-    -fx-effect: innershadow(three-pass-box, rgb(15, 76, 117), 10, 0, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(15, 76, 117), 10, 0, 0, 0); */
     -fx-text-fill: -fx-color3;
     -fx-background-radius: 15;
 }
@@ -53,7 +54,7 @@
 }
 
 .image-view {
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0); */
 }
 
 .text-field {
@@ -76,7 +77,7 @@
     -fx-control-inner-background: transparent;
     -fx-border-color: -fx-color2;
     -fx-border-radius: 10;
-    -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0, 0, 0); */
 }
 
 .table-view .column-header-background .filler, .list-view .column-header-background .filler {
@@ -102,9 +103,11 @@
 .table-view .table-cell, .list-view .table-cell {
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
+    -fx-text-fill: -fx-color2;
 }
 .table-row-cell:hover, .list-cell:hover {
-    -fx-text-background-color: -fx-color3;
+    -fx-text-background-color: -fx-color2;
+    -fx-font-weight: bold;
 }
 .table-row-cell:odd, .list-cell:odd {
     -fx-background-color: transparent;
@@ -160,6 +163,6 @@
  */
 #btnSettings:selected {
     -fx-background-color: #D9E4DD;
-    -fx-effect: innershadow(three-pass-box, rgb(217, 228, 221), 10, 0, 0, 0);
+    /* -fx-effect: innershadow(three-pass-box, rgb(217, 228, 221), 10, 0, 0, 0); */
     -fx-text-fill: #555555;
 }
