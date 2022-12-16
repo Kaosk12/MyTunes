@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -89,11 +90,8 @@
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
-                        <ImageView fx:id="imageAlbumCover" fitHeight="140.0" fitWidth="140.0" layoutX="110.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="https://www.appledystopia.com/wp-content/uploads/2013/03/missing-itunes-album-art-icon.png" />
-                           </image></ImageView>
-                        <ToggleButton fx:id="btnSettings" layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleStyle" prefHeight="40.0" prefWidth="40.0" text="🎨" textFill="WHITE" wrapText="true">
+                        <ImageView fx:id="imageAlbumCover" fitHeight="140.0" fitWidth="140.0" layoutX="110.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="btnSettings" layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #0F4C75;" text="⚙" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Calibri" size="17.0" />
                            </font>

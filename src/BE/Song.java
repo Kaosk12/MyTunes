@@ -8,6 +8,7 @@ public class Song {
     private String genre;
     private int duration;
     private String path;
+    private String coverPath;
 
     public void setTitle(String title) {
         this.title = title;
@@ -21,21 +22,23 @@ public class Song {
         this.genre = genre;
     }
 
-    public Song(String title, String artist, String genre, int time, String path, int id){
+    public Song(String title, String artist, String genre, int time, String path, int id, String coverPath){
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.duration = time;
         this.path = path;
         this.id = id;
+        this.coverPath = coverPath;
     }
 
-    public Song(String title, String artist, String genre, int time, String path){
+    public Song(String title, String artist, String genre, int time, String path, String coverPath){
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.duration = time;
         this.path = path;
+        this.coverPath = coverPath;
     }
 
     public String getTitle() {
@@ -59,6 +62,10 @@ public class Song {
     }
 
     public String getPath() { return path; }
+
+    public String getCoverPath() { return coverPath; }
+
+    public void setCoverPath(String coverPath) { this.coverPath = coverPath; }
 
     @Override
     public String toString() {

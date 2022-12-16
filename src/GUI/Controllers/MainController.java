@@ -22,12 +22,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -35,6 +36,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -45,6 +48,8 @@ public class MainController implements Initializable {
     private GridPane app;
     private double xOffset = 0;
     private double yOffset = 0;
+    @FXML
+    private ImageView imageAlbumCover;
     @FXML
     private Slider volumeSlider;
     @FXML
@@ -92,7 +97,6 @@ public class MainController implements Initializable {
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
-
 
     public MainController(){
         darkMode = true;
@@ -444,15 +448,23 @@ public class MainController implements Initializable {
      * Sets the player's labels to the current song's title, artist and duration
      */
     private void setPlayerLabels() {
-        labelPlayerTitle.setText(mediaModel.getSelectedSong().getTitle());
-        labelPlayerArtist.setText(mediaModel.getSelectedSong().getArtist());
-        int duration = mediaModel.getSelectedSong().getTime();
+        Song song = mediaModel.getSelectedSong();
+        labelPlayerTitle.setText(song.getTitle());
+        labelPlayerArtist.setText(song.getArtist());
+        int duration = song.getTime();
         int m = duration/60;
         int s = duration%60;
         String mins = String.format("%02d", m);
         String secs = String.format("%02d", s);
         String time = mins + ":" + secs;
         labelPlayerDuration.setText(time);
+
+        if (song.getCoverPath() != null) {
+            Path coverPath = Paths.get(song.getCoverPath());
+            Image cover = new Image(coverPath.toUri().toString());
+
+            imageAlbumCover.setImage(cover);
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ package DAL.DB;
 
 import BE.Song;
 import DAL.Interfaces.ISongDAO;
+import DAL.Util.FileType;
 import DAL.Util.LocalFileHandler;
 
 import java.nio.file.Path;
@@ -39,8 +40,9 @@ public class SongDao_DB implements ISongDAO {
                 int time = rs.getInt("Duration");
                 String path = rs.getString("SongPath");
                 int id = rs.getInt("Id");
+                String coverPath = rs.getString("CoverPath");
 
-                Song song = new Song(title, artist, genre, time, path, id);
+                Song song = new Song(title, artist, genre, time, path, id, coverPath);
                 allSongs.add(song);
             }
         } catch (SQLException e) {
@@ -68,7 +70,9 @@ public class SongDao_DB implements ISongDAO {
             // Run the specified SQL Statement
             statement.executeUpdate();
 
-            LocalFileHandler.deleteLocalFile(song.getPath());
+            // Out commented because we ran into issues with the MediaPlayer class
+            // not properly disposing of the songs.
+            //LocalFileHandler.deleteLocalFile(song.getPath());
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -83,16 +87,20 @@ public class SongDao_DB implements ISongDAO {
      */
     @Override
     public void updateSong(Song song) throws Exception {
-        String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=? WHERE Id=?;";
+        String sql = "UPDATE Songs SET Title=?, Artist=?, Genre=?, CoverPath=? WHERE Id=?;";
 
         try (Connection connection = databaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
+            String coverPath = String.valueOf(relativeCoverPath);
 
             // Bind parameters
             statement.setString(1, song.getTitle());
             statement.setString(2, song.getArtist());
             statement.setString(3, song.getGenre());
-            statement.setInt(4, song.getId());
+            statement.setString(4, coverPath);
+            statement.setInt(5, song.getId());
 
             // Run the specified SQL statement
             statement.executeUpdate();
@@ -126,8 +134,9 @@ public class SongDao_DB implements ISongDAO {
                 int time = rs.getInt("Duration");
                 String path = rs.getString("SongPath");
                 int id = rs.getInt("Id");
+                String coverPath = rs.getString("CoverPath");
 
-                Song song = new Song(title, artist, genre, time, path, id);
+                Song song = new Song(title, artist, genre, time, path, id, coverPath);
 
                 return song;
             }
@@ -142,17 +151,19 @@ public class SongDao_DB implements ISongDAO {
     @Override
     public Song createSong(Song song) throws Exception {
 
-        String sql = "INSERT INTO Songs (Title, Artist, Genre, Duration, SongPath) VALUES (?,?,?,?,?) ;";
+        String sql = "INSERT INTO Songs (Title, Artist, Genre, Duration, SongPath, CoverPath) VALUES (?,?,?,?,?,?) ;";
 
         try(Connection connection = databaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
-            Path relativePath = LocalFileHandler.createLocalFile(song.getPath());
+            Path relativePath = LocalFileHandler.createLocalFile(song.getPath(), FileType.SONG);
+            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
 
             String title = song.getTitle();
             String artist = song.getArtist();
             String genre = song.getGenre();
             String path = String.valueOf(relativePath);
+            String coverPath = String.valueOf(relativeCoverPath);
 
             int time = song.getTime();
 
@@ -161,6 +172,7 @@ public class SongDao_DB implements ISongDAO {
             statement.setString(3, genre);
             statement.setInt(4, time);
             statement.setString(5, path);
+            statement.setString(6, coverPath);
 
             statement.executeUpdate();
             int id = 0;
@@ -169,12 +181,12 @@ public class SongDao_DB implements ISongDAO {
                 id = resultSet.getInt(1);
             }
 
-            Song generatedSong = new Song(title, artist, genre, time,path, id);
+            Song generatedSong = new Song(title, artist, genre, time,path, id, coverPath);
+
             return generatedSong;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new Exception("Failed to create song", e);
-
         }
     }
 }

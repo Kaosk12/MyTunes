@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,82 +18,116 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
     <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
       <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <TextField fx:id="textFile" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="25.0" minWidth="150.0" prefHeight="25.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <TextField fx:id="textTitle" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="150.0" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="420.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <TextField fx:id="textArtist" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="150.0" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="420.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <TextField fx:id="textGenre" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="150.0" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="420.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin>
-      </TextField>
-      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Title:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
+      <Label layoutX="20.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="File:" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <font>
             <Font size="14.0" />
          </font>
-      </Label>
-      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Artist:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
-         <font>
-            <Font size="14.0" />
-         </font>
       </Label>
-      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Genre:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+      <TextField fx:id="textFile" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="10.0" />
          </GridPane.margin>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnChooseFile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleChooseFile" prefHeight="25.0" prefWidth="70.0" text="Choose..." textFill="WHITE" GridPane.columnIndex="1">
+      </TextField>
+      <Button fx:id="btnChooseFile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleChooseFile" prefHeight="25.0" prefWidth="70.0" text="Choose..." GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="360.0" />
          </GridPane.margin>
       </Button>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Title:" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textTitle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Artist:" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textArtist" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Genre:" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textGenre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Image:" GridPane.rowIndex="5">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textImage" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <Button fx:id="btnRemoveImage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRemoveImage" prefHeight="25.0" prefWidth="60.0" text="Remove" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="295.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="btnChooseImage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleChooseImage" prefHeight="25.0" prefWidth="70.0" text="Choose..." GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="360.0" />
+         </GridPane.margin>
+      </Button>
+      <ImageView fx:id="imageCover" fitHeight="140.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="290.0" />
+         </GridPane.margin></ImageView>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <children>
-            <Button fx:id="btnOK" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="25.0" prefWidth="60.0" text="OK" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnOK" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="25.0" prefWidth="60.0" text="OK" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" text="Cancel" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" text="Cancel" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" left="10.0" top="25.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <Label layoutX="20.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="File:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="380.0" text="Add a new song" GridPane.columnIndex="1">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
       </Label>
    </children>
 </GridPane>

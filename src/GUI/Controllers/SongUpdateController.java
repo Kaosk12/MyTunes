@@ -8,13 +8,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class SongUpdateController implements Initializable {
@@ -24,10 +30,13 @@ public class SongUpdateController implements Initializable {
     private double yOffset = 0;
     private SongModel songModel;
     private Song song;
+    private File albumCover;
     @FXML
-    private TextField textTitle, textArtist, textGenre;
+    private ImageView imageCover;
     @FXML
-    private Button btnOK, btnCancel;
+    private TextField textTitle, textArtist, textGenre, textImage;
+    @FXML
+    private Button btnOK, btnCancel, btnDeleteImage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,10 +44,19 @@ public class SongUpdateController implements Initializable {
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());
         textGenre.setText(song.getGenre());
+        textImage.setText(song.getCoverPath());
+
+        Path coverPath = Paths.get(song.getCoverPath());
+        Image cover = new Image(coverPath.toUri().toString());
+        imageCover.setImage(cover);
 
         addTitleListener();
         addArtistListener();
+        addGenreListener();
         addMoveWindowListener();
+
+        btnDeleteImage.setDisable(isImageEmpty());
+        addImageListener();
     }
 
     private void addMoveWindowListener() {
@@ -68,7 +86,7 @@ public class SongUpdateController implements Initializable {
             if (isArtistEmpty()) {
                 btnOK.setDisable(true);
             }
-            else if (!isArtistEmpty() && !isTitleEmpty()) {
+            else if (!isTitleEmpty() && !isGenreEmpty()) {
                 btnOK.setDisable(false);
             }
         });
@@ -83,18 +101,56 @@ public class SongUpdateController implements Initializable {
             if (isTitleEmpty()) {
                 btnOK.setDisable(true);
             }
+            else if (!isArtistEmpty() && !isGenreEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Adds a listener to the genre property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addGenreListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textGenre.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isGenreEmpty()) {
+                btnOK.setDisable(true);
+            }
             else if (!isTitleEmpty() && !isArtistEmpty()) {
                 btnOK.setDisable(false);
             }
         });
     }
 
-    private boolean isTitleEmpty() {
-        return textTitle.getText().trim().isEmpty();
+    /**
+     * Adds a listener to the image property.
+     * If it is empty or null, then it disables the "remove" button.
+     */
+    private void addImageListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textImage.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isImageEmpty()) {
+                btnDeleteImage.setDisable(true);
+            }
+            else {
+                btnDeleteImage.setDisable(false);
+            }
+        });
     }
 
+    private boolean isTitleEmpty() {
+        return textTitle.getText() == null || textTitle.getText().trim().isEmpty();
+    }
     private boolean isArtistEmpty() {
-        return textArtist.getText().trim().isEmpty();
+        return textArtist.getText() == null || textArtist.getText().trim().isEmpty();
+    }
+    private boolean isImageEmpty() {
+        return textImage.getText() == null || textImage.getText().trim().isEmpty() || textImage.getText().equalsIgnoreCase("null");
+    }
+
+    private boolean isGenreEmpty() {
+        return textGenre.getText() == null || textGenre.getText().trim().isEmpty();
     }
 
     /**
@@ -118,6 +174,8 @@ public class SongUpdateController implements Initializable {
         song.setTitle(textTitle.getText());
         song.setArtist(textArtist.getText());
         song.setGenre(textGenre.getText());
+        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
+        song.setCoverPath(coverPath);
 
 
         try {
@@ -131,21 +189,50 @@ public class SongUpdateController implements Initializable {
     }
 
     /**
+     * Loads an album cover image into a file
+     */
+    public void handleChooseImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Add album cover art");
+
+        FileChooser.ExtensionFilter imageExtensions = new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.jpeg", "*.png");
+
+        fileChooser.getExtensionFilters().add(imageExtensions);
+
+        albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
+
+        if (albumCover != null) {
+            textImage.setText(albumCover.getAbsolutePath());
+
+            Path coverPath = Paths.get(albumCover.getAbsolutePath());
+            Image cover = new Image(coverPath.toUri().toString());
+            imageCover.setImage(cover);
+        }
+    }
+    public void handleDeleteImage() {
+        if (!textImage.getText().isEmpty()) {
+            albumCover = null;
+            textImage.setText("");
+            imageCover.setImage(null);
+        }
+    }
+
+    /**
      * Double check that title and artist is added.
      * (not-null values for the database).
      */
     private boolean isInputMissing() {
-        if (textTitle.getText().trim().isEmpty()) {
+        if (isTitleEmpty()) {
             ErrorDisplayer.displayError(new Exception("Title can not be empty"));
             return true;
         }
 
-        if (textArtist.getText().trim().isEmpty()) {
+        if (isArtistEmpty()) {
             ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
             return true;
         }
 
-        if (textGenre.getText().trim().isEmpty()) {
+        if (isGenreEmpty()) {
             ErrorDisplayer.displayError(new Exception("Genre can not be empty"));
             return true;
         }
