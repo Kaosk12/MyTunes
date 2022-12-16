@@ -52,6 +52,7 @@ public class SongUpdateController implements Initializable {
 
         addTitleListener();
         addArtistListener();
+        addGenreListener();
         addMoveWindowListener();
 
         btnDeleteImage.setDisable(isImageEmpty());
@@ -85,7 +86,7 @@ public class SongUpdateController implements Initializable {
             if (isArtistEmpty()) {
                 btnOK.setDisable(true);
             }
-            else if (!isArtistEmpty() && !isTitleEmpty()) {
+            else if (!isTitleEmpty() && !isGenreEmpty()) {
                 btnOK.setDisable(false);
             }
         });
@@ -98,6 +99,22 @@ public class SongUpdateController implements Initializable {
     private void addTitleListener() {
         textTitle.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if (isTitleEmpty()) {
+                btnOK.setDisable(true);
+            }
+            else if (!isArtistEmpty() && !isGenreEmpty()) {
+                btnOK.setDisable(false);
+            }
+        });
+    }
+
+    /**
+     * Adds a listener to the genre property.
+     * If it is empty, then it disables the "ok" button.
+     */
+    private void addGenreListener() {
+        //Adding a listener, and enabling/disabling the OK button if artist is empty
+        textGenre.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (isGenreEmpty()) {
                 btnOK.setDisable(true);
             }
             else if (!isTitleEmpty() && !isArtistEmpty()) {
@@ -123,13 +140,17 @@ public class SongUpdateController implements Initializable {
     }
 
     private boolean isTitleEmpty() {
-        return textTitle.getText().trim().isEmpty();
+        return textTitle.getText() == null || textTitle.getText().trim().isEmpty();
     }
     private boolean isArtistEmpty() {
-        return textArtist.getText().trim().isEmpty();
+        return textArtist.getText() == null || textArtist.getText().trim().isEmpty();
     }
     private boolean isImageEmpty() {
-        return textImage.getText().trim().isEmpty() || textImage.getText().equalsIgnoreCase("null");
+        return textImage.getText() == null || textImage.getText().trim().isEmpty() || textImage.getText().equalsIgnoreCase("null");
+    }
+
+    private boolean isGenreEmpty() {
+        return textGenre.getText() == null || textGenre.getText().trim().isEmpty();
     }
 
     /**
@@ -201,17 +222,17 @@ public class SongUpdateController implements Initializable {
      * (not-null values for the database).
      */
     private boolean isInputMissing() {
-        if (textTitle.getText().trim().isEmpty()) {
+        if (isTitleEmpty()) {
             ErrorDisplayer.displayError(new Exception("Title can not be empty"));
             return true;
         }
 
-        if (textArtist.getText().trim().isEmpty()) {
+        if (isArtistEmpty()) {
             ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
             return true;
         }
 
-        if (textGenre.getText().trim().isEmpty()) {
+        if (isGenreEmpty()) {
             ErrorDisplayer.displayError(new Exception("Genre can not be empty"));
             return true;
         }
