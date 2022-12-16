@@ -71,7 +71,9 @@ public class SongDao_DB implements ISongDAO {
             // Run the specified SQL Statement
             statement.executeUpdate();
 
-            LocalFileHandler.deleteLocalFile(song.getPath());
+            // Out commented because we ran into issues with the MediaPlayer class
+            // not properly disposing of the songs.
+            //LocalFileHandler.deleteLocalFile(song.getPath());
         }
         catch (SQLException e) {
             e.printStackTrace();
