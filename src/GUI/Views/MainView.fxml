@@ -91,7 +91,7 @@
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
                         <ImageView fx:id="imageAlbumCover" fitHeight="140.0" fitWidth="140.0" layoutX="110.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnSettings" layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #0F4C75;" text="⚙" textFill="WHITE" wrapText="true">
+                        <ToggleButton fx:id="btnSettings" layoutX="290.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"  text="⚙" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Calibri" size="17.0" />
                            </font>
