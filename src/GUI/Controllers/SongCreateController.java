@@ -47,9 +47,6 @@ public class SongCreateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /**
-         *
-
         //Disable OK button until the 'not null' values are added
         btnOK.setDisable(true);
 
@@ -58,7 +55,7 @@ public class SongCreateController implements Initializable {
         addTitleListener();
         addArtistListener();
         addGenreListener();
-         */
+
         btnRemoveImage.setDisable(true);
         addImageListener();
         addMoveWindowListener();
@@ -206,7 +203,7 @@ public class SongCreateController implements Initializable {
             if (isFileEmpty()) {
                 btnOK.setDisable(true);
             }
-            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+            else if (!isTitleEmpty() && !isArtistEmpty() && !isGenreEmpty()) {
                 btnOK.setDisable(false);
             }
         });
@@ -221,7 +218,7 @@ public class SongCreateController implements Initializable {
             if (isTitleEmpty()) {
                 btnOK.setDisable(true);
             }
-            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+            else if (!isFileEmpty() && !isArtistEmpty() && !isGenreEmpty()) {
                 btnOK.setDisable(false);
             }
         });
@@ -237,7 +234,7 @@ public class SongCreateController implements Initializable {
             if (isArtistEmpty()) {
                 btnOK.setDisable(true);
             }
-            else if (!isFileEmpty() && !isTitleEmpty() && !isArtistEmpty()) {
+            else if (!isFileEmpty() && !isTitleEmpty() && !isGenreEmpty()) {
                 btnOK.setDisable(false);
             }
         });
@@ -279,22 +276,22 @@ public class SongCreateController implements Initializable {
      * (not-null values for the database).
      */
     private boolean isInputMissing() {
-        if (textFile.getText().trim().isEmpty()) {
+        if (isFileEmpty()) {
             ErrorDisplayer.displayError(new Exception("No song file is chosen"));
             return true;
         }
 
-        if (textTitle.getText().trim().isEmpty()) {
+        if (isTitleEmpty()) {
             ErrorDisplayer.displayError(new Exception("Title can not be empty"));
             return true;
         }
 
-        if (textArtist.getText().trim().isEmpty()) {
+        if (isArtistEmpty()) {
             ErrorDisplayer.displayError(new Exception("Artist can not be empty"));
             return true;
         }
 
-        if (textGenre.getText().trim().isEmpty()) {
+        if (isGenreEmpty()) {
             ErrorDisplayer.displayError(new Exception("Genre can not be empty"));
             return true;
         }
@@ -302,19 +299,19 @@ public class SongCreateController implements Initializable {
     }
 
     private boolean isFileEmpty() {
-        return textFile.getText().trim().isEmpty();
+        return textFile.getText() == null || textFile.getText().trim().isEmpty();
     }
     private boolean isTitleEmpty() {
-        return textTitle.getText().trim().isEmpty();
+        return textTitle.getText() == null || textTitle.getText().trim().isEmpty();
     }
     private boolean isArtistEmpty() {
-        return textArtist.getText().trim().isEmpty();
+        return textArtist.getText() == null || textArtist.getText().trim().isEmpty();
     }
     private boolean isGenreEmpty() {
-        return textGenre.getText().trim().isEmpty();
+        return textGenre.getText() == null || textGenre.getText().trim().isEmpty();
     }
     private boolean isImageEmpty() {
-        return textImage.getText().trim().isEmpty();
+        return textImage.getText() == null || textImage.getText().trim().isEmpty();
     }
 
     /**
