@@ -116,7 +116,7 @@ public class PlayListDAO_DB implements IPlaylistDAO {
                 int songId = unsortedSongIds.get(unsortedSongOrders.indexOf(i));
 
                 // Returns a song object from given song id.
-                Song song =  songDAO.getSongFromId(songId);
+                Song song =  songDAO.getSongObjectFromId(songId);
 
                 // Adds the song object to the playlist object.
                 playList.addSongToPlaylist(song);

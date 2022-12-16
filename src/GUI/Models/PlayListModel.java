@@ -4,9 +4,12 @@ import BE.PlayList;
 import BE.Song;
 import BLL.Interfaces.IPlayListManager;
 import BLL.PlayListManager;
+import GUI.Controllers.MainController;
 import GUI.Util.ConfirmDelete;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 
 public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
@@ -122,4 +125,34 @@ public class PlayListModel {
         songsInPlayList.addAll(selectedPlaylist.getAllSongsInPlaylist());
     }
 
+    /**
+     * This method is used to update the playlist table, if changes have been made to songs in the song table.
+     * @param song the song that has been edited or deleted in the song table.
+     * @param deleteSong it is used to tell the method, if the song has been deleted or edited.
+     */
+    public void updateCFS(Song song, boolean deleteSong){
+        //CFS changesFromSongs
+        //loops through all playlists.
+        for(PlayList p: playListsInList){
+            //loops through all songs in the playlist, checking if the songId matches the song i parameter.
+            for (Song song1:p.getAllSongsInPlaylist()) {
+                if ((song1.getId() == song.getId()) && !deleteSong) {
+                    //replaces the old data with the new.
+                    song1.setArtist(song.getArtist());
+                    song1.setGenre(song.getGenre());
+                    song1.setTitle(song.getTitle());
+                    song1.setCoverPath(song.getCoverPath());
+                    return;
+                }
+                else if ((song1.getId() == song.getId()) && deleteSong) {
+                    //checks if the song is currently being shown to the user, then removes it from the list.
+                    if (songsInPlayList.contains(song1)){
+                        songsInPlayList.remove(song1);
+                    }
+                    p.removeSOP(song1);
+                    return;
+                }
+            }
+        }
+    }
 }

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="Merged with master">
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" afterDir="false" />
+    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Models/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/SongModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="MainView_Igen" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,6 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class SongDao_DB implements ISongDAO {
     private DatabaseConnector databaseConnector;
+    private static List<Song> everySong;
 
     public SongDao_DB() {
         databaseConnector = new DatabaseConnector();
@@ -49,7 +50,7 @@ public class SongDao_DB implements ISongDAO {
             e.printStackTrace();
             throw new Exception("Failed to retrieve songs", e);
         }
-
+        everySong = allSongs;
         return allSongs;
     }
 
@@ -114,36 +115,14 @@ public class SongDao_DB implements ISongDAO {
      * @return A song object.
      * @throws Exception If it fails to retrieve a song with given ID.
      */
-    public Song getSongFromId(int songId) throws Exception {
-        String sql = "SELECT * FROM Songs WHERE Id = ?;";
-
-        try(Connection connection = databaseConnector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            // Bind parameters
-            statement.setInt(1, songId);
-
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-                String title = rs.getString("Title").trim();
-                String artist = rs.getString("Artist").trim();
-                String genre = rs.getString("Genre").trim();
-                int time = rs.getInt("Duration");
-                String path = rs.getString("SongPath");
-                int id = rs.getInt("Id");
-                String coverPath = rs.getString("CoverPath");
-
-                Song song = new Song(title, artist, genre, time, path, id, coverPath);
-
-                return song;
+    @Override
+    public Song getSongObjectFromId(int songId) throws Exception {
+        for (Song s:everySong) {
+            if (s.getId() == songId) {
+                return s;
             }
-
-            return null;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Failed to retrieve songs", e);
         }
+        return null;
     }
 
     @Override

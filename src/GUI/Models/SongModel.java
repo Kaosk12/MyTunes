@@ -11,6 +11,7 @@ import java.util.List;
 public class SongModel {
     private ObservableList<Song> songsInList;
     private ISongManager songManager;
+    private PlayListModel playListModel;
     private static Song selectedSong;
 
     public ObservableList<Song> getObservableSongs() {
@@ -18,6 +19,10 @@ public class SongModel {
     }
     public static Song getSelectedSong() {
         return selectedSong;
+    }
+
+    public void setPlayListModel(PlayListModel playListModel){
+        this.playListModel = playListModel;
     }
 
     /**
@@ -60,6 +65,7 @@ public class SongModel {
      */
     public void updateSong(Song song) throws Exception {
         songManager.updateSong(song);
+        playListModel.updateCFS(song, false);
     }
 
     /**
@@ -68,7 +74,10 @@ public class SongModel {
      * @throws Exception If it fails to delete the song.
      */
     public void deleteSong(Song song) throws Exception {
+        playListModel.updateCFS(song,true);
         songManager.deleteSong(song);
+
+
     }
 
 
