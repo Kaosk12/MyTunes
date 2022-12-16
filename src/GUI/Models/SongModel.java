@@ -76,8 +76,6 @@ public class SongModel {
     public void deleteSong(Song song) throws Exception {
         playListModel.updateCFS(song,true);
         songManager.deleteSong(song);
-
-
     }
 
 
