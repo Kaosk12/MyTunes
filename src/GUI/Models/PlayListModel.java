@@ -142,7 +142,7 @@ public class PlayListModel {
                     song1.setGenre(song.getGenre());
                     song1.setTitle(song.getTitle());
                     song1.setCoverPath(song.getCoverPath());
-                    return;
+                    break;
                 }
                 else if ((song1.getId() == song.getId()) && deleteSong) {
                     //checks if the song is currently being shown to the user, then removes it from the list.
@@ -150,7 +150,7 @@ public class PlayListModel {
                         songsInPlayList.remove(song1);
                     }
                     p.removeSOP(song1);
-                    return;
+                    break;
                 }
             }
         }
