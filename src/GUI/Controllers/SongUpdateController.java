@@ -37,6 +37,7 @@ public class SongUpdateController implements Initializable {
     private TextField textTitle, textArtist, textGenre, textImage;
     @FXML
     private Button btnOK, btnCancel, btnDeleteImage;
+    private boolean isImageEdited = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -174,8 +175,11 @@ public class SongUpdateController implements Initializable {
         song.setTitle(textTitle.getText());
         song.setArtist(textArtist.getText());
         song.setGenre(textGenre.getText());
-        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
-        song.setCoverPath(coverPath);
+
+        if(isImageEdited) {
+            String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
+            song.setCoverPath(coverPath);
+        }
 
 
         try {
@@ -202,6 +206,7 @@ public class SongUpdateController implements Initializable {
         albumCover = fileChooser.showOpenDialog((Stage) btnCancel.getScene().getWindow());
 
         if (albumCover != null) {
+            isImageEdited = true;
             textImage.setText(albumCover.getAbsolutePath());
 
             Path coverPath = Paths.get(albumCover.getAbsolutePath());
@@ -211,6 +216,7 @@ public class SongUpdateController implements Initializable {
     }
     public void handleDeleteImage() {
         if (!textImage.getText().isEmpty()) {
+            isImageEdited = true;
             albumCover = null;
             textImage.setText("");
             imageCover.setImage(null);
