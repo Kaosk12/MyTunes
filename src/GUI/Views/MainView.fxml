@@ -176,11 +176,50 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="490.0" text="Songs" textFill="WHITE" wrapText="true">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" text="Songs" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Calibri" size="18.0" />
                                  </font>
                               </Label>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="245.0">
+                                 <children>
+                                    <TextField fx:id="txtSongSearch" layoutX="7.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="205.0" promptText="Filter...">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TextField>
+                                    <Button fx:id="btnSearchClear" layoutX="190.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClear" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #0F4C75;" text="x" textFill="WHITE">
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnSearch" layoutX="215.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔍" textFill="WHITE">
+                                       <effect>
+                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
+                                             <color>
+                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="45.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
                            </children>
                         </HBox>
                         <TableView fx:id="lstSongs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSongDoubleClick" prefHeight="475.0" prefWidth="480.0" VBox.vgrow="ALWAYS">
@@ -239,45 +278,6 @@
                                     </InnerShadow>
                                  </effect>
                               </Button>
-                              <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="245.0">
-                                 <children>
-                                    <TextField fx:id="txtSongSearch" layoutX="7.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleEnter" prefHeight="25.0" prefWidth="205.0" promptText="Filter...">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </TextField>
-                                    <Button fx:id="btnSearchClear" layoutX="190.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClear" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #0F4C75;" text="x" textFill="WHITE">
-                                       <effect>
-                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
-                                             <color>
-                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
-                                             </color>
-                                          </InnerShadow>
-                                       </effect>
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="btnSearch" layoutX="215.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0F4C75;" text="🔍" textFill="WHITE">
-                                       <effect>
-                                          <InnerShadow height="20.0" radius="9.5" width="20.0">
-                                             <color>
-                                                <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
-                                             </color>
-                                          </InnerShadow>
-                                       </effect>
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </AnchorPane>
                            </children>
                         </HBox>
                      </children>
