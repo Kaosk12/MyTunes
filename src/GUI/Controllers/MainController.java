@@ -120,6 +120,7 @@ public class MainController implements Initializable {
         initializeSongTbv();
         initializePlaylistTbv();
         initializeVolumeSlider();
+        initializeStyleSheets();
 
         //Disable the clear button
         setSearchButtons(true);
@@ -143,7 +144,6 @@ public class MainController implements Initializable {
         addVolumeSliderListener();
         addTimeSliderListener();
         addMoveWindowListener();
-
 
 
     }
@@ -921,7 +921,6 @@ public class MainController implements Initializable {
         //sets the new styleSheet
         currentStyle = style.get(styleCount);
         scene.getStylesheets().add(currentStyle);
-
-        System.out.println(styleCount);
+        
     }
 }
