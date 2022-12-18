@@ -49,18 +49,16 @@
                            <font>
                               <Font size="24.0" />
                            </font></Button>
-                        <Button fx:id="btnRepeatAtEnd" ellipsisString="" layoutX="110.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRepeatAtEnd" prefHeight="25.0" prefWidth="25.0" text="🔁" textOverrun="CLIP" wrapText="true">
+                        <ToggleButton fx:id="btnRepeatAtEnd" ellipsisString="" layoutX="110.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleRepeatAtEnd" prefHeight="25.0" prefWidth="25.0" text="🔁" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="10.0" />
                            </font>
-                        </Button>
-                        <Button fx:id="btnShuffleAtEnd" ellipsisString="" layoutX="145.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleShuffleAtEnd" prefHeight="25.0" prefWidth="25.0" text="🔀" textOverrun="CLIP" wrapText="true">
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnShuffleAtEnd" ellipsisString="" layoutX="145.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleShuffleAtEnd" prefHeight="25.0" prefWidth="25.0" text="🔀" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="10.0" />
                            </font>
-                        </Button>
-                        <Slider fx:id="volumeSlider" layoutX="287.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
-                        <Button fx:id="volumeButton" contentDisplay="CENTER" layoutX="300.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVolumeButton" prefHeight="30.0" prefWidth="30.0" text="🔊" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true" />
+                        </ToggleButton>
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -88,12 +86,14 @@
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
                         <ImageView fx:id="imageAlbumCover" fitHeight="140.0" fitWidth="140.0" layoutX="110.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnSettings" layoutX="290.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleStyle" prefHeight="40.0" prefWidth="40.0" text="⚙" wrapText="true">
+                        <ToggleButton fx:id="btnSettings" layoutX="290.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleStyle" prefHeight="40.0" prefWidth="40.0" text="⚙" wrapText="true">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
-                        </Button>
+                        </ToggleButton>
                         <Button fx:id="btnClose" layoutX="260.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="70.0" text="✖ Close" textAlignment="CENTER" />
+                        <Slider fx:id="volumeSlider" layoutX="10.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
+                        <ToggleButton fx:id="volumeButton" contentDisplay="CENTER" layoutX="20.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVolumeButton" prefHeight="30.0" prefWidth="30.0" text="🔊" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true" />
                      </children>
                      <padding>
                         <Insets left="5.0" />
@@ -176,13 +176,6 @@
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
-                                 <effect>
-                                    <InnerShadow height="20.0" radius="9.5" width="20.0">
-                                       <color>
-                                          <Color red="0.7333333492279053" green="0.8823529481887817" blue="0.9803921580314636" />
-                                       </color>
-                                    </InnerShadow>
-                                 </effect>
                               </Button>
                            </children>
                         </HBox>
