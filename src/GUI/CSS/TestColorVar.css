@@ -1,0 +1,204 @@
+
+/*
+
+hey Michael, jeg har lavet en topklasse alle "arver fra" den bruger vi til at sætte alle farver og effekter.
+tænker det kan være en sketch for hvordan vi opbygger dark og light theme og måske flere hvis vi har lyst.
+den er bygget ud fra dark theme men tænker vi laver den færdig inden vi laver andre themes ud fra den.
+
+jeg prøvede lige for sjov at smide en color pallet ind og det tog 3 minutter, at lave den programmet starter op med nu.
+
+todo:
+jeg tænker vi skal have det delt op i variabler der giver mening, så en variable ikke gør for mange ting, da det er træls at designe med.
+se effect1 der har lidt meget ansvar
+tror det er nemmest at få gjordt før vi bygger flere linjer css så det er nemt at implementere nyt design i længden + det ser fed ud
+ */
+
+
+*{
+    /*main screen*/
+    -fx-bgColor: #CCD6A6; /* main background, table background*/
+    -fx-artistLabel: black; /* artist and album name, titles in top of tables, headers for tables*/
+    -fx-border: #227C70; /*borders*/
+
+    /* buttons color and effect*/
+    -fx-buttons: #F4EAD5; /* */
+    -fx-buttonSelected: #227C70; /* backgrounds when buttons are pressed*/
+    -fx-buttonselectedText: white; /* sets the text/ icon color on buttons */
+
+    /*prompt text and searchbar*/
+    -fx-prompText: black; /*sets the text for the search bar and text for input fields*/
+
+    /*table*/
+    -fx-tableHeaderBgtop: orange; /*sets the top color of the header in the tables*/
+    -fx-tableHeaderBgbot: #227C70; /*sets the bottom color of the header in the tables*/
+    -fx-tableHover: #F4EAD5; /*sets the color  */
+    -fx-selectedTop: orange; /*top color of selected item in tables*/
+    -fx-selectedBot: #227C70;/*bottom color of selected item in tables*/
+    -fx-scrollbarTop: #227C70;/*sets the top/right of the scrollbar*/
+    -fx-scrollbarBot: orange; /*sets the bottom/left color of the scrollbar  */
+
+    /*sliders*/
+    -fx-sliderBtn: #227C70; /*slider btn on volume and progress bar*/
+    -fx-sliderbar: #F4EAD5; /*sets the color of the volume and progress bar*/
+
+
+    -fx-color20: #FFFBE9;/*button text*/
+
+    /*todo
+       mangler at lave bedre opdeling af ansvar for effects.*/
+    -fx-effect1: innershadow(three-pass-box, rgb(255,250,250), 10, 0, 0, 0); /* button outline, table text, button text bottom */
+    -fx-effect2: innershadow(three-pass-box, rgb(187, 225, 250), 10, 0.5, 0, 0); /*image view, button border when pressed */
+    -fx-effect3: innershadow(three-pass-box, rgb(255,127,80), 10, 0, 0, 0); /* toggle button border when on, repeat button border when on, mute border when on*/
+    -fx-effect4: innershadow(three-pass-box, rgb(250,250,250), 10, 0, 0, 0); /* options button border when selected */
+
+
+}
+
+.root {
+    -fx-background-color: -fx-bgColor;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 10;
+}
+
+.button, .toggle-button {
+    -fx-background-color: -fx-buttons;
+    -fx-effect: -fx-effect1;
+    -fx-text-fill: -fx-color20;
+    -fx-background-radius: 15;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-buttonSelected;
+    -fx-effect: -fx-effect2;
+    -fx-text-fill: -fx-buttonSelectedText;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -fx-buttonSelected;
+    -fx-effect: -fx-effect3;
+    -fx-text-fill: -fx-buttonselectedText;
+    -fx-background-radius: 15;
+}
+
+#btnPlayerPrevious,#btnPlayerPlayPause,#btnPlayerNext,#btnRepeatAtEnd,#btnShuffleAtEnd,#volumeButton,#btnSearch,#btnSearchClear,#btnSettings {
+    -fx-background-radius: 50;
+}
+
+#btnSettings:selected {
+    -fx-background-color: -fx-buttonSelected;
+    -fx-effect:   -fx-effect4;
+    -fx-text-fill: -fx-buttonSelectedText;
+}
+
+.slider {
+    -fx-background-color: transparent;
+}
+
+.slider .track {
+    -fx-background-color: -fx-sliderbar;
+}
+
+.slider .thumb {
+    -fx-background-color: -fx-sliderBtn;
+}
+
+.image-view {
+    -fx-effect: -fx-effect2;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 15;
+    -fx-text-fill: -fx-prompText;
+    -fx-prompt-text-fill: -fx-prompText;
+}
+
+.label {
+    -fx-text-fill: -fx-artistLabel;
+}
+
+/*
+ * TableView stuff...
+ */
+.table-view, .list-view {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 10;
+    -fx-effect: -fx-effect1;
+}
+
+.table-view .column-header-background .filler, .list-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner, .list-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background, .list-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, -fx-tableHeaderBgtop, -fx-tableHeaderBgbot);
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell, .list-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:hover, .list-cell:hover {
+    -fx-text-background-color: -fx-tableHover;
+}
+.table-row-cell:odd, .list-cell:odd {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even, .list-cell:even {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical, .list-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track, .list-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background, .list-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal, .list-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track, .list-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background, .list-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button,
+.list-view .virtual-flow .scroll-bar .increment-button,
+.list-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb,
+.list-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color:  linear-gradient(to bottom, -fx-scrollbarTop, -fx-scrollbarBot);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb,
+.list-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, -fx-scrollbarTop, -fx-scrollbarBot);
+}
+
+.table-row-cell:selected, .list-cell:selected {
+    -fx-background-color: linear-gradient(to top, -fx-selectedBot, -fx-selectedTop);
+    -fx-text-background-color: -fx-bgColor;
+    -fx-background-radius: 15px;
+}
+
+.dialog-pane, .dialog-pane .header-panel {
+    -fx-background-color: -fx-bgColor;
+    -fx-border-color: -fx-border;
+}

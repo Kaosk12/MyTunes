@@ -127,8 +127,8 @@ public class SongCreateController implements Initializable {
         if(file != null) {
             textFile.setText(file.getAbsolutePath());
 
-            Media media = new Media(file.toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
+        Media media = new Media(file.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
 
             //MediaPlayer must be set on ready to get the duration
             getSongDuration(media);
