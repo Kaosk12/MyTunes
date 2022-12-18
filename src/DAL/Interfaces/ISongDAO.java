@@ -31,7 +31,7 @@ public interface ISongDAO {
      * @return A song object.
      * @throws Exception If it fails to retrieve a song with given ID.
      */
-    Song getSongFromId(int songId) throws Exception;
+    Song getSongObjectFromId(int songId) throws Exception;
 
     /**
      * Creates a song in the database.

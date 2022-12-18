@@ -108,6 +108,7 @@ public class MainController implements Initializable {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
             mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
+            songModel.setPlayListModel(playlistModel);
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -119,7 +120,6 @@ public class MainController implements Initializable {
         initializeSongTbv();
         initializePlaylistTbv();
         initializeVolumeSlider();
-        initializeStyleSheets();
 
         //Disable the clear button
         setSearchButtons(true);
@@ -786,6 +786,10 @@ public class MainController implements Initializable {
         //This should help show any changes in the main window once they are confirmed.
         SongUpdateController controller = loader.getController();
         controller.setModel(songModel);
+        stage.showAndWait();
+        tbvSongsInPlayList.refresh();
+
+
     }
 
     /**
@@ -806,7 +810,8 @@ public class MainController implements Initializable {
         catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-
+        tbvSongsInPlayList.refresh();
+        tbvPlayLists.refresh();
         handleClear();
     }
 
