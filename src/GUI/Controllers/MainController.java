@@ -780,7 +780,6 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource(currentStyle).toExternalForm());
-        stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
@@ -788,8 +787,6 @@ public class MainController implements Initializable {
         controller.setModel(songModel);
         stage.showAndWait();
         tbvSongsInPlayList.refresh();
-
-
     }
 
     /**
