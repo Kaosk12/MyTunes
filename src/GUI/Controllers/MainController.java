@@ -99,6 +99,7 @@ public class MainController implements Initializable {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
             mediaModel = new MediaModel(songModel.getObservableSongs().get(0));//sets the first song in table view as loaded in mediaPlayer
+            songModel.setPlayListModel(playlistModel);
         } catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
@@ -761,12 +762,14 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.getScene().getStylesheets().add(getClass().getResource("/GUI/CSS/DarkMode.css").toExternalForm());
-        stage.show();
-
         //Set the SongUpdateController's model to be the same songModel as the main window.
         //This should help show any changes in the main window once they are confirmed.
         SongUpdateController controller = loader.getController();
         controller.setModel(songModel);
+        stage.showAndWait();
+        tbvSongsInPlayList.refresh();
+
+
     }
 
     /**
@@ -787,7 +790,8 @@ public class MainController implements Initializable {
         catch (Exception e) {
             ErrorDisplayer.displayError(e);
         }
-
+        tbvSongsInPlayList.refresh();
+        tbvPlayLists.refresh();
         handleClear();
     }
 
