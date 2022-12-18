@@ -41,6 +41,7 @@ public class SongUpdateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        btnOK.setDisable(true);
         song = SongModel.getSelectedSong();
         textTitle.setText(song.getTitle());
         textArtist.setText(song.getArtist());

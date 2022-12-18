@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="app" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #1B262C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.PlaylistController">
+<GridPane fx:id="app" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="200.0" prefHeight="100.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.PlaylistController">
   <columnConstraints>
     <ColumnConstraints hgrow="NEVER" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="440.0" />
@@ -20,7 +20,7 @@
       <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Name:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" text="Name:" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
@@ -35,12 +35,12 @@
       </TextField>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <children>
-            <Button fx:id="btnOK" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="25.0" prefWidth="60.0" text="OK" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnOK" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="25.0" prefWidth="60.0" text="OK" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" text="Cancel" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="60.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="60.0" text="Cancel" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" left="10.0" top="25.0" />
                </HBox.margin>
