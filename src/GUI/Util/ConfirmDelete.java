@@ -17,7 +17,7 @@ public class ConfirmDelete {
     public static boolean confirm(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.getDialogPane().getStylesheets().removeAll();
-        alert.getDialogPane().getStylesheets().add(MainController.style);
+        alert.getDialogPane().getStylesheets().add(MainController.currentStyle);
         alert.initStyle(StageStyle.UNDECORATED);
         alert.setTitle("Confirm Delete");
         alert.setHeaderText(header);

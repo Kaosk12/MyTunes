@@ -38,12 +38,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private boolean darkMode;
-    public static String style = "/GUI/CSS/DarkMode.css";
+
+    private ArrayList<String> style = new ArrayList<String>();
+
+    public static String currentStyle = "/GUI/CSS/DarkMode.css";
+
+    private int styleCount = 0;
     @FXML
     private GridPane app;
     private double xOffset = 0;
@@ -99,7 +104,6 @@ public class MainController implements Initializable {
     private MediaModel mediaModel;
 
     public MainController(){
-        darkMode = true;
         try {
             songModel = new SongModel();
             playlistModel = new PlayListModel();
@@ -115,6 +119,7 @@ public class MainController implements Initializable {
         initializeSongTbv();
         initializePlaylistTbv();
         initializeVolumeSlider();
+        initializeStyleSheets();
 
         //Disable the clear button
         setSearchButtons(true);
@@ -138,6 +143,15 @@ public class MainController implements Initializable {
         addVolumeSliderListener();
         addTimeSliderListener();
         addMoveWindowListener();
+
+
+
+    }
+
+    private void initializeStyleSheets() {
+        style.add("/GUI/CSS/DarkMode.css");
+        style.add("/GUI/CSS/LightMode.css");
+        style.add("/GUI/CSS/FourColors.css");
     }
 
     private void addMoveWindowListener() {
@@ -580,7 +594,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(currentStyle).toExternalForm());
         stage.show();
 
         //Set the PlaylistController's model to be the same PlayListModel as the main window.
@@ -617,7 +631,7 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         //Add styling with CSS
-        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(currentStyle).toExternalForm());
         stage.show();
         //Tableview to be refreshed
         PlaylistController controller = loader.getController();
@@ -737,7 +751,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(currentStyle).toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -765,7 +779,7 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getScene().getStylesheets().add(getClass().getResource(style).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(currentStyle).toExternalForm());
         stage.show();
 
         //Set the SongUpdateController's model to be the same songModel as the main window.
@@ -886,17 +900,23 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * removes old style and sets a new one when button is pressed
+     */
     public void handleStyle() {
+        //removes old sheet
         Scene scene = btnSettings.getScene();
-        scene.getStylesheets().remove(style);
-        if (darkMode) {
-            style = "/GUI/CSS/LightMode.css";
-            scene.getStylesheets().add(style);
-            darkMode = false;
-        } else {
-            style = "/GUI/CSS/DarkMode.css";
-            scene.getStylesheets().add(style);
-            darkMode = true;
+        scene.getStylesheets().remove(currentStyle);
+
+        if(styleCount >= style.size() -1){
+            styleCount = 0;
+        }else{
+            styleCount++;
         }
+        //sets the new styleSheet
+        currentStyle = style.get(styleCount);
+        scene.getStylesheets().add(currentStyle);
+
+        System.out.println(styleCount);
     }
 }
