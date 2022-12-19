@@ -16,7 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
@@ -26,11 +25,6 @@ import java.util.ResourceBundle;
 public class SongUpdateController implements Initializable {
     @FXML
     private GridPane app;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    private SongModel songModel;
-    private Song song;
-    private File albumCover;
     @FXML
     private ImageView imageCover;
     @FXML
@@ -38,6 +32,11 @@ public class SongUpdateController implements Initializable {
     @FXML
     private Button btnOK, btnCancel, btnDeleteImage;
     private boolean isImageEdited = false;
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private SongModel songModel;
+    private Song song;
+    private File albumCover;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

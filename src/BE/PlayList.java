@@ -69,5 +69,4 @@ public class PlayList {
     public void removeSOP(Song song){
         songList.remove(song);
     }
-
 }

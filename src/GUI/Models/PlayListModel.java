@@ -4,12 +4,8 @@ import BE.PlayList;
 import BE.Song;
 import BLL.Interfaces.IPlayListManager;
 import BLL.PlayListManager;
-import GUI.Controllers.MainController;
-import GUI.Util.ConfirmDelete;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.List;
 
 public class PlayListModel {
     private ObservableList<PlayList> playListsInList;
@@ -32,8 +28,6 @@ public class PlayListModel {
     public static void setSelectedSOP(Song selectedSOP) {
         PlayListModel.selectedSOP = selectedSOP;
     }
-
-
 
     /**
      * returns the ObservableList playListsInList

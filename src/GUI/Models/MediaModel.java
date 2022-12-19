@@ -4,13 +4,11 @@ import BE.Song;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
 import java.io.File;
 
 public class MediaModel {
     private MediaPlayer mediaPlayer;
     private Song selectedSong;
-
     private Double volume = 1.0;
     private boolean isMute;
     private boolean repeatBtnSelected;
@@ -34,8 +32,6 @@ public class MediaModel {
     public Song getSelectedSong() {
         return selectedSong;
     }
-
-
 
     public boolean getIsPlaylistSelected() {
         return isPlaylistSelected;

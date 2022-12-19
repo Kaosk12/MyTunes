@@ -5,7 +5,6 @@ import BLL.Interfaces.ISongManager;
 import BLL.SongManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.List;
 
 public class SongModel {
@@ -56,8 +55,6 @@ public class SongModel {
         this.selectedSong = selectedSong;
     }
 
-
-
     /**
      * Update/Edit a song
      * @param song, the selected song to update
@@ -77,7 +74,6 @@ public class SongModel {
         playListModel.updateCFS(song,true);
         songManager.deleteSong(song);
     }
-
 
     public Song createSong(Song song) throws Exception {
         return songManager.createSong(song);

@@ -19,7 +19,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
@@ -29,9 +28,6 @@ import java.util.ResourceBundle;
 public class SongCreateController implements Initializable {
     @FXML
     private GridPane app;
-    private double xOffset = 0;
-    private double yOffset = 0;
-
     @FXML
     private Button btnCancel, btnOK, btnRemoveImage;
     @FXML
@@ -42,6 +38,8 @@ public class SongCreateController implements Initializable {
 
     private  MediaPlayer mediaPlayer;
     private int duration;
+    private double xOffset = 0;
+    private double yOffset = 0;
     private File albumCover;
     private File file;
 
@@ -135,7 +133,6 @@ public class SongCreateController implements Initializable {
 
             metaGetListener(media);
         }
-
     }
 
     /**

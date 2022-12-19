@@ -29,7 +29,6 @@ public class TimeCellFactory<T> implements Callback<TableColumn<T, Integer>, Tab
         };
     }
 
-
     /**
      * converts time to hours, minutes and seconds
      * @param totalTime The time to convert in seconds.
@@ -44,5 +43,4 @@ public class TimeCellFactory<T> implements Callback<TableColumn<T, Integer>, Tab
 
         String convertedTime = "Hours " + hour + " Mins " + minute + " Sec " + second;
     }
-
 }

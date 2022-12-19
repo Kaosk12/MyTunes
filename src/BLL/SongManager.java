@@ -5,7 +5,6 @@ import BLL.Interfaces.ISongManager;
 import BLL.Util.SongSearcher;
 import DAL.Interfaces.ISongDAO;
 import DAL.DB.SongDao_DB;
-
 import java.util.List;
 
 public class SongManager implements ISongManager {

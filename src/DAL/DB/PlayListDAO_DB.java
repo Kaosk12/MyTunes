@@ -183,7 +183,6 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
-
     /**
      * It edits the title of the playlist in the database, that matches the id of the Playlist object.
      * @param playList last selected playlist.
@@ -204,7 +203,6 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             throw new Exception("Failed to update playlist", e);
         }
     }
-
 
     /**
      * It deletes a Playlist in the database.
@@ -287,7 +285,6 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
         int songId = song.getId();
 
-
         //the chosen song gets moved up
         if (moveUp && (songIndex != 0)) {
             int previousSongIndex = songList.indexOf(song)-1;
@@ -346,6 +343,5 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             e.printStackTrace();
             throw new Exception("Failed to swap song", e);
         }
-
     }
 }

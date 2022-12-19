@@ -45,14 +45,13 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private ArrayList<String> style = new ArrayList<String>();
-
     public static String currentStyle = "/GUI/CSS/DarkMode.css";
-
     private int styleCount = 0;
-    @FXML
-    private GridPane app;
     private double xOffset = 0;
     private double yOffset = 0;
+
+    @FXML
+    private GridPane app;
     @FXML
     private ImageView imageAlbumCover;
     @FXML
@@ -80,7 +79,7 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
     @FXML
-    private Button btnPlayerPlayPause; //+ btnPlayerNext,btnPlayerPrevious
+    private Button btnPlayerPlayPause;
     @FXML
     private ToggleButton volumeButton, btnSettings, btnShuffleAtEnd, btnRepeatAtEnd;
     @FXML
@@ -98,7 +97,7 @@ public class MainController implements Initializable {
     @FXML
     private ListView<Song> tbvSongsInPlayList;
 
-
+    //Models
     private SongModel songModel;
     private PlayListModel playlistModel;
     private MediaModel mediaModel;
@@ -144,8 +143,6 @@ public class MainController implements Initializable {
         addVolumeSliderListener();
         addTimeSliderListener();
         addMoveWindowListener();
-
-
     }
 
     private void initializeStyleSheets() {
@@ -206,7 +203,6 @@ public class MainController implements Initializable {
      */
     private void initializeVolumeSlider() {
         volumeSlider.setValue(100);
-
     }
 
     /**
@@ -345,7 +341,6 @@ public class MainController implements Initializable {
                     lstSongs.getSelectionModel().clearSelection();
                     PlayListModel.setSelectedSOP(newValue);
                     mediaModel.setIsPlaylistSelected(true);
-
                 }
                 if (newValue == null) {
                     setSongsOnPlaylistManipulatingButtons(true);
@@ -353,7 +348,6 @@ public class MainController implements Initializable {
             }
         });
     }
-
 
     /**
      * Change to the previous song.
@@ -375,7 +369,6 @@ public class MainController implements Initializable {
                 //plays the selected media
                 mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
             }else {
-
                 //if the top row is selected it will jump to the bottom.
                 if(lstSongs.getSelectionModel().getSelectedIndex() == 0){
                     lstSongs.getSelectionModel().selectLast();
@@ -415,7 +408,6 @@ public class MainController implements Initializable {
             mediaModel.playMedia(tbvSongsInPlayList.getSelectionModel().getSelectedItem());
         }
         else {
-
             //checks if there is a next in the list if not it will go to the top,else it picks the next colum
             if(lstSongs.getItems().size() <= lstSongs.getSelectionModel().getSelectedIndex() + 1){
                 lstSongs.getSelectionModel().selectFirst();
@@ -437,7 +429,6 @@ public class MainController implements Initializable {
      * set txt for song playing
      */
     public void handlePlayerPlayPause() {
-
         if(mediaModel.getIsPlaylistSelected()){
             mediaModel.playMedia(PlayListModel.getSelectedSOP());
         }else if(lstSongs.getSelectionModel().getSelectedItem() != null) {//sets the selectedSong from song table.
@@ -537,7 +528,6 @@ public class MainController implements Initializable {
      * @return formatted string of min:seconds
      */
     private String timeWriter(int seconds){
-
         int m = seconds/60;
         int s = seconds%60;
         String mins = String.format("%02d", m);
@@ -686,7 +676,6 @@ public class MainController implements Initializable {
             handlePlaylistNew();
             PlaylistController.setAddSong(true);
         }
-
     }
 
     /**
@@ -846,7 +835,6 @@ public class MainController implements Initializable {
      * @param actionEvent
      */
     public void handleRepeatAtEnd(ActionEvent actionEvent) {
-
         if(mediaModel.isRepeatBtnSelected()){
             mediaModel.setRepeatBtnSelected(false);
         }else {
@@ -868,7 +856,6 @@ public class MainController implements Initializable {
             mediaModel.setShuffleBtnSelected(false);
         }else {
             mediaModel.setShuffleBtnSelected(true);
-
             mediaModel.setRepeatBtnSelected(false);
             btnRepeatAtEnd.setSelected(false);
         }
@@ -918,6 +905,5 @@ public class MainController implements Initializable {
         //sets the new styleSheet
         currentStyle = style.get(styleCount);
         scene.getStylesheets().add(currentStyle);
-        
     }
 }

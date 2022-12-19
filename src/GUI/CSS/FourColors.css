@@ -4,10 +4,6 @@
     -fx-color2: #F1F8FD; /* Text */
     -fx-color3: #446A46; /* Buttons */
     -fx-color4: #446A46; /* Color Gradient effect */
-
-    /* Woah den kunne ikke lide det her ... */
-    /*-fx-color2rgb: rgb(187, 225, 250); /* Shadow - same as #2 but in rgb */
-    /*-fx-color3rgb: rgb(15, 76, 117); /* ToggleButton shadow - same as 3 but in rgb */
 }
 
 .root {

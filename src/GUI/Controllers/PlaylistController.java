@@ -22,9 +22,6 @@ import java.util.ResourceBundle;
 public class PlaylistController implements Initializable {
     @FXML
     private GridPane app;
-    private double xOffset = 0;
-    private double yOffset = 0;
-
     @FXML
     private TextField textName;
     @FXML
@@ -34,6 +31,8 @@ public class PlaylistController implements Initializable {
     @FXML
     public TableView<PlayList> tbvPlayLists;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
     private PlayListModel playListModel;
     private PlayList playList;
     private String playlistName;
@@ -48,7 +47,6 @@ public class PlaylistController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         if (PlayListModel.getSelectedPlaylist() != null) {
             playList = PlayListModel.getSelectedPlaylist();
             textName.setText(playList.getTitle());
