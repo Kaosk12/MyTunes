@@ -3,6 +3,7 @@ package GUI.Models;
 import BE.PlayList;
 import BE.Song;
 import BLL.Interfaces.IPlayListManager;
+import BLL.Interfaces.ISongManager;
 import BLL.PlayListManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,9 +86,11 @@ public class PlayListModel {
         //This will remove the song from the playlist in the database.
         playListManager.removeSOP(selectedPlaylist, selectedSOP);
         //this will remove the song from the GUI.
-        songsInPlayList.remove(selectedSOP);
+        //songsInPlayList.remove(selectedSOP);
         //Updates the list in the effected PlayList object.
         selectedPlaylist.removeSOP(selectedSOP);
+        songsInPlayList.clear();
+        songsInPlayList.addAll(selectedPlaylist.getAllSongsInPlaylist());
     }
 
     public void updatePlayList(PlayList playList) throws Exception {

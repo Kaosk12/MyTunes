@@ -343,6 +343,7 @@ public class MainController implements Initializable {
                     mediaModel.setIsPlaylistSelected(true);
                 }
                 if (newValue == null) {
+                    PlayListModel.setSelectedSOP(null);
                     setSongsOnPlaylistManipulatingButtons(true);
                 }
             }
