@@ -96,7 +96,7 @@ public class SongCreateController implements Initializable {
         String genre = textGenre.getText();
         int time = duration;
         String path = textFile.getText();
-        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
+        String coverPath = albumCover != null ? albumCover.getAbsolutePath() : "";
 
         Song song = new Song(title, artist, genre, time, path, coverPath);
 

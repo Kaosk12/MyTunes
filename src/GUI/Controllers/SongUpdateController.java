@@ -138,6 +138,8 @@ public class SongUpdateController implements Initializable {
             else {
                 btnDeleteImage.setDisable(false);
             }
+
+            btnOK.setDisable(false);
         });
     }
 
@@ -178,7 +180,7 @@ public class SongUpdateController implements Initializable {
         song.setGenre(textGenre.getText());
 
         if(isImageEdited) {
-            String coverPath = albumCover != null ? albumCover.getAbsolutePath() : null;
+            String coverPath = albumCover != null ? albumCover.getAbsolutePath() : "";
             song.setCoverPath(coverPath);
         }
 
