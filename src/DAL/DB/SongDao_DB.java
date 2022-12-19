@@ -6,6 +6,7 @@ import DAL.Util.FileType;
 import DAL.Util.LocalFileHandler;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +94,8 @@ public class SongDao_DB implements ISongDAO {
         try (Connection connection = databaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
-            String coverPath = String.valueOf(relativeCoverPath);
+            Path relativeCoverPath = !song.getCoverPath().isEmpty() ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
+            String coverPath = relativeCoverPath != null ? String.valueOf(relativeCoverPath) : "";
 
             // Bind parameters
             statement.setString(1, song.getTitle());
@@ -136,13 +137,13 @@ public class SongDao_DB implements ISongDAO {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             Path relativePath = LocalFileHandler.createLocalFile(song.getPath(), FileType.SONG);
-            Path relativeCoverPath = song.getCoverPath() != null ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
+            Path relativeCoverPath = !song.getCoverPath().isEmpty() ? LocalFileHandler.createLocalFile(song.getCoverPath(), FileType.IMAGE) : null;
 
             String title = song.getTitle();
             String artist = song.getArtist();
             String genre = song.getGenre();
             String path = String.valueOf(relativePath);
-            String coverPath = String.valueOf(relativeCoverPath);
+            String coverPath = relativeCoverPath != null ? String.valueOf(relativeCoverPath) : "";
 
             int time = song.getTime();
 

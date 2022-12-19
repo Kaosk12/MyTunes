@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="Merged with master">
+    <list default="true" id="9b28f6d5-7631-4300-bd60-b0f709a88348" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BE/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BE/PlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/Interfaces/IPlayListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/PlayListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/PlayListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BLL/SongManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BLL/SongManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/PlayListDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/CSS/FourColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/CSS/FourColors.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/CSS/TestColorVar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/CSS/TestColorVar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/PlaylistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAL/DB/SongDao_DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongCreateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controllers/SongUpdateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Models/MediaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/MediaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/PlayListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Models/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Models/SongModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Util/ConfirmDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Util/ConfirmDelete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Util/TimeCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Util/TimeCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
