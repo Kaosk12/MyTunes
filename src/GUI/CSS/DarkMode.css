@@ -28,12 +28,6 @@
     -fx-background-radius: 50;
 }
 
-#btnSettings:selected {
-    -fx-background-color: #D9E4DD;
-    -fx-effect: innershadow(three-pass-box, rgb(217, 228, 221), 10, 0, 0, 0);
-    -fx-text-fill: #555555;
-}
-
 .slider {
     -fx-background-color: transparent;
 }

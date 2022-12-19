@@ -86,11 +86,11 @@
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="330.0">
                      <children>
                         <ImageView fx:id="imageAlbumCover" fitHeight="140.0" fitWidth="140.0" layoutX="110.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                        <ToggleButton fx:id="btnSettings" layoutX="290.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleStyle" prefHeight="40.0" prefWidth="40.0" text="⚙" wrapText="true">
+                        <Button fx:id="btnSettings" layoutX="290.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleStyle" prefHeight="40.0" prefWidth="40.0" text="⚙" wrapText="true">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
-                        </ToggleButton>
+                        </Button>
                         <Button fx:id="btnClose" layoutX="260.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="70.0" text="✖ Close" textAlignment="CENTER" />
                         <Slider fx:id="volumeSlider" layoutX="10.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="70.0" prefWidth="5.0" value="100.0" />
                         <ToggleButton fx:id="volumeButton" contentDisplay="CENTER" layoutX="20.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleVolumeButton" prefHeight="30.0" prefWidth="30.0" text="🔊" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true" />

@@ -152,13 +152,3 @@
     -fx-background-color: -fx-color1;
     -fx-border-color: -fx-color2;
 }
-
-
-/*
- * Used to match the light theme in a dark/light setup, somewhat obsolete in different setup
- */
-#btnSettings:selected {
-    -fx-background-color: #D9E4DD;
-    /* -fx-effect: innershadow(three-pass-box, rgb(217, 228, 221), 10, 0, 0, 0); */
-    -fx-text-fill: #555555;
-}

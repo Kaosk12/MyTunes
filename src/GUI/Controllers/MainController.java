@@ -79,9 +79,9 @@ public class MainController implements Initializable {
     @FXML
     private Button btnSOPAdd, btnSOPDelete, btnSOPMoveUp, btnSOPMoveDown;
     @FXML
-    private Button btnPlayerPlayPause;
+    private Button btnPlayerPlayPause, btnSettings;
     @FXML
-    private ToggleButton volumeButton, btnSettings, btnShuffleAtEnd, btnRepeatAtEnd;
+    private ToggleButton volumeButton, btnShuffleAtEnd, btnRepeatAtEnd;
     @FXML
     private Button btnEditPlayList, btnDeletePlayList;
 
