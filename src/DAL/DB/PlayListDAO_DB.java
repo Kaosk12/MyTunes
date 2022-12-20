@@ -344,4 +344,30 @@ public class PlayListDAO_DB implements IPlaylistDAO {
             throw new Exception("Failed to swap song", e);
         }
     }
+
+    public void updateSOPPosition(PlayList playList, Song song) throws Exception{
+        int songIndex = playList.getAllSongsInPlaylist().indexOf(song);
+        if (songIndex+1 != playList.getAllSongsInPlaylist().size()){
+
+            String sql = "UPDATE SongsInPlaylists SET NumberInplaylist = ? WHERE PlaylistId = ? AND SongId = ?;";
+            try (Connection connection = databaseConnector.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+                for (Song song1:playList.getAllSongsInPlaylist()){
+                    int allSongIndex = playList.getAllSongsInPlaylist().indexOf(song1);
+                    if (allSongIndex>=songIndex){
+                        //Bind parameters of chosenSong
+                        statement.setInt(1, allSongIndex+1);
+                        statement.setInt(2, playList.getPlayListId());
+                        statement.setInt(3, song1.getId());
+                        //Run the specified SQL Statement and move the chosenSong
+                        statement.executeUpdate();
+                    }
+                }
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                throw new Exception("Failed to update song position", e);
+            }
+        }
+    }
 }
