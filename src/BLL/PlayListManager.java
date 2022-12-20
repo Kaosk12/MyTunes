@@ -53,8 +53,4 @@ public class PlayListManager implements IPlayListManager {
     public void moveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception{
         databaseAcces.moveSOP(playList, song, moveUp);
     }
-
-    public void updateSOPPosition(PlayList playList, Song song) throws Exception{
-        databaseAcces.updateSOPPosition(playList, song);
-    }
 }

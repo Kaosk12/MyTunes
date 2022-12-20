@@ -176,6 +176,8 @@ public class PlayListDAO_DB implements IPlaylistDAO {
 
             //Run the specified SQL Statement
             statement.executeUpdate();
+
+            updateSOPPosition(playList, song);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -345,18 +347,28 @@ public class PlayListDAO_DB implements IPlaylistDAO {
         }
     }
 
+    /**
+     * update the position in the database if a song have been deleted
+     * @param playList the playlist that had a song deleted
+     * @param song the song that got deleted
+     * @throws Exception if it fails to update position of songs.
+     */
     public void updateSOPPosition(PlayList playList, Song song) throws Exception{
         int songIndex = playList.getAllSongsInPlaylist().indexOf(song);
+        //checks if it is the last song in the playlist, because if it is it dosnt need to do anything.
         if (songIndex+1 != playList.getAllSongsInPlaylist().size()){
-
+            //sql query
             String sql = "UPDATE SongsInPlaylists SET NumberInplaylist = ? WHERE PlaylistId = ? AND SongId = ?;";
             try (Connection connection = databaseConnector.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
+                //loops trough all the songs in the playlist.
                 for (Song song1:playList.getAllSongsInPlaylist()){
+
                     int allSongIndex = playList.getAllSongsInPlaylist().indexOf(song1);
+                    //checks if the song is above the deleted song
                     if (allSongIndex>=songIndex){
                         //Bind parameters of chosenSong
-                        statement.setInt(1, allSongIndex+1);
+                        statement.setInt(1, allSongIndex);
                         statement.setInt(2, playList.getPlayListId());
                         statement.setInt(3, song1.getId());
                         //Run the specified SQL Statement and move the chosenSong

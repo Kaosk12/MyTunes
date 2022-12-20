@@ -60,6 +60,4 @@ public interface IPlayListManager {
      * @throws Exception if it fails to move the song.
      */
     void moveSOP(PlayList playList, Song song, Boolean moveUp) throws Exception;
-
-    void updateSOPPosition(PlayList playList, Song song) throws Exception;
 }

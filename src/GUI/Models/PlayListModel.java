@@ -90,7 +90,6 @@ public class PlayListModel {
         //this will remove the song from the GUI.
         songsInPlayList.clear();
         songsInPlayList.addAll(selectedPlaylist.getAllSongsInPlaylist());
-        playListManager.updateSOPPosition(selectedPlaylist, selectedSOP);
     }
 
     public void updatePlayList(PlayList playList) throws Exception {
