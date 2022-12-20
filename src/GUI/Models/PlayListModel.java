@@ -85,10 +85,9 @@ public class PlayListModel {
     public void deleteSOP() throws Exception {
         //This will remove the song from the playlist in the database.
         playListManager.removeSOP(selectedPlaylist, selectedSOP);
-        //this will remove the song from the GUI.
-        //songsInPlayList.remove(selectedSOP);
         //Updates the list in the effected PlayList object.
         selectedPlaylist.removeSOP(selectedSOP);
+        //this will remove the song from the GUI.
         songsInPlayList.clear();
         songsInPlayList.addAll(selectedPlaylist.getAllSongsInPlaylist());
     }
